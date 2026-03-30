@@ -1,0 +1,15 @@
+design-system:
+  component-patterns:
+    description: Use existing design system components (AppButton, AppCard, GradientButton, etc.) — never build custom common UI from scratch
+  token-usage:
+    description: Always use AppColors, AppSpacing, AppTypography, AppRadius, AppShadows tokens — never hardcode raw values
+
+flutter:
+  file-organization:
+    description: Feature-based folder structure with screen files, widgets/ subfolders, and barrel exports
+  screen-structure:
+    description: Screen layout pattern — private _build* methods, SafeArea, gradient backgrounds, consistent spacing
+
+ui:
+  dark-space-theme:
+    description: Dark-mode-first space/cosmos aesthetic — deep navy gradients, StarField backgrounds, dark card styling
