@@ -2,7 +2,7 @@
 
 ## What Is Quittr?
 
-Quittr is a mobile app that helps people quit pornography addiction. It combines streak tracking, daily pledges, brain rewire progress visualization, journaling, meditation exercises, and anonymous community support into a premium, discreet experience.
+Quittr is a mobile app that helps people quit pornography addiction. It combines streak tracking, daily pledges, brain rewire progress visualization, journaling, meditation exercises, and emergency intervention tools into a premium, discreet experience.
 
 ## Current State (as of 2026-03-30)
 
@@ -26,7 +26,6 @@ The project has a **design system and static UI screens** built in Flutter. No b
 - Business logic (streak calculation, pledge tracking, etc.)
 - Real data models
 - Authentication
-- Community features
 - In-app purchases
 
 ## Design Language
@@ -42,7 +41,7 @@ The project has a **design system and static UI screens** built in Flutter. No b
 - Freemium with subscription
 - Monthly: ₪32/month
 - Yearly: ₪99.90/year (₪8.32/month)
-- Premium features: content blocker, personalized plan, advanced stats
+- Premium features: personalized plan, advanced stats
 
 ## Target Platforms
 

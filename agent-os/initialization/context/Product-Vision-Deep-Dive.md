@@ -13,7 +13,7 @@ Quittr frames quitting porn as a **space journey** — the user is launching int
 
 1. **Wake up** → Open app → See streak → Feel motivation
 2. **Make daily pledge** → Commitment device → Psychological contract
-3. **Feel urge** → Open app → Use tools (meditation, journal, community)
+3. **Feel urge** → Open app → Use tools (meditation, journal, panic mode)
 4. **End of day** → Reflect in journal → Build self-awareness
 5. **Hit milestone** → Celebrate achievement → Reinforce behavior
 
@@ -22,7 +22,7 @@ Quittr frames quitting porn as a **space journey** — the user is launching int
 - **Streaks create loss aversion** — Users don't want to break their streak
 - **Pledges create commitment** — Public (even to yourself) commitments increase follow-through
 - **Brain rewire gives hope** — "It's not forever, just 90 days" makes it feel achievable
-- **Community reduces shame** — Anonymous support normalizes the struggle
+- **Panic Mode provides intervention** — Emergency tools meet the user in their moment of weakness
 - **Gamification sustains engagement** — Badges, milestones, stats make recovery feel like progress
 
 ## Quiz Purpose
@@ -38,5 +38,4 @@ The onboarding quiz serves multiple purposes:
 - App name "QUITTR" is vague enough to not be embarrassing
 - "Discrete Purchase" labeling on subscription
 - No identifiable data in notifications
-- Anonymous community (no real names)
-- No social media integration
+- No social features or external sharing

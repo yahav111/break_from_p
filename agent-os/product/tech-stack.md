@@ -17,7 +17,7 @@
 
 ## Backend
 
-- TBD (likely Firebase or Supabase for auth, database, and community features)
+- TBD (likely Firebase or Supabase for auth and database — scope reduced without community features)
 
 ## Payments
 

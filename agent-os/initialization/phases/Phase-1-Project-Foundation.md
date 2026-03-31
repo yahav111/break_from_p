@@ -12,7 +12,7 @@ Transform the existing static UI screens into a working app with navigation, sta
 - Define routes: `/welcome`, `/quiz`, `/onboarding`, `/paywall`, `/home`
 - App flow: Welcome → Quiz → Onboarding → Paywall → Home
 - Returning users skip to Home
-- Bottom navigation on Home (future screens: Home, Journal, Community, Profile)
+- Bottom navigation on Home (future screens: Home, Library, Journal, Profile)
 
 ### 2. State Management
 
@@ -50,7 +50,7 @@ Transform the existing static UI screens into a working app with navigation, sta
 ## Dependencies on Future Phases
 
 - Phase 2 will expand the streak engine with time display and brain rewire calculation
-- Phase 3 will add journal and meditation features (bottom nav placeholders needed)
+- Phase 3 will add journal, meditation, and library features (bottom nav placeholders needed)
 - Phase 5 will implement actual paywall logic (for now, paywall just navigates forward)
 
 ## Key Decisions

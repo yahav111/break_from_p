@@ -17,15 +17,7 @@ Implement the subscription model, content blocking, personalized plans, analytic
 - Free tier: basic streak, pledges, limited journal entries
 - Premium tier: everything
 
-### 2. Content Blocker (Premium)
-
-- iOS: Safari content blocker extension
-- Android: VPN-based or accessibility service blocker
-- Configurable block lists
-- Block page with motivational message and emergency tools link
-- Easy toggle on/off in settings
-
-### 3. Personalized Recovery Plan (Premium)
+### 2. Personalized Recovery Plan (Premium)
 
 - Use quiz answers to generate a personalized 90-day plan
 - Daily tasks/goals based on recovery stage
@@ -33,7 +25,7 @@ Implement the subscription model, content blocking, personalized plans, analytic
 - Weekly plan review and adjustment
 - Optional AI-generated insights (future consideration)
 
-### 4. Analytics
+### 3. Analytics
 
 - Firebase Analytics or Mixpanel integration
 - Key events: app open, streak reset, pledge made, journal entry, exercise completed
@@ -41,14 +33,6 @@ Implement the subscription model, content blocking, personalized plans, analytic
 - Retention metrics
 - A/B testing framework for onboarding/paywall
 
-### 5. Localization
-
-- Set up `flutter_localizations` and `intl`
-- Extract all strings to ARB files
-- Hebrew (primary market) and English
-- RTL support for Hebrew
-- Date/time formatting per locale
-- Currency formatting per locale
 
 ## Dependencies on Future Phases
 
@@ -57,7 +41,5 @@ Implement the subscription model, content blocking, personalized plans, analytic
 ## Definition of Done
 
 - [ ] Users can purchase and manage subscriptions
-- [ ] Content blocker works on iOS and Android
 - [ ] Personalized plan generates from quiz data
 - [ ] Analytics track key user events
-- [ ] App works in Hebrew and English with proper RTL

@@ -2,7 +2,7 @@
 
 ## Goal
 
-Build the essential daily-use features: full streak engine with real-time display, daily pledges, brain rewire progress, notifications, and settings screen.
+Build the essential daily-use features: full streak engine with real-time display, daily pledges, brain rewire progress, notifications, settings, panic mode emergency system, relapse counting, and personal reasons for quitting.
 
 ## Scope
 
@@ -48,10 +48,43 @@ Build the essential daily-use features: full streak engine with real-time displa
 - App version info
 - "Delete all data" option
 
+### 6. Panic Mode
+
+- Full-screen emergency intervention triggered from Panic Button on home screen
+- Opens device front camera (selfie mirror) showing user's own face
+- Displays bold motivational sentences overlay ("YOU'RE DOING THIS FOR A BETTER LIFE")
+- Shows "Side Effects of Relapsing" cards (e.g., "REDUCED PERFORMANCE", "BRAIN FOG", "SHAME & GUILT")
+- Two distinct action buttons:
+  - "I'm thinking of relapsing" — keeps user in coping mode, surfaces more tools (breathing, journal, meditation)
+  - "I Relapsed" — triggers streak reset flow with confirmation and reason logging
+- Requires camera permission (request on first use, with explanation dialog)
+- Must work without camera if permission denied (skip the mirror, keep rest of the flow)
+- Works offline (no network dependency)
+- Use `camera` Flutter package for front camera access
+
+### 7. Relapses Counter
+
+- Persistent counter tracking total lifetime relapses
+- Visible on home screen alongside streak counter and "Til Sober" countdown
+- Increments automatically when user confirms relapse via Panic Mode or streak reset
+- Stored locally alongside streak data
+- Only resets via "Delete all data" in settings (not on streak reset)
+- Serves as honest accountability metric
+
+### 8. Reasons For Quitting
+
+- Home screen section displaying user's personal reasons for quitting
+- Setup prompt during first use or accessible from home screen
+- User can add multiple reasons (free text, with optional suggested reasons)
+- Reasons displayed as cards/chips on home screen
+- Edit/delete/reorder reasons from settings or home screen
+- Reasons also shown during Panic Mode flow for additional motivation
+- Stored locally
+
 ## Dependencies on Future Phases
 
-- Phase 3 will add journal entries accessible from "Emergency" flow
-- Phase 4 will add community features to settings
+- Phase 3 will add journal entries accessible from Panic Mode and "I'm thinking of relapsing" flow
+- Phase 3 will add meditation/breathing exercises accessible from Panic Mode coping tools
 - Phase 5 will add subscription management to settings
 
 ## Definition of Done
@@ -62,3 +95,9 @@ Build the essential daily-use features: full streak engine with real-time displa
 - [ ] Notifications work for pledges and milestones
 - [ ] Settings screen is fully functional
 - [ ] All data persists and syncs correctly
+- [ ] Panic Mode opens front camera and displays motivational content
+- [ ] Panic Mode branches correctly: "thinking of relapsing" shows coping tools, "I Relapsed" triggers reset
+- [ ] Camera permission requested and handled gracefully (including denial)
+- [ ] Relapses counter displays on home screen and increments on relapse
+- [ ] User can set, view, edit, and delete personal reasons for quitting
+- [ ] Reasons appear on home screen and within Panic Mode
