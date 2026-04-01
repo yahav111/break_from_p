@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../design_system/design_system.dart';
+import 'milestone_indicator.dart';
 
 /// Streak/progress hero card shown at the top of the Home screen.
 class StreakCard extends StatelessWidget {
@@ -9,11 +10,13 @@ class StreakCard extends StatelessWidget {
     required this.days,
     required this.timeLabel,
     required this.brainRewirePct,
+    this.onPanicPressed,
   });
 
   final int days;
   final String timeLabel;
   final double brainRewirePct;
+  final VoidCallback? onPanicPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -122,31 +125,36 @@ class StreakCard extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
           ),
         ),
+        const SizedBox(height: AppSpacing.xs),
+        MilestoneIndicator(currentDays: days),
       ],
     );
   }
 
   Widget _buildPanicButton() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-      decoration: BoxDecoration(
-        color: AppColors.errorBackground,
-        borderRadius: AppRadius.borderPill,
-        border: Border.all(
-          color: AppColors.error.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.warning_rounded, color: AppColors.error, size: 18),
-          const SizedBox(width: AppSpacing.sm),
-          Text(
-            'Panic Button',
-            style: AppTypography.button.copyWith(color: AppColors.error),
+    return GestureDetector(
+      onTap: onPanicPressed,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+        decoration: BoxDecoration(
+          color: AppColors.errorBackground,
+          borderRadius: AppRadius.borderPill,
+          border: Border.all(
+            color: AppColors.error.withValues(alpha: 0.3),
           ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.warning_rounded, color: AppColors.error, size: 18),
+            const SizedBox(width: AppSpacing.sm),
+            Text(
+              'Panic Button',
+              style: AppTypography.button.copyWith(color: AppColors.error),
+            ),
+          ],
+        ),
       ),
     );
   }

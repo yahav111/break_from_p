@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../core/providers/app_state_provider.dart';
 import '../../design_system/design_system.dart';
+import '../../routing/route_names.dart';
 import '../../shared/widgets/star_field.dart';
 import 'widgets/plan_card.dart';
 
 /// Subscription paywall screen.
-/// Showcases the gradient CTA button and plan selection cards.
-class PaywallScreen extends StatefulWidget {
+/// In Phase 1, tapping "CONTINUE" completes onboarding and goes to Home.
+class PaywallScreen extends ConsumerStatefulWidget {
   const PaywallScreen({super.key});
 
   @override
-  State<PaywallScreen> createState() => _PaywallScreenState();
+  ConsumerState<PaywallScreen> createState() => _PaywallScreenState();
 }
 
-class _PaywallScreenState extends State<PaywallScreen> {
+class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   /// 0 = monthly, 1 = yearly
   int _selectedPlan = 1;
 
@@ -134,7 +138,14 @@ class _PaywallScreenState extends State<PaywallScreen> {
       label: 'CONTINUE',
       isFullWidth: true,
       size: AppButtonSize.large,
-      onPressed: () {},
+      onPressed: () async {
+        await ref
+            .read(appStateNotifierProvider.notifier)
+            .completeOnboarding();
+        if (mounted) {
+          context.go(Routes.home);
+        }
+      },
     );
   }
 

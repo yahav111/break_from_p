@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../design_system/design_system.dart';
+import '../../routing/route_names.dart';
 import '../../shared/widgets/star_field.dart';
 
 /// The first screen a new user sees.
@@ -70,7 +72,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: AppSpacing.xxxl),
             _buildRatingRow(),
             const SizedBox(height: AppSpacing.xl),
-            _buildPrimaryButton(),
+            _buildPrimaryButton(context),
             const SizedBox(height: AppSpacing.md),
             _buildSecondaryButton(),
             const SizedBox(height: AppSpacing.xxl),
@@ -137,7 +139,7 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPrimaryButton() {
+  Widget _buildPrimaryButton(BuildContext context) {
     return AppButton(
       label: 'Start Quiz',
       isFullWidth: true,
@@ -145,7 +147,7 @@ class WelcomeScreen extends StatelessWidget {
       icon: Icons.arrow_forward_rounded,
       iconPosition: AppButtonIconPosition.trailing,
       size: AppButtonSize.large,
-      onPressed: () {},
+      onPressed: () => context.go(Routes.quiz),
     );
   }
 

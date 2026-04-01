@@ -1,14 +1,22 @@
 design-system:
   component-patterns:
-    description: Use existing design system components (AppButton, AppCard, GradientButton, etc.) — never build custom common UI from scratch
+    description: Use existing design system components (AppButton, AppCard, GradientButton, AppBottomDialog, etc.) — never build custom common UI from scratch
   token-usage:
     description: Always use AppColors, AppSpacing, AppTypography, AppRadius, AppShadows tokens — never hardcode raw values
 
 flutter:
   file-organization:
-    description: Feature-based folder structure with screen files, widgets/ subfolders, and barrel exports
+    description: Feature-based folder structure with screen files, widgets/ subfolders, and barrel exports. Domain logic in core/, persistence in data/, navigation in routing/
   screen-structure:
-    description: Screen layout pattern — private _build* methods, SafeArea, gradient backgrounds, consistent spacing
+    description: Screen layout pattern — private _build* methods, SafeArea, gradient backgrounds, consistent spacing. Screens with input fields wrap in Scaffold
+  state-management:
+    description: Riverpod Notifier API pattern — providers in core/providers/, repository providers overridden at bootstrap, ConsumerWidget for screens
+  repository-pattern:
+    description: Concrete repository classes in data/repositories/, injected via Riverpod provider overrides at bootstrap. No abstract interfaces. One Hive box per model
+  navigation:
+    description: go_router with redirect logic. StatefulShellRoute for bottom nav. context.go() for flow transitions, context.push() for full-screen overlays (settings, panic)
+  hive-model-pattern:
+    description: New Hive models need @HiveType/@HiveField annotations, generated adapter, registered in main.dart, box opened in bootstrap, repository created, provider created with override pattern
 
 ui:
   dark-space-theme:

@@ -1,29 +1,34 @@
 # Quittr — Roadmap
 
-## Phase 1: Project Foundation (MVP Core)
+## Phase 1: Project Foundation (MVP Core) ✅ COMPLETE
 
 Establish the technical foundation: navigation, state management, local persistence, and connect existing UI screens into a working app flow.
 
-- App navigation (welcome → quiz → onboarding → paywall → home)
-- State management setup (Riverpod or Bloc)
-- Local storage (shared_preferences / Hive)
-- User profile & quit date storage
-- Basic streak tracking (days since quit date)
+- ✅ App navigation with go_router (welcome → quiz → onboarding → paywall → home)
+- ✅ State management with Riverpod (Notifier API)
+- ✅ Local storage (shared_preferences for AppState, Hive for UserProfile & StreakData)
+- ✅ User profile & quit date storage via 7-step quiz flow
+- ✅ Basic streak tracking (days since quit date, brain rewire %)
+- ✅ Bottom navigation shell (Home, Library, Journal, Profile) with StatefulShellRoute
+- ✅ Notification permission request (permission_handler)
+- ✅ Streak reset with confirmation dialog
+- ✅ Returning users skip onboarding (redirect logic)
 
-## Phase 2: Core Features
+## Phase 2: Core Features ✅ COMPLETE
 
 Build the essential features that make the app useful day-to-day.
 
-- **Streak Engine** — Real-time streak counter with time display, reset functionality
-- **Daily Pledges** — Morning pledge commitment, pledge history
-- **Brain Rewire Progress** — Science-based progress visualization (90-day rewire concept)
-- **Notifications** — Smart reminders, streak milestone celebrations
-- **Settings** — Profile, notification preferences, quit date management
-- **Panic Mode** — Full emergency intervention with front camera mirror, motivational content, relapse side-effects cards, and branching flows ("I'm thinking of relapsing" / "I Relapsed")
-- **Relapses Counter** — Persistent counter on home screen showing total lifetime relapse count
-- **Reasons For Quitting** — Home screen section where user sets and reviews personal reasons for quitting
+- ✅ **Streak Engine** — Real-time live streak (days/hours/minutes/seconds via liveStreakProvider), formatDuration, milestone detection
+- ✅ **Daily Pledges** — PledgeData model, PledgeNotifier, PledgeCard on home screen, pledge history tracking
+- ✅ **Brain Rewire Progress** — Milestone system (7/14/30/60/90 days), MilestoneInfo with science messages, MilestoneCelebrationDialog
+- ✅ **Notifications** — flutter_local_notifications, NotificationPreferences model & provider, notification scheduling
+- ✅ **Settings** — Full settings screen (/settings route), profile editing, notification preferences, quit date management
+- ✅ **Panic Mode** — Full-screen emergency intervention (/panic route) with front camera mirror (camera package), motivational content, relapse side-effects, branching flows
+- ✅ **Relapses Counter** — RelapseData/RelapseEntry models, RelapseNotifier, persistent counter on home screen
+- ✅ **Reasons For Quitting** — ReasonsData model, ReasonsNotifier, ReasonsSection widget on home screen
+- ✅ **Profile Screen** — Fully functional with avatar, stats summary, settings navigation (replaced placeholder)
 
-## Phase 3: Engagement Tools
+## Phase 3: Engagement Tools ← NEXT
 
 Give users daily coping tools and a content hub.
 

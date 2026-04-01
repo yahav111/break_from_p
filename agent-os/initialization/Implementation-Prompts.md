@@ -22,7 +22,7 @@ Produce the implementation plan. The final task should be:
 → Run /agent-os:discover-standards — walk me through selecting which discovered standards to save.
 ```
 
----
+
 
 ## Phase 2 — Core Features
 
