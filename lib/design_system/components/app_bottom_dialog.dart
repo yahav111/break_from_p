@@ -86,6 +86,7 @@ class AppBottomDialog extends StatelessWidget {
     bool buttonsInline = true,
     bool isDismissible = true,
     bool enableDrag = true,
+    bool useRootNavigator = true,
   }) {
     return showModalBottomSheet<T>(
       context: context,
@@ -93,6 +94,7 @@ class AppBottomDialog extends StatelessWidget {
       enableDrag: enableDrag,
       isScrollControlled: true,
       useSafeArea: true,
+      useRootNavigator: useRootNavigator,
       backgroundColor: Colors.transparent,
       builder: (context) => AppBottomDialog(
         title: title,

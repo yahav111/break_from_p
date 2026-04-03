@@ -23,13 +23,16 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        _buildBackground(),
-        const StarField(density: 80),
-        _buildContent(),
-      ],
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          _buildBackground(),
+          const StarField(density: 80),
+          _buildContent(),
+        ],
+      ),
     );
   }
 

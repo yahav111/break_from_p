@@ -20,7 +20,10 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.sm,
+      ),
       decoration: BoxDecoration(
         color: AppColors.darkCard,
         borderRadius: AppRadius.borderLarge,
@@ -29,17 +32,22 @@ class StatCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: iconColor, size: 22),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            value,
-            style: AppTypography.headlineSmall.copyWith(color: Colors.white),
+          Row(
+            children: [
+              Icon(icon, color: iconColor, size: 16),
+              const SizedBox(width: AppSpacing.xs),
+              Text(
+                label,
+                style: AppTypography.caption.copyWith(
+                  color: AppColors.darkTextSecondary,
+                  fontSize: 11,
+                ),
+              ),
+            ],
           ),
           Text(
-            label,
-            style: AppTypography.caption.copyWith(
-              color: AppColors.darkTextSecondary,
-            ),
+            value,
+            style: AppTypography.titleMedium.copyWith(color: Colors.white),
           ),
         ],
       ),

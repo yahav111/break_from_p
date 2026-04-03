@@ -20,7 +20,7 @@ class StreakDataAdapter extends TypeAdapter<StreakData> {
       quitDate: fields[0] as DateTime,
       longestStreakDays: fields[1] as int,
       resetHistory: (fields[2] as List).cast<DateTime>(),
-      streakHistory: (fields[3] as List?)?.cast<StreakRecord>() ?? [],
+      streakHistory: (fields[3] as List).cast<StreakRecord>(),
     );
   }
 

@@ -9,4 +9,19 @@ abstract final class Routes {
   static const profile = '/profile';
   static const settings = '/settings';
   static const panicMode = '/panic';
+
+  // Journal sub-routes.
+  static const journalEntry = '/journal/entry';
+  static const journalHistory = '/journal/history';
+
+  // Library sub-routes.
+  static const meditate = '/library/meditate';
+  static const breathingExercise = '/library/meditate/breathing';
+  static const urgeSurfing = '/library/meditate/urge-surfing';
+  static const grounding = '/library/meditate/grounding';
+  static const soundscapes = '/library/soundscapes';
+  static const moodHistory = '/library/mood';
+
+  // Urge tracker (full-screen, outside shell).
+  static const urgeTracker = '/urge';
 }

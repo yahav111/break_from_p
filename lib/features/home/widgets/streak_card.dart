@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../design_system/design_system.dart';
+import 'day_orbs_row.dart';
 import 'milestone_indicator.dart';
 
 /// Streak/progress hero card shown at the top of the Home screen.
@@ -10,57 +11,25 @@ class StreakCard extends StatelessWidget {
     required this.days,
     required this.timeLabel,
     required this.brainRewirePct,
-    this.onPanicPressed,
   });
 
   final int days;
   final String timeLabel;
   final double brainRewirePct;
-  final VoidCallback? onPanicPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppSpacing.xxl),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF1E1255), Color(0xFF2D1880)],
-        ),
-        borderRadius: AppRadius.borderExtraLarge,
-        border: Border.all(color: AppColors.darkBorder),
-        boxShadow: AppShadows.primaryGlow,
-      ),
-      child: Column(
-        children: [
-          _buildOrb(),
-          const SizedBox(height: AppSpacing.lg),
-          _buildSubLabel(),
-          const SizedBox(height: AppSpacing.sm),
-          _buildDaysCounter(),
-          _buildTimeCounter(),
-          const SizedBox(height: AppSpacing.xl),
-          _buildProgressBar(),
-          const SizedBox(height: AppSpacing.xl),
-          _buildPanicButton(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildOrb() {
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: const RadialGradient(
-          colors: [Color(0xFFBE3FD8), Color(0xFF7B61FF), Color(0xFF3A20A0)],
-        ),
-        boxShadow: AppShadows.primaryGlow,
-      ),
+    return Column(
+      children: [
+        DayOrbsRow(days: days),
+        const SizedBox(height: AppSpacing.lg),
+        _buildSubLabel(),
+        const SizedBox(height: AppSpacing.sm),
+        _buildDaysCounter(),
+        _buildTimeCounter(),
+        const SizedBox(height: AppSpacing.xl),
+        _buildProgressBar(),
+      ],
     );
   }
 
@@ -131,31 +100,4 @@ class StreakCard extends StatelessWidget {
     );
   }
 
-  Widget _buildPanicButton() {
-    return GestureDetector(
-      onTap: onPanicPressed,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-        decoration: BoxDecoration(
-          color: AppColors.errorBackground,
-          borderRadius: AppRadius.borderPill,
-          border: Border.all(
-            color: AppColors.error.withValues(alpha: 0.3),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.warning_rounded, color: AppColors.error, size: 18),
-            const SizedBox(width: AppSpacing.sm),
-            Text(
-              'Panic Button',
-              style: AppTypography.button.copyWith(color: AppColors.error),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

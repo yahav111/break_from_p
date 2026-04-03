@@ -1,9 +1,13 @@
 export 'app_state_provider.dart';
+export 'exercise_provider.dart';
+export 'journal_provider.dart';
 export 'live_streak_provider.dart';
 export 'notification_preferences_provider.dart';
 export 'pledge_provider.dart';
 export 'quiz_provider.dart';
 export 'reasons_provider.dart';
 export 'relapse_provider.dart';
+export 'soundscape_provider.dart';
 export 'streak_provider.dart';
+export 'urge_provider.dart';
 export 'user_profile_provider.dart';

@@ -1,11 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../core/services/camera_service.dart';
 import '../../design_system/design_system.dart';
 import 'widgets/camera_mirror.dart';
-import 'widgets/coping_placeholder.dart';
+import 'widgets/coping_tools.dart';
 import 'widgets/motivation_overlay.dart';
 import 'widgets/reasons_display.dart';
 import 'widgets/relapse_flow.dart';
@@ -13,12 +12,27 @@ import 'widgets/side_effects_cards.dart';
 
 enum _PanicState { main, coping, relapse }
 
-/// Full-screen panic mode intervention.
+/// Panic mode intervention shown as a bottom sheet.
 /// Header with QUITTR branding + Panic Button title,
 /// rounded camera card with motivational text banner,
 /// side effects list, and two action buttons.
 class PanicModeScreen extends StatefulWidget {
   const PanicModeScreen({super.key});
+
+  /// Show panic mode as a modal bottom sheet.
+  static Future<void> show(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      useRootNavigator: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const FractionallySizedBox(
+        heightFactor: 1,
+        child: PanicModeScreen(),
+      ),
+    );
+  }
 
   @override
   State<PanicModeScreen> createState() => _PanicModeScreenState();
@@ -37,12 +51,18 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
   }
 
   Future<void> _initCamera() async {
-    final controller = await _cameraService.initFrontCamera();
-    if (mounted) {
-      setState(() {
-        _cameraController = controller;
-        _cameraLoading = false;
-      });
+    try {
+      final controller = await _cameraService.initFrontCamera();
+      if (mounted) {
+        setState(() {
+          _cameraController = controller;
+          _cameraLoading = false;
+        });
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() => _cameraLoading = false);
+      }
     }
   }
 
@@ -54,9 +74,13 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF080B22),
-      body: switch (_state) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color(0xFF080B22),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: switch (_state) {
         _PanicState.main => _buildMainView(context),
         _PanicState.coping => _buildCopingView(),
         _PanicState.relapse => _buildRelapseView(),
@@ -72,49 +96,63 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
           end: Alignment.bottomCenter,
           colors: [Color(0xFF0A0D2E), Color(0xFF080B22)],
         ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: AppSpacing.md),
-
-              // ── Header: QUITTR + X button ──
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Text(
-                      'QUITTR',
-                      style: AppTypography.titleLarge.copyWith(
-                        color: Colors.white,
-                        fontWeight: AppTypography.bold,
-                        letterSpacing: 3,
-                      ),
-                    ),
-                    const Spacer(),
-                    // X button top-right.
-                    GestureDetector(
-                      onTap: () => context.pop(),
-                      child: Container(
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          color: AppColors.overlayWhiteMedium,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.close_rounded,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            // ── Drag handle ──
+            Padding(
+              padding: const EdgeInsets.only(top: AppSpacing.md),
+              child: Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.3),
+                    borderRadius: AppRadius.borderCircular,
+                  ),
                 ),
               ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+
+            // ── Header: QUITTR + X button ──
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              child: Row(
+                children: [
+                  const Spacer(),
+                  Text(
+                    'QUITTR',
+                    style: AppTypography.titleLarge.copyWith(
+                      color: Colors.white,
+                      fontWeight: AppTypography.bold,
+                      letterSpacing: 3,
+                    ),
+                  ),
+                  const Spacer(),
+                  // X button top-right.
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: AppColors.overlayWhiteMedium,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
               // ── "Panic Button" subtitle ──
               const SizedBox(height: AppSpacing.sm),
@@ -234,7 +272,6 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
             ],
           ),
         ),
-      ),
     );
   }
 
@@ -333,7 +370,7 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
-          child: CopingPlaceholder(
+          child: CopingTools(
             onBack: () => setState(() => _state = _PanicState.main),
           ),
         ),

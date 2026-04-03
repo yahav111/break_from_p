@@ -29,7 +29,12 @@ class ProfileScreen extends ConsumerWidget {
     final totalPledges = pledgeData?.pledgeDates.length ?? 0;
     final totalRelapses = relapseData?.totalRelapses ?? 0;
 
-    return Container(
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Container(
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height,
+      ),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -103,6 +108,7 @@ class ProfileScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }

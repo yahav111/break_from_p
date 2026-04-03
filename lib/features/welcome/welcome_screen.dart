@@ -12,14 +12,17 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        _buildBackground(),
-        const StarField(density: 50),
-        _buildHorizonGlow(),
-        _buildContent(context),
-      ],
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          _buildBackground(),
+          const StarField(density: 50),
+          _buildHorizonGlow(),
+          _buildContent(context),
+        ],
+      ),
     );
   }
 

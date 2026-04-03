@@ -11,6 +11,7 @@ import '../../core/providers/user_profile_provider.dart';
 import '../../core/services/streak_engine.dart';
 import '../../design_system/design_system.dart';
 import '../../routing/route_names.dart';
+import '../panic_mode/panic_mode_screen.dart';
 import 'widgets/milestone_celebration_dialog.dart';
 import 'widgets/pledge_card.dart';
 import 'widgets/quick_action_chip.dart';
@@ -61,40 +62,55 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       _checkMilestone(days, appState.lastCelebratedMilestone);
     }
 
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF0A0D2E), Color(0xFF080B22)],
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Container(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height,
         ),
-      ),
-      child: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF0A0D2E), Color(0xFF080B22)],
+          ),
+        ),
+        child: SafeArea(
+          child: Stack(
             children: [
-              const SizedBox(height: AppSpacing.xl),
-              _buildHeader(context, greeting, name, days),
-              const SizedBox(height: AppSpacing.xxl),
-              StreakCard(
-                days: days,
-                timeLabel: timeLabel,
-                brainRewirePct: brainRewire,
-                onPanicPressed: () => context.push(Routes.panicMode),
+              SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: AppSpacing.xl),
+                    _buildHeader(context, greeting, name, days),
+                    const SizedBox(height: AppSpacing.xxl),
+                    StreakCard(
+                      days: days,
+                      timeLabel: timeLabel,
+                      brainRewirePct: brainRewire,
+                    ),
+                    const SizedBox(height: AppSpacing.xxl),
+                    _buildStatsRow(days, totalPledges, totalRelapses),
+                    const SizedBox(height: AppSpacing.xxl),
+                    const PledgeCard(),
+                    const SizedBox(height: AppSpacing.xxl),
+                    const ReasonsSection(),
+                    const SizedBox(height: AppSpacing.xxl),
+                    _buildQuickActionsTitle(),
+                    const SizedBox(height: AppSpacing.lg),
+                    _buildQuickActionsGrid(context, ref),
+                    const SizedBox(height: AppSpacing.xxxxxxxxl),
+                  ],
+                ),
               ),
-              const SizedBox(height: AppSpacing.xxl),
-              _buildStatsRow(days, totalPledges, totalRelapses),
-              const SizedBox(height: AppSpacing.xxl),
-              const PledgeCard(),
-              const SizedBox(height: AppSpacing.xxl),
-              const ReasonsSection(),
-              const SizedBox(height: AppSpacing.xxl),
-              _buildQuickActionsTitle(),
-              const SizedBox(height: AppSpacing.lg),
-              _buildQuickActionsGrid(context, ref),
-              const SizedBox(height: AppSpacing.xxxxxxxxl),
+              Positioned(
+                left: AppSpacing.lg,
+                right: AppSpacing.lg,
+                bottom: AppSpacing.lg,
+                child: _buildFloatingPanicButton(context),
+              ),
             ],
           ),
         ),
@@ -200,21 +216,62 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       spacing: AppSpacing.md,
       runSpacing: AppSpacing.md,
       children: [
-        const QuickActionChip(
+        QuickActionChip(
           label: 'Meditate',
           icon: Icons.self_improvement_rounded,
+          onTap: () => context.push(Routes.meditate),
         ),
-        const QuickActionChip(
+        QuickActionChip(
           label: 'Journal',
           icon: Icons.edit_note_rounded,
+          onTap: () => context.push(Routes.journalEntry),
+        ),
+        QuickActionChip(
+          label: 'Track Urge',
+          icon: Icons.warning_amber_rounded,
+          onTap: () => context.push(Routes.urgeTracker),
         ),
         QuickActionChip(
           label: 'Reset',
           icon: Icons.refresh_rounded,
           onTap: () => _showResetDialog(context, ref),
         ),
-        const QuickActionChip(label: 'More', icon: Icons.more_horiz_rounded),
       ],
+    );
+  }
+
+  Widget _buildFloatingPanicButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () => PanicModeScreen.show(context),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+        decoration: BoxDecoration(
+          color: AppColors.errorBackground,
+          borderRadius: AppRadius.borderPill,
+          border: Border.all(
+            color: AppColors.error.withValues(alpha: 0.3),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.error.withValues(alpha: 0.2),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.warning_rounded, color: AppColors.error, size: 18),
+            const SizedBox(width: AppSpacing.sm),
+            Text(
+              'Panic Button',
+              style: AppTypography.button.copyWith(color: AppColors.error),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
