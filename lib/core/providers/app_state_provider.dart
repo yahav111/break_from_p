@@ -31,6 +31,13 @@ class AppStateNotifier extends Notifier<AppState> {
     state = updated;
   }
 
+  Future<void> updateCharacterStage(String stageName) async {
+    final repo = ref.read(appStateRepositoryProvider);
+    final updated = state.copyWith(lastShownCharacterStage: stageName);
+    await repo.save(updated);
+    state = updated;
+  }
+
   Future<void> resetAllState() async {
     final repo = ref.read(appStateRepositoryProvider);
     const fresh = AppState();

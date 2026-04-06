@@ -57,6 +57,9 @@ dependencies:
   just_audio: ^0.9.40
   audio_session: ^0.1.21
 
+  # Charts (Statistics Dashboard)
+  fl_chart: ^0.69.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

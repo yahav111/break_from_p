@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/lifetree_provider.dart';
+import '../../../core/services/journal_prompts_engine.dart';
 import '../../../design_system/design_system.dart';
 
 /// Horizontal scroll of prompt suggestions for journal entries.
-class JournalPromptChips extends StatefulWidget {
+/// Merges default prompts with Lifetree-unlocked bonus prompts.
+class JournalPromptChips extends ConsumerStatefulWidget {
   const JournalPromptChips({
     super.key,
     required this.onPromptSelected,
@@ -12,29 +16,24 @@ class JournalPromptChips extends StatefulWidget {
   final ValueChanged<String> onPromptSelected;
 
   @override
-  State<JournalPromptChips> createState() => _JournalPromptChipsState();
+  ConsumerState<JournalPromptChips> createState() => _JournalPromptChipsState();
 }
 
-class _JournalPromptChipsState extends State<JournalPromptChips> {
-  static const _prompts = [
-    'What am I grateful for today?',
-    'What triggered me today?',
-    'How did I cope with urges?',
-    'What progress have I noticed?',
-    'What would I tell a friend in my situation?',
-    'What are my goals for tomorrow?',
-  ];
-
+class _JournalPromptChipsState extends ConsumerState<JournalPromptChips> {
   String? _selectedPrompt;
 
   @override
   Widget build(BuildContext context) {
+    final lifetreeData = ref.watch(lifetreeNotifierProvider);
+    final unlockedIds = lifetreeData?.unlockedNodeIds.toSet() ?? <String>{};
+    final prompts = JournalPromptsEngine.allUnlockedPrompts(unlockedIds);
+
     return SizedBox(
       height: 36,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: _prompts.map((prompt) {
+          children: prompts.map((prompt) {
             final isSelected = _selectedPrompt == prompt;
             return Padding(
               padding: EdgeInsets.only(

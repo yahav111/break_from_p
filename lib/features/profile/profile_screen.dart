@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/providers/achievement_provider.dart';
 import '../../core/providers/pledge_provider.dart';
 import '../../core/providers/relapse_provider.dart';
 import '../../core/providers/streak_provider.dart';
 import '../../core/providers/user_profile_provider.dart';
+import '../../core/services/achievement_engine.dart';
 import '../../core/services/streak_engine.dart';
 import '../../design_system/design_system.dart';
 import '../../routing/route_names.dart';
@@ -28,6 +30,8 @@ class ProfileScreen extends ConsumerWidget {
         : 0;
     final totalPledges = pledgeData?.pledgeDates.length ?? 0;
     final totalRelapses = relapseData?.totalRelapses ?? 0;
+    final achievementData = ref.watch(achievementNotifierProvider);
+    final unlockedCount = achievementData?.entries.length ?? 0;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -98,6 +102,21 @@ class ProfileScreen extends ConsumerWidget {
               ),
               const SizedBox(height: AppSpacing.xxxl),
 
+              // Phase 4: Gamification tiles.
+              _buildNavTile(
+                icon: Icons.military_tech_rounded,
+                title: 'Achievements',
+                trailing: '$unlockedCount/${AchievementEngine.definitions.length}',
+                onTap: () => context.push(Routes.badges),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              _buildNavTile(
+                icon: Icons.bar_chart_rounded,
+                title: 'Statistics',
+                onTap: () => context.push(Routes.statistics),
+              ),
+              const SizedBox(height: AppSpacing.md),
+
               // Settings tile.
               _buildNavTile(
                 icon: Icons.settings_rounded,
@@ -148,6 +167,7 @@ class ProfileScreen extends ConsumerWidget {
     required IconData icon,
     required String title,
     required VoidCallback onTap,
+    String? trailing,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -170,6 +190,15 @@ class ProfileScreen extends ConsumerWidget {
                     AppTypography.bodyLarge.copyWith(color: Colors.white),
               ),
             ),
+            if (trailing != null) ...[
+              Text(
+                trailing,
+                style: AppTypography.caption.copyWith(
+                  color: AppColors.darkTextSecondary,
+                ),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+            ],
             Icon(
               Icons.chevron_right_rounded,
               color: AppColors.darkTextTertiary,

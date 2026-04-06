@@ -1,6 +1,8 @@
+export 'achievement_repository.dart';
 export 'app_state_repository.dart';
 export 'exercise_repository.dart';
 export 'journal_repository.dart';
+export 'lifetree_repository.dart';
 export 'notification_preferences_repository.dart';
 export 'pledge_repository.dart';
 export 'reasons_repository.dart';

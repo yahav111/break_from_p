@@ -1,8 +1,13 @@
+export 'achievement_data.dart';
+export 'achievement_entry.dart';
 export 'app_state.dart';
+export 'breathing_params.dart';
+export 'character_stage.dart';
 export 'exercise_data.dart';
 export 'exercise_record.dart';
 export 'journal_data.dart';
 export 'journal_entry.dart';
+export 'lifetree_data.dart';
 export 'milestone_info.dart';
 export 'notification_preferences.dart';
 export 'pledge_data.dart';

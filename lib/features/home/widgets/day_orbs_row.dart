@@ -2,13 +2,17 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../core/models/character_stage.dart';
 import '../../../design_system/design_system.dart';
+import 'orb_detail_dialog.dart';
 
 /// Grade definitions — milestone days with progressively more impressive visuals.
 class _Grade {
-  const _Grade(this.day, this.label);
+  const _Grade(this.day, this.label, {this.milestoneTitle, this.characterStage});
   final int day;
   final String label;
+  final String? milestoneTitle;
+  final CharacterStage? characterStage;
 }
 
 const _grades = [
@@ -18,10 +22,10 @@ const _grades = [
   _Grade(7, '1 Week'),
   _Grade(14, '2 Weeks'),
   _Grade(21, '3 Weeks'),
-  _Grade(30, '1 Month'),
+  _Grade(30, '1 Month', milestoneTitle: 'True Freedom', characterStage: CharacterStage.phoenix),
   _Grade(45, '45 Days'),
-  _Grade(60, '2 Months'),
-  _Grade(90, '3 Months'),
+  _Grade(60, '2 Months', milestoneTitle: 'Master of Control', characterStage: CharacterStage.nova),
+  _Grade(90, '3 Months', milestoneTitle: 'Hero of Light', characterStage: CharacterStage.cosmos),
   _Grade(120, '4 Months'),
   _Grade(150, '5 Months'),
   _Grade(180, '6 Months'),
@@ -124,8 +128,17 @@ class _DayOrbsRowState extends State<DayOrbsRow>
                 grade: grade,
                 isLocked: isLocked,
                 size: _maxOrbSize,
+                currentDays: widget.days,
                 pulseAnimation:
                     (index == _currentIndex && distance < 0.5) ? _pulseController : null,
+                onTap: () => OrbDetailDialog.show(
+                  context,
+                  day: grade.day,
+                  label: grade.label,
+                  isLocked: isLocked,
+                  currentDays: widget.days,
+                  milestoneTitle: grade.milestoneTitle,
+                ),
               ),
             ),
           );
@@ -159,13 +172,17 @@ class _GradeOrb extends StatelessWidget {
     required this.grade,
     required this.isLocked,
     required this.size,
+    required this.currentDays,
     this.pulseAnimation,
+    this.onTap,
   });
 
   final _Grade grade;
   final bool isLocked;
   final double size;
+  final int currentDays;
   final AnimationController? pulseAnimation;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -199,22 +216,37 @@ class _GradeOrb extends StatelessWidget {
       );
     }
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        orb,
-        const SizedBox(height: 6),
-        Text(
-          grade.label,
-          style: AppTypography.caption.copyWith(
-            fontSize: 10,
-            color: isLocked
-                ? Colors.white.withValues(alpha: 0.2)
-                : Colors.white.withValues(alpha: 0.8),
-            fontWeight: AppTypography.medium,
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          orb,
+          const SizedBox(height: 6),
+          Text(
+            grade.label,
+            style: AppTypography.caption.copyWith(
+              fontSize: 10,
+              color: isLocked
+                  ? Colors.white.withValues(alpha: 0.2)
+                  : Colors.white.withValues(alpha: 0.8),
+              fontWeight: AppTypography.medium,
+            ),
           ),
-        ),
-      ],
+          if (grade.milestoneTitle != null && !isLocked) ...[
+            const SizedBox(height: 2),
+            Text(
+              grade.milestoneTitle!,
+              style: AppTypography.caption.copyWith(
+                fontSize: 8,
+                color: AppColors.primary,
+                fontWeight: AppTypography.semiBold,
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 

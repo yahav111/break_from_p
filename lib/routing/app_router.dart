@@ -1,12 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../core/models/breathing_params.dart';
 import '../core/providers/app_state_provider.dart';
+import '../features/achievements/badge_collection_screen.dart';
+import '../features/exercises/body_scan_screen.dart';
 import '../features/exercises/breathing_exercise_screen.dart';
 import '../features/exercises/grounding_screen.dart';
 import '../features/exercises/meditate_screen.dart';
 import '../features/exercises/urge_surfing_screen.dart';
+import '../features/lifetree/lifetree_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/journal/journal_entry_screen.dart';
 import '../features/journal/journal_history_screen.dart';
@@ -20,6 +23,7 @@ import '../features/quiz/quiz_screen.dart';
 import '../features/settings/settings_screen.dart';
 import '../features/shell/main_shell.dart';
 import '../features/soundscapes/soundscapes_screen.dart';
+import '../features/statistics/statistics_screen.dart';
 import '../features/urge_tracker/urge_tracker_screen.dart';
 import '../features/welcome/welcome_screen.dart';
 import 'route_names.dart';
@@ -100,7 +104,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.breathingExercise,
-        builder: (context, state) => const BreathingExerciseScreen(),
+        builder: (context, state) {
+          final params = state.extra;
+          return BreathingExerciseScreen(
+            params: params is BreathingParams ? params : null,
+          );
+        },
       ),
       GoRoute(
         path: Routes.urgeSurfing,
@@ -113,6 +122,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.urgeTracker,
         builder: (context, state) => const UrgeTrackerScreen(),
+      ),
+      GoRoute(
+        path: Routes.statistics,
+        builder: (context, state) => const StatisticsScreen(),
+      ),
+      GoRoute(
+        path: Routes.badges,
+        builder: (context, state) => const BadgeCollectionScreen(),
+      ),
+      GoRoute(
+        path: Routes.lifetree,
+        builder: (context, state) => const LifetreeScreen(),
+      ),
+      GoRoute(
+        path: Routes.bodyScan,
+        builder: (context, state) => const BodyScanScreen(),
       ),
 
       // Main app — bottom nav shell.

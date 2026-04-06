@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/models/breathing_params.dart';
 import '../../core/providers/exercise_provider.dart';
 import '../../design_system/design_system.dart';
 import 'widgets/breathing_circle.dart';
 import 'widgets/exercise_completion_card.dart';
 
-/// Animated breathing exercise: 4s inhale, 4s hold, 4s exhale (5 cycles).
+/// Animated breathing exercise. Defaults to 4-4-4 box breathing (5 cycles)
+/// but accepts optional [BreathingParams] for Lifetree-unlocked patterns.
 class BreathingExerciseScreen extends ConsumerStatefulWidget {
-  const BreathingExerciseScreen({super.key});
+  const BreathingExerciseScreen({super.key, this.params});
+
+  /// When non-null, overrides the default 4-4-4 pattern.
+  final BreathingParams? params;
 
   @override
   ConsumerState<BreathingExerciseScreen> createState() =>
@@ -22,18 +27,30 @@ class _BreathingExerciseScreenState
   late final AnimationController _controller;
 
   int _currentCycle = 0;
-  final int _totalCycles = 5;
   String _phase = 'Breathe In';
   bool _isStarted = false;
   bool _isComplete = false;
   DateTime? _startTime;
+
+  /// Resolved breathing parameters (custom or default 4-4-4).
+  BreathingParams get _bp =>
+      widget.params ??
+      const BreathingParams(
+        inhale: 4,
+        hold: 4,
+        exhale: 4,
+        cycles: 5,
+        label: '4-4-4 Box Breathing',
+      );
+
+  int get _totalCycles => _bp.cycles;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 12),
+      duration: Duration(seconds: _bp.cycleDuration),
     );
     _controller.addListener(_onTick);
     _controller.addStatusListener(_onStatus);
@@ -42,9 +59,9 @@ class _BreathingExerciseScreenState
   void _onTick() {
     final value = _controller.value;
     String newPhase;
-    if (value <= 0.33) {
+    if (value <= _bp.inhaleEnd) {
       newPhase = 'Breathe In';
-    } else if (value <= 0.66) {
+    } else if (_bp.hold > 0 && value <= _bp.holdEnd) {
       newPhase = 'Hold';
     } else {
       newPhase = 'Breathe Out';
@@ -166,12 +183,12 @@ class _BreathingExerciseScreenState
         BreathingCircle(animation: _controller),
         const SizedBox(height: AppSpacing.xxxl),
         Text(
-          '4-4-4 Box Breathing',
+          _bp.label,
           style: AppTypography.headlineMedium.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          '5 cycles \u00b7 ~1 minute',
+          '$_totalCycles cycles \u00b7 ~${(_totalCycles * _bp.cycleDuration / 60).ceil()} min',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),

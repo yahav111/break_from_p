@@ -23,6 +23,8 @@ class ExerciseCompletionCard extends StatelessWidget {
         return 'Urge Surfing';
       case 'grounding':
         return 'Grounding';
+      case 'body_scan':
+        return 'Body Scan';
       default:
         return exerciseType;
     }
