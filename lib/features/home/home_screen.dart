@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/providers/achievement_provider.dart';
 import '../../core/providers/app_state_provider.dart';
 import '../../core/providers/live_streak_provider.dart';
 import '../../core/providers/pledge_provider.dart';
 import '../../core/providers/relapse_provider.dart';
 import '../../core/providers/streak_provider.dart';
 import '../../core/providers/user_profile_provider.dart';
+import '../../core/services/achievement_engine.dart';
 import '../../core/services/streak_engine.dart';
 import '../../design_system/design_system.dart';
 import '../../routing/route_names.dart';
+import '../achievements/widgets/achievement_toast.dart';
 import '../panic_mode/panic_mode_screen.dart';
 import 'widgets/milestone_celebration_dialog.dart';
 import 'widgets/pledge_card.dart';
@@ -30,6 +33,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _milestoneChecked = false;
+  bool _achievementsChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +64,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     if (!_milestoneChecked) {
       _milestoneChecked = true;
       _checkMilestone(days, appState.lastCelebratedMilestone);
+    }
+
+    // Check for new achievements (once per build cycle).
+    if (!_achievementsChecked) {
+      _achievementsChecked = true;
+      _checkAchievements();
     }
 
     return Scaffold(
@@ -289,6 +299,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
   }
 
+  void _checkAchievements() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final newlyEarned = await ref
+          .read(achievementNotifierProvider.notifier)
+          .checkAndAward();
+      if (newlyEarned.isNotEmpty && mounted) {
+        final def = AchievementEngine.definitionFor(newlyEarned.first);
+        if (def != null) {
+          AchievementToast.show(context, def);
+        }
+      }
+    });
+  }
+
   void _showResetDialog(BuildContext context, WidgetRef ref) {
     AppBottomDialog.show(
       context: context,
@@ -300,9 +325,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       isPrimaryDestructive: true,
       onPrimaryPressed: () {
         ref.read(streakNotifierProvider.notifier).resetStreak();
-        // Reset milestone tracking for new streak.
+        // Reset milestone and character tracking for new streak.
         ref.read(appStateNotifierProvider.notifier).celebrateMilestone(0);
-        setState(() => _milestoneChecked = false);
+        ref.read(appStateNotifierProvider.notifier).updateCharacterStage('');
+        setState(() {
+          _milestoneChecked = false;
+          _achievementsChecked = false;
+        });
       },
     );
   }

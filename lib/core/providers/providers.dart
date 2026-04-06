@@ -1,6 +1,8 @@
+export 'achievement_provider.dart';
 export 'app_state_provider.dart';
 export 'exercise_provider.dart';
 export 'journal_provider.dart';
+export 'lifetree_provider.dart';
 export 'live_streak_provider.dart';
 export 'notification_preferences_provider.dart';
 export 'pledge_provider.dart';

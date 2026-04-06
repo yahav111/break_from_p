@@ -10,6 +10,7 @@ class AppStateRepository {
   static const _keyOnboardingCompleted = 'onboarding_completed';
   static const _keyFirstLaunch = 'first_launch';
   static const _keyLastCelebratedMilestone = 'last_celebrated_milestone';
+  static const _keyLastShownCharacterStage = 'last_shown_character_stage';
 
   AppState load() {
     return AppState(
@@ -17,6 +18,8 @@ class AppStateRepository {
       firstLaunch: _prefs.getBool(_keyFirstLaunch) ?? true,
       lastCelebratedMilestone:
           _prefs.getInt(_keyLastCelebratedMilestone) ?? 0,
+      lastShownCharacterStage:
+          _prefs.getString(_keyLastShownCharacterStage) ?? '',
     );
   }
 
@@ -26,6 +29,8 @@ class AppStateRepository {
       _prefs.setBool(_keyFirstLaunch, state.firstLaunch),
       _prefs.setInt(
           _keyLastCelebratedMilestone, state.lastCelebratedMilestone),
+      _prefs.setString(
+          _keyLastShownCharacterStage, state.lastShownCharacterStage),
     ]);
   }
 

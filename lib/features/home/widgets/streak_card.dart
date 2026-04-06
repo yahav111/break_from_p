@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../design_system/design_system.dart';
+import 'character_display.dart';
 import 'day_orbs_row.dart';
 import 'milestone_indicator.dart';
 
@@ -22,7 +23,9 @@ class StreakCard extends StatelessWidget {
     return Column(
       children: [
         DayOrbsRow(days: days),
-        const SizedBox(height: AppSpacing.lg),
+        const SizedBox(height: AppSpacing.md),
+        CharacterDisplay(days: days),
+        const SizedBox(height: AppSpacing.md),
         _buildSubLabel(),
         const SizedBox(height: AppSpacing.sm),
         _buildDaysCounter(),

@@ -72,10 +72,10 @@ class LibraryScreen extends ConsumerWidget {
                     ),
                     LibraryCategoryCard(
                       title: 'Lifetree',
-                      subtitle: 'Coming in Phase 4',
+                      subtitle: 'Unlock bonus content',
                       imagePath: 'assets/images/lifetree.jpeg',
                       color: AppColors.primary,
-                      onTap: () => _showComingSoon(context),
+                      onTap: () => context.push(Routes.lifetree),
                     ),
                     LibraryCategoryCard(
                       title: 'Soundscapes',
@@ -94,14 +94,4 @@ class LibraryScreen extends ConsumerWidget {
     );
   }
 
-  void _showComingSoon(BuildContext context) {
-    AppBottomDialog.show(
-      context: context,
-      title: 'Coming Soon',
-      message:
-          'Lifetree will be available in a future update. Keep building your streak!',
-      primaryButtonLabel: 'OK',
-      onPrimaryPressed: () {},
-    );
-  }
 }
