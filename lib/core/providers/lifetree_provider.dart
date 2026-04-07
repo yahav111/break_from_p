@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/lifetree_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/lifetree_data.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final lifetreeRepositoryProvider = Provider<LifetreeRepository>((ref) {
+final lifetreeRepositoryProvider =
+    Provider<DataRepository<LifetreeData>>((ref) {
   throw UnimplementedError('lifetreeRepositoryProvider must be overridden');
 });
 

@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/streak_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/streak_data.dart';
 import '../models/streak_record.dart';
 import '../services/streak_engine.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final streakRepositoryProvider = Provider<StreakRepository>((ref) {
+final streakRepositoryProvider = Provider<DataRepository<StreakData>>((ref) {
   throw UnimplementedError('streakRepositoryProvider must be overridden');
 });
 

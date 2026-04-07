@@ -45,3 +45,20 @@ class StreakRecordAdapter extends TypeAdapter<StreakRecord> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+StreakRecord _$StreakRecordFromJson(Map<String, dynamic> json) => StreakRecord(
+      startDate: DateTime.parse(json['startDate'] as String),
+      endDate: DateTime.parse(json['endDate'] as String),
+      days: (json['days'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$StreakRecordToJson(StreakRecord instance) =>
+    <String, dynamic>{
+      'startDate': instance.startDate.toIso8601String(),
+      'endDate': instance.endDate.toIso8601String(),
+      'days': instance.days,
+    };

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/achievement_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/achievement_data.dart';
 import '../models/achievement_entry.dart';
 import '../services/achievement_engine.dart';
@@ -12,7 +12,8 @@ import 'streak_provider.dart';
 import 'urge_provider.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final achievementRepositoryProvider = Provider<AchievementRepository>((ref) {
+final achievementRepositoryProvider =
+    Provider<DataRepository<AchievementData>>((ref) {
   throw UnimplementedError('achievementRepositoryProvider must be overridden');
 });
 

@@ -9,7 +9,11 @@ import '../../core/providers/reasons_provider.dart';
 import '../../core/providers/relapse_provider.dart';
 import '../../core/providers/streak_provider.dart';
 import '../../core/providers/user_profile_provider.dart';
+import '../../data/sync/sync_engine.dart';
+import '../../data/sync/sync_status.dart';
 import '../../design_system/design_system.dart';
+import '../../infrastructure/auth/auth_provider.dart';
+import '../../infrastructure/auth/auth_state.dart';
 import '../../routing/route_names.dart';
 import 'widgets/profile_edit_sheet.dart';
 import 'widgets/settings_section.dart';
@@ -22,6 +26,8 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(userProfileNotifierProvider);
     final notifPrefs = ref.watch(notifPrefsNotifierProvider);
+    final authState = ref.watch(authNotifierProvider);
+    final syncStatus = ref.watch(syncEngineProvider);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -64,6 +70,46 @@ class SettingsScreen extends ConsumerWidget {
                                 : 'Not set',
                             onTap: () => ProfileEditSheet.show(context),
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+
+                      // Account & Cloud Backup section.
+                      SettingsSection(
+                        title: 'Account',
+                        children: [
+                          _buildTile(
+                            icon: _syncIcon(syncStatus.state),
+                            title: 'Backup Status',
+                            value: _syncLabel(syncStatus.state),
+                          ),
+                          if (authState.status == AuthStatus.anonymous) ...[
+                            _buildTile(
+                              icon: Icons.g_mobiledata_rounded,
+                              title: 'Sign in with Google',
+                              showChevron: true,
+                              onTap: () => _signInWithGoogle(context, ref),
+                            ),
+                            _buildTile(
+                              icon: Icons.apple_rounded,
+                              title: 'Sign in with Apple',
+                              showChevron: true,
+                              onTap: () => _signInWithApple(context, ref),
+                            ),
+                          ],
+                          if (authState.status ==
+                              AuthStatus.authenticated) ...[
+                            _buildTile(
+                              icon: Icons.account_circle_rounded,
+                              title: 'Account',
+                              value: authState.email ?? authState.displayName,
+                            ),
+                            _buildTile(
+                              icon: Icons.logout_rounded,
+                              title: 'Sign Out',
+                              onTap: () => _showSignOutDialog(context, ref),
+                            ),
+                          ],
                         ],
                       ),
                       const SizedBox(height: AppSpacing.xxl),
@@ -140,6 +186,14 @@ class SettingsScreen extends ConsumerWidget {
                             titleColor: AppColors.error,
                             onTap: () => _showDeleteDialog(context, ref),
                           ),
+                          if (authState.isSignedIn)
+                            _buildTile(
+                              icon: Icons.person_remove_rounded,
+                              title: 'Delete Account',
+                              titleColor: AppColors.error,
+                              onTap: () =>
+                                  _showDeleteAccountDialog(context, ref),
+                            ),
                         ],
                       ),
                       const SizedBox(height: AppSpacing.xxl),
@@ -229,7 +283,8 @@ class SettingsScreen extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: titleColor ?? AppColors.darkTextSecondary, size: 20),
+            Icon(icon,
+                color: titleColor ?? AppColors.darkTextSecondary, size: 20),
             const SizedBox(width: AppSpacing.md),
             Expanded(
               child: Text(
@@ -302,10 +357,62 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
+  IconData _syncIcon(SyncState state) {
+    switch (state) {
+      case SyncState.synced:
+        return Icons.cloud_done_rounded;
+      case SyncState.syncing:
+        return Icons.cloud_sync_rounded;
+      case SyncState.error:
+        return Icons.cloud_off_rounded;
+      case SyncState.offline:
+        return Icons.cloud_off_rounded;
+      case SyncState.idle:
+        return Icons.cloud_outlined;
+    }
+  }
+
+  String _syncLabel(SyncState state) {
+    switch (state) {
+      case SyncState.synced:
+        return 'Synced';
+      case SyncState.syncing:
+        return 'Syncing...';
+      case SyncState.error:
+        return 'Sync error';
+      case SyncState.offline:
+        return 'Offline';
+      case SyncState.idle:
+        return 'Not synced';
+    }
+  }
+
   String _formatTime(int hour, int minute) {
     final h = hour.toString().padLeft(2, '0');
     final m = minute.toString().padLeft(2, '0');
     return '$h:$m';
+  }
+
+  void _signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref.read(authNotifierProvider.notifier).signInWithGoogle();
+  }
+
+  void _signInWithApple(BuildContext context, WidgetRef ref) {
+    ref.read(authNotifierProvider.notifier).signInWithApple();
+  }
+
+  void _showSignOutDialog(BuildContext context, WidgetRef ref) {
+    AppBottomDialog.show(
+      context: context,
+      title: 'Sign Out?',
+      message:
+          'Your data will remain on this device but will no longer sync to the cloud.',
+      primaryButtonLabel: 'Sign Out',
+      secondaryButtonLabel: 'Cancel',
+      onPrimaryPressed: () {
+        ref.read(authNotifierProvider.notifier).signOut();
+      },
+    );
   }
 
   void _showResetDialog(BuildContext context, WidgetRef ref) {
@@ -333,7 +440,8 @@ class SettingsScreen extends ConsumerWidget {
       secondaryButtonLabel: 'Cancel',
       isPrimaryDestructive: true,
       onPrimaryPressed: () async {
-        // Clear all provider data.
+        // Clear all provider data (deletes from both Hive and Firestore
+        // if using SyncedRepository).
         final pledgeRepo = ref.read(pledgeRepositoryProvider);
         final relapseRepo = ref.read(relapseRepositoryProvider);
         final reasonsRepo = ref.read(reasonsRepositoryProvider);
@@ -351,6 +459,46 @@ class SettingsScreen extends ConsumerWidget {
         ]);
 
         // Reset app state to trigger redirect to onboarding.
+        await ref.read(appStateNotifierProvider.notifier).resetAllState();
+
+        if (context.mounted) {
+          context.go(Routes.welcome);
+        }
+      },
+    );
+  }
+
+  void _showDeleteAccountDialog(BuildContext context, WidgetRef ref) {
+    AppBottomDialog.show(
+      context: context,
+      title: 'Delete Account?',
+      message:
+          'This will permanently delete your account and all cloud data. This action cannot be undone.',
+      primaryButtonLabel: 'Delete Account',
+      secondaryButtonLabel: 'Cancel',
+      isPrimaryDestructive: true,
+      onPrimaryPressed: () async {
+        // Delete all local data first.
+        final pledgeRepo = ref.read(pledgeRepositoryProvider);
+        final relapseRepo = ref.read(relapseRepositoryProvider);
+        final reasonsRepo = ref.read(reasonsRepositoryProvider);
+        final streakRepo = ref.read(streakRepositoryProvider);
+        final userRepo = ref.read(userProfileRepositoryProvider);
+        final notifPrefsRepo = ref.read(notifPrefsRepositoryProvider);
+
+        await Future.wait([
+          pledgeRepo.delete(),
+          relapseRepo.delete(),
+          reasonsRepo.delete(),
+          streakRepo.delete(),
+          userRepo.delete(),
+          notifPrefsRepo.delete(),
+        ]);
+
+        // Delete Firebase Auth account (also orphans Firestore data).
+        await ref.read(authNotifierProvider.notifier).deleteAccount();
+
+        // Reset app state.
         await ref.read(appStateNotifierProvider.notifier).resetAllState();
 
         if (context.mounted) {

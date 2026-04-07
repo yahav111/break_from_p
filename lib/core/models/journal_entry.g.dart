@@ -57,3 +57,28 @@ class JournalEntryAdapter extends TypeAdapter<JournalEntry> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+JournalEntry _$JournalEntryFromJson(Map<String, dynamic> json) => JournalEntry(
+      id: json['id'] as String,
+      date: DateTime.parse(json['date'] as String),
+      content: json['content'] as String,
+      mood: (json['mood'] as num).toInt(),
+      prompt: json['prompt'] as String?,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$JournalEntryToJson(JournalEntry instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'date': instance.date.toIso8601String(),
+      'content': instance.content,
+      'mood': instance.mood,
+      'prompt': instance.prompt,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+    };

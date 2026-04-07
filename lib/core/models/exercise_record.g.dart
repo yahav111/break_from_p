@@ -48,3 +48,23 @@ class ExerciseRecordAdapter extends TypeAdapter<ExerciseRecord> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ExerciseRecord _$ExerciseRecordFromJson(Map<String, dynamic> json) =>
+    ExerciseRecord(
+      id: json['id'] as String,
+      completedAt: DateTime.parse(json['completedAt'] as String),
+      exerciseType: json['exerciseType'] as String,
+      durationSeconds: (json['durationSeconds'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$ExerciseRecordToJson(ExerciseRecord instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'completedAt': instance.completedAt.toIso8601String(),
+      'exerciseType': instance.exerciseType,
+      'durationSeconds': instance.durationSeconds,
+    };

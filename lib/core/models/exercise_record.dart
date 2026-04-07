@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'exercise_record.g.dart';
 
 @HiveType(typeId: 13)
+@JsonSerializable()
 class ExerciseRecord extends HiveObject {
   ExerciseRecord({
     required this.id,
@@ -23,6 +25,10 @@ class ExerciseRecord extends HiveObject {
 
   @HiveField(3)
   final int durationSeconds;
+
+  factory ExerciseRecord.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseRecordFromJson(json);
+  Map<String, dynamic> toJson() => _$ExerciseRecordToJson(this);
 
   ExerciseRecord copyWith({
     String? id,

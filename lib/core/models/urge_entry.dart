@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'urge_entry.g.dart';
 
 @HiveType(typeId: 11)
+@JsonSerializable()
 class UrgeEntry extends HiveObject {
   UrgeEntry({
     required this.id,
@@ -29,6 +31,10 @@ class UrgeEntry extends HiveObject {
 
   @HiveField(4)
   final String? note;
+
+  factory UrgeEntry.fromJson(Map<String, dynamic> json) =>
+      _$UrgeEntryFromJson(json);
+  Map<String, dynamic> toJson() => _$UrgeEntryToJson(this);
 
   UrgeEntry copyWith({
     String? id,

@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/notification_preferences_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/notification_preferences.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
 final notifPrefsRepositoryProvider =
-    Provider<NotificationPreferencesRepository>((ref) {
+    Provider<DataRepository<NotificationPreferences>>((ref) {
   throw UnimplementedError(
       'notifPrefsRepositoryProvider must be overridden');
 });

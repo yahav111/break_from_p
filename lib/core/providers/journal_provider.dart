@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/journal_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/journal_data.dart';
 import '../models/journal_entry.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final journalRepositoryProvider = Provider<JournalRepository>((ref) {
+final journalRepositoryProvider = Provider<DataRepository<JournalData>>((ref) {
   throw UnimplementedError('journalRepositoryProvider must be overridden');
 });
 

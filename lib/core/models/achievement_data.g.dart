@@ -18,15 +18,18 @@ class AchievementDataAdapter extends TypeAdapter<AchievementData> {
     };
     return AchievementData(
       entries: (fields[0] as List).cast<AchievementEntry>(),
+      updatedAt: fields[1] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AchievementData obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.entries);
+      ..write(obj.entries)
+      ..writeByte(1)
+      ..write(obj.updatedAt);
   }
 
   @override
@@ -39,3 +42,24 @@ class AchievementDataAdapter extends TypeAdapter<AchievementData> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AchievementData _$AchievementDataFromJson(Map<String, dynamic> json) =>
+    AchievementData(
+      entries: (json['entries'] as List<dynamic>?)
+              ?.map((e) => AchievementEntry.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$AchievementDataToJson(AchievementData instance) =>
+    <String, dynamic>{
+      'entries': instance.entries.map((e) => e.toJson()).toList(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

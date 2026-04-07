@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/pledge_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/pledge_data.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final pledgeRepositoryProvider = Provider<PledgeRepository>((ref) {
+final pledgeRepositoryProvider = Provider<DataRepository<PledgeData>>((ref) {
   throw UnimplementedError('pledgeRepositoryProvider must be overridden');
 });
 

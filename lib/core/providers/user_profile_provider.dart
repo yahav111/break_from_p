@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/user_profile_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/user_profile.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final userProfileRepositoryProvider = Provider<UserProfileRepository>((ref) {
+final userProfileRepositoryProvider =
+    Provider<DataRepository<UserProfile>>((ref) {
   throw UnimplementedError('userProfileRepositoryProvider must be overridden');
 });
 

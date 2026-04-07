@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/reasons_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/reasons_data.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final reasonsRepositoryProvider = Provider<ReasonsRepository>((ref) {
+final reasonsRepositoryProvider = Provider<DataRepository<ReasonsData>>((ref) {
   throw UnimplementedError('reasonsRepositoryProvider must be overridden');
 });
 

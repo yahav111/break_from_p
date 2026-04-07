@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/relapse_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/relapse_data.dart';
 import '../models/relapse_entry.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final relapseRepositoryProvider = Provider<RelapseRepository>((ref) {
+final relapseRepositoryProvider = Provider<DataRepository<RelapseData>>((ref) {
   throw UnimplementedError('relapseRepositoryProvider must be overridden');
 });
 

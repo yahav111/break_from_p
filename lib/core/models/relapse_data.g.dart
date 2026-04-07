@@ -19,17 +19,20 @@ class RelapseDataAdapter extends TypeAdapter<RelapseData> {
     return RelapseData(
       totalRelapses: fields[0] as int,
       relapseHistory: (fields[1] as List).cast<RelapseEntry>(),
+      updatedAt: fields[2] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, RelapseData obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.totalRelapses)
       ..writeByte(1)
-      ..write(obj.relapseHistory);
+      ..write(obj.relapseHistory)
+      ..writeByte(2)
+      ..write(obj.updatedAt);
   }
 
   @override
@@ -42,3 +45,25 @@ class RelapseDataAdapter extends TypeAdapter<RelapseData> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+RelapseData _$RelapseDataFromJson(Map<String, dynamic> json) => RelapseData(
+      totalRelapses: (json['totalRelapses'] as num?)?.toInt() ?? 0,
+      relapseHistory: (json['relapseHistory'] as List<dynamic>?)
+              ?.map((e) => RelapseEntry.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$RelapseDataToJson(RelapseData instance) =>
+    <String, dynamic>{
+      'totalRelapses': instance.totalRelapses,
+      'relapseHistory': instance.relapseHistory.map((e) => e.toJson()).toList(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

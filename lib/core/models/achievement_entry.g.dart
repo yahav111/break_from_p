@@ -42,3 +42,19 @@ class AchievementEntryAdapter extends TypeAdapter<AchievementEntry> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AchievementEntry _$AchievementEntryFromJson(Map<String, dynamic> json) =>
+    AchievementEntry(
+      id: json['id'] as String,
+      unlockedAt: DateTime.parse(json['unlockedAt'] as String),
+    );
+
+Map<String, dynamic> _$AchievementEntryToJson(AchievementEntry instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'unlockedAt': instance.unlockedAt.toIso8601String(),
+    };

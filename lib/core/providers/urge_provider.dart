@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../data/repositories/urge_repository.dart';
+import '../../data/repositories/contracts/data_repository.dart';
 import '../models/urge_data.dart';
 import '../models/urge_entry.dart';
 
 /// Provided via ProviderScope.overrides at bootstrap.
-final urgeRepositoryProvider = Provider<UrgeRepository>((ref) {
+final urgeRepositoryProvider = Provider<DataRepository<UrgeData>>((ref) {
   throw UnimplementedError('urgeRepositoryProvider must be overridden');
 });
 

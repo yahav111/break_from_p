@@ -51,3 +51,23 @@ class UrgeEntryAdapter extends TypeAdapter<UrgeEntry> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UrgeEntry _$UrgeEntryFromJson(Map<String, dynamic> json) => UrgeEntry(
+      id: json['id'] as String,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+      intensity: (json['intensity'] as num).toInt(),
+      trigger: json['trigger'] as String,
+      note: json['note'] as String?,
+    );
+
+Map<String, dynamic> _$UrgeEntryToJson(UrgeEntry instance) => <String, dynamic>{
+      'id': instance.id,
+      'timestamp': instance.timestamp.toIso8601String(),
+      'intensity': instance.intensity,
+      'trigger': instance.trigger,
+      'note': instance.note,
+    };

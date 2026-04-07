@@ -1,16 +1,19 @@
 import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'streak_record.dart';
 
 part 'streak_data.g.dart';
 
 @HiveType(typeId: 2)
+@JsonSerializable(explicitToJson: true)
 class StreakData extends HiveObject {
   StreakData({
     required this.quitDate,
     this.longestStreakDays = 0,
     this.resetHistory = const [],
     this.streakHistory = const [],
+    this.updatedAt,
   });
 
   @HiveField(0)
@@ -27,19 +30,28 @@ class StreakData extends HiveObject {
   @HiveField(3)
   final List<StreakRecord> streakHistory;
 
+  @HiveField(4)
+  final DateTime? updatedAt;
+
   int get currentStreakDays => DateTime.now().difference(quitDate).inDays;
+
+  factory StreakData.fromJson(Map<String, dynamic> json) =>
+      _$StreakDataFromJson(json);
+  Map<String, dynamic> toJson() => _$StreakDataToJson(this);
 
   StreakData copyWith({
     DateTime? quitDate,
     int? longestStreakDays,
     List<DateTime>? resetHistory,
     List<StreakRecord>? streakHistory,
+    DateTime? updatedAt,
   }) {
     return StreakData(
       quitDate: quitDate ?? this.quitDate,
       longestStreakDays: longestStreakDays ?? this.longestStreakDays,
       resetHistory: resetHistory ?? this.resetHistory,
       streakHistory: streakHistory ?? this.streakHistory,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

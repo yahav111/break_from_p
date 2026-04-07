@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'journal_entry.g.dart';
 
 @HiveType(typeId: 9)
+@JsonSerializable()
 class JournalEntry extends HiveObject {
   JournalEntry({
     required this.id,
@@ -36,6 +38,10 @@ class JournalEntry extends HiveObject {
 
   @HiveField(6)
   final DateTime updatedAt;
+
+  factory JournalEntry.fromJson(Map<String, dynamic> json) =>
+      _$JournalEntryFromJson(json);
+  Map<String, dynamic> toJson() => _$JournalEntryToJson(this);
 
   JournalEntry copyWith({
     String? id,

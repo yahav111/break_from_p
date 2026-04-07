@@ -45,3 +45,20 @@ class RelapseEntryAdapter extends TypeAdapter<RelapseEntry> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+RelapseEntry _$RelapseEntryFromJson(Map<String, dynamic> json) => RelapseEntry(
+      date: DateTime.parse(json['date'] as String),
+      reason: json['reason'] as String?,
+      streakDaysLost: (json['streakDaysLost'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$RelapseEntryToJson(RelapseEntry instance) =>
+    <String, dynamic>{
+      'date': instance.date.toIso8601String(),
+      'reason': instance.reason,
+      'streakDaysLost': instance.streakDaysLost,
+    };

@@ -18,15 +18,18 @@ class ReasonsDataAdapter extends TypeAdapter<ReasonsData> {
     };
     return ReasonsData(
       reasons: (fields[0] as List).cast<String>(),
+      updatedAt: fields[1] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ReasonsData obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.reasons);
+      ..write(obj.reasons)
+      ..writeByte(1)
+      ..write(obj.updatedAt);
   }
 
   @override
@@ -39,3 +42,23 @@ class ReasonsDataAdapter extends TypeAdapter<ReasonsData> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ReasonsData _$ReasonsDataFromJson(Map<String, dynamic> json) => ReasonsData(
+      reasons: (json['reasons'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$ReasonsDataToJson(ReasonsData instance) =>
+    <String, dynamic>{
+      'reasons': instance.reasons,
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

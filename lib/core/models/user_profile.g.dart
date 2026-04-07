@@ -19,15 +19,17 @@ class UserProfileAdapter extends TypeAdapter<UserProfile> {
     return UserProfile(
       name: fields[0] as String,
       quitDate: fields[1] as DateTime,
+      uid: fields[4] as String?,
       quizAnswers: (fields[2] as Map).cast<int, int>(),
       subscriptionStatus: fields[3] as SubscriptionStatus,
+      updatedAt: fields[5] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserProfile obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -35,7 +37,11 @@ class UserProfileAdapter extends TypeAdapter<UserProfile> {
       ..writeByte(2)
       ..write(obj.quizAnswers)
       ..writeByte(3)
-      ..write(obj.subscriptionStatus);
+      ..write(obj.subscriptionStatus)
+      ..writeByte(4)
+      ..write(obj.uid)
+      ..writeByte(5)
+      ..write(obj.updatedAt);
   }
 
   @override
@@ -92,3 +98,42 @@ class SubscriptionStatusAdapter extends TypeAdapter<SubscriptionStatus> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => UserProfile(
+      name: json['name'] as String,
+      quitDate: DateTime.parse(json['quitDate'] as String),
+      uid: json['uid'] as String?,
+      quizAnswers: (json['quizAnswers'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(int.parse(k), (e as num).toInt()),
+          ) ??
+          const {},
+      subscriptionStatus: $enumDecodeNullable(
+              _$SubscriptionStatusEnumMap, json['subscriptionStatus'],
+              unknownValue: SubscriptionStatus.free) ??
+          SubscriptionStatus.free,
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'quitDate': instance.quitDate.toIso8601String(),
+      'quizAnswers':
+          instance.quizAnswers.map((k, e) => MapEntry(k.toString(), e)),
+      'subscriptionStatus':
+          _$SubscriptionStatusEnumMap[instance.subscriptionStatus]!,
+      'uid': instance.uid,
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
+
+const _$SubscriptionStatusEnumMap = {
+  SubscriptionStatus.free: 'free',
+  SubscriptionStatus.trial: 'trial',
+  SubscriptionStatus.premium: 'premium',
+};

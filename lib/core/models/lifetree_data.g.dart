@@ -18,15 +18,18 @@ class LifetreeDataAdapter extends TypeAdapter<LifetreeData> {
     };
     return LifetreeData(
       unlockedNodeIds: (fields[0] as List).cast<String>(),
+      updatedAt: fields[1] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, LifetreeData obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.unlockedNodeIds);
+      ..write(obj.unlockedNodeIds)
+      ..writeByte(1)
+      ..write(obj.updatedAt);
   }
 
   @override
@@ -39,3 +42,23 @@ class LifetreeDataAdapter extends TypeAdapter<LifetreeData> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+LifetreeData _$LifetreeDataFromJson(Map<String, dynamic> json) => LifetreeData(
+      unlockedNodeIds: (json['unlockedNodeIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$LifetreeDataToJson(LifetreeData instance) =>
+    <String, dynamic>{
+      'unlockedNodeIds': instance.unlockedNodeIds,
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

@@ -18,15 +18,18 @@ class JournalDataAdapter extends TypeAdapter<JournalData> {
     };
     return JournalData(
       entries: (fields[0] as List).cast<JournalEntry>(),
+      updatedAt: fields[1] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, JournalData obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.entries);
+      ..write(obj.entries)
+      ..writeByte(1)
+      ..write(obj.updatedAt);
   }
 
   @override
@@ -39,3 +42,23 @@ class JournalDataAdapter extends TypeAdapter<JournalData> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+JournalData _$JournalDataFromJson(Map<String, dynamic> json) => JournalData(
+      entries: (json['entries'] as List<dynamic>?)
+              ?.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$JournalDataToJson(JournalData instance) =>
+    <String, dynamic>{
+      'entries': instance.entries.map((e) => e.toJson()).toList(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

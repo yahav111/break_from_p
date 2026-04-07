@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,18 +36,31 @@ import 'core/providers/relapse_provider.dart';
 import 'core/providers/streak_provider.dart';
 import 'core/providers/urge_provider.dart';
 import 'core/providers/user_profile_provider.dart';
-import 'data/repositories/achievement_repository.dart';
 import 'data/repositories/app_state_repository.dart';
-import 'data/repositories/exercise_repository.dart';
-import 'data/repositories/journal_repository.dart';
-import 'data/repositories/lifetree_repository.dart';
-import 'data/repositories/notification_preferences_repository.dart';
-import 'data/repositories/pledge_repository.dart';
-import 'data/repositories/reasons_repository.dart';
-import 'data/repositories/relapse_repository.dart';
-import 'data/repositories/streak_repository.dart';
-import 'data/repositories/urge_repository.dart';
-import 'data/repositories/user_profile_repository.dart';
+import 'data/repositories/contracts/data_repository.dart';
+import 'data/repositories/firestore/firestore_achievement_repository.dart';
+import 'data/repositories/firestore/firestore_exercise_repository.dart';
+import 'data/repositories/firestore/firestore_journal_repository.dart';
+import 'data/repositories/firestore/firestore_lifetree_repository.dart';
+import 'data/repositories/firestore/firestore_pledge_repository.dart';
+import 'data/repositories/firestore/firestore_reasons_repository.dart';
+import 'data/repositories/firestore/firestore_relapse_repository.dart';
+import 'data/repositories/firestore/firestore_streak_repository.dart';
+import 'data/repositories/firestore/firestore_urge_repository.dart';
+import 'data/repositories/firestore/firestore_user_profile_repository.dart';
+import 'data/repositories/hive/hive_achievement_repository.dart';
+import 'data/repositories/hive/hive_exercise_repository.dart';
+import 'data/repositories/hive/hive_journal_repository.dart';
+import 'data/repositories/hive/hive_lifetree_repository.dart';
+import 'data/repositories/hive/hive_notification_preferences_repository.dart';
+import 'data/repositories/hive/hive_pledge_repository.dart';
+import 'data/repositories/hive/hive_reasons_repository.dart';
+import 'data/repositories/hive/hive_relapse_repository.dart';
+import 'data/repositories/hive/hive_streak_repository.dart';
+import 'data/repositories/hive/hive_urge_repository.dart';
+import 'data/repositories/hive/hive_user_profile_repository.dart';
+import 'data/repositories/synced/synced_repository.dart';
+import 'infrastructure/firebase/firebase_bootstrap.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,6 +71,9 @@ Future<void> main() async {
       statusBarIconBrightness: Brightness.light,
     ),
   );
+
+  // Initialize Firebase.
+  await initializeFirebase();
 
   // Initialize Hive and register generated adapters.
   await Hive.initFlutter();
@@ -107,19 +125,104 @@ Future<void> main() async {
   final achievementBox = results[10] as Box<AchievementData>;
   final lifetreeBox = results[11] as Box<LifetreeData>;
 
-  // Create repositories.
+  // Create Hive repositories (always the local cache).
+  final hiveUserProfileRepo = HiveUserProfileRepository(userBox);
+  final hiveStreakRepo = HiveStreakRepository(streakBox);
+  final hivePledgeRepo = HivePledgeRepository(pledgeBox);
+  final hiveRelapseRepo = HiveRelapseRepository(relapseBox);
+  final hiveReasonsRepo = HiveReasonsRepository(reasonsBox);
+  final hiveNotifPrefsRepo = HiveNotificationPreferencesRepository(notifPrefsBox);
+  final hiveJournalRepo = HiveJournalRepository(journalBox);
+  final hiveUrgeRepo = HiveUrgeRepository(urgeBox);
+  final hiveExerciseRepo = HiveExerciseRepository(exerciseBox);
+  final hiveAchievementRepo = HiveAchievementRepository(achievementBox);
+  final hiveLifetreeRepo = HiveLifetreeRepository(lifetreeBox);
   final appStateRepo = AppStateRepository(prefs);
-  final userProfileRepo = UserProfileRepository(userBox);
-  final streakRepo = StreakRepository(streakBox);
-  final pledgeRepo = PledgeRepository(pledgeBox);
-  final relapseRepo = RelapseRepository(relapseBox);
-  final reasonsRepo = ReasonsRepository(reasonsBox);
-  final notifPrefsRepo = NotificationPreferencesRepository(notifPrefsBox);
-  final journalRepo = JournalRepository(journalBox);
-  final urgeRepo = UrgeRepository(urgeBox);
-  final exerciseRepo = ExerciseRepository(exerciseBox);
-  final achievementRepo = AchievementRepository(achievementBox);
-  final lifetreeRepo = LifetreeRepository(lifetreeBox);
+
+  // Check if user is already authenticated (app restart with existing session).
+  final currentUser = FirebaseAuth.instance.currentUser;
+  final uid = currentUser?.uid;
+
+  // Build repository overrides — synced if authenticated, plain Hive otherwise.
+  final DataRepository<UserProfile> userProfileRepo;
+  final DataRepository<StreakData> streakRepo;
+  final DataRepository<PledgeData> pledgeRepo;
+  final DataRepository<RelapseData> relapseRepo;
+  final DataRepository<ReasonsData> reasonsRepo;
+  final DataRepository<JournalData> journalRepo;
+  final DataRepository<UrgeData> urgeRepo;
+  final DataRepository<ExerciseData> exerciseRepo;
+  final DataRepository<AchievementData> achievementRepo;
+  final DataRepository<LifetreeData> lifetreeRepo;
+
+  if (uid != null) {
+    final firestore = FirebaseFirestore.instance;
+    bool isOnline() => true; // Refined by ConnectivityProvider at runtime.
+
+    userProfileRepo = SyncedRepository<UserProfile>(
+      local: hiveUserProfileRepo,
+      remote: FirestoreUserProfileRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    streakRepo = SyncedRepository<StreakData>(
+      local: hiveStreakRepo,
+      remote: FirestoreStreakRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    pledgeRepo = SyncedRepository<PledgeData>(
+      local: hivePledgeRepo,
+      remote: FirestorePledgeRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    relapseRepo = SyncedRepository<RelapseData>(
+      local: hiveRelapseRepo,
+      remote: FirestoreRelapseRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    reasonsRepo = SyncedRepository<ReasonsData>(
+      local: hiveReasonsRepo,
+      remote: FirestoreReasonsRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    journalRepo = SyncedRepository<JournalData>(
+      local: hiveJournalRepo,
+      remote: FirestoreJournalRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    urgeRepo = SyncedRepository<UrgeData>(
+      local: hiveUrgeRepo,
+      remote: FirestoreUrgeRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    exerciseRepo = SyncedRepository<ExerciseData>(
+      local: hiveExerciseRepo,
+      remote: FirestoreExerciseRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    achievementRepo = SyncedRepository<AchievementData>(
+      local: hiveAchievementRepo,
+      remote: FirestoreAchievementRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+    lifetreeRepo = SyncedRepository<LifetreeData>(
+      local: hiveLifetreeRepo,
+      remote: FirestoreLifetreeRepository(firestore, uid),
+      isOnline: isOnline,
+    );
+  } else {
+    // Not authenticated yet — use plain Hive repos.
+    // SyncedRepository instances will be created after anonymous sign-in.
+    userProfileRepo = hiveUserProfileRepo;
+    streakRepo = hiveStreakRepo;
+    pledgeRepo = hivePledgeRepo;
+    relapseRepo = hiveRelapseRepo;
+    reasonsRepo = hiveReasonsRepo;
+    journalRepo = hiveJournalRepo;
+    urgeRepo = hiveUrgeRepo;
+    exerciseRepo = hiveExerciseRepo;
+    achievementRepo = hiveAchievementRepo;
+    lifetreeRepo = hiveLifetreeRepo;
+  }
 
   runApp(
     ProviderScope(
@@ -130,7 +233,7 @@ Future<void> main() async {
         pledgeRepositoryProvider.overrideWithValue(pledgeRepo),
         relapseRepositoryProvider.overrideWithValue(relapseRepo),
         reasonsRepositoryProvider.overrideWithValue(reasonsRepo),
-        notifPrefsRepositoryProvider.overrideWithValue(notifPrefsRepo),
+        notifPrefsRepositoryProvider.overrideWithValue(hiveNotifPrefsRepo),
         journalRepositoryProvider.overrideWithValue(journalRepo),
         urgeRepositoryProvider.overrideWithValue(urgeRepo),
         exerciseRepositoryProvider.overrideWithValue(exerciseRepo),
