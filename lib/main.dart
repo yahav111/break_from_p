@@ -15,6 +15,7 @@ import 'core/models/journal_data.dart';
 import 'core/models/journal_entry.dart';
 import 'core/models/lifetree_data.dart';
 import 'core/models/notification_preferences.dart';
+import 'features/onboarding/models/onboarding_data.dart';
 import 'core/models/pledge_data.dart';
 import 'core/models/reasons_data.dart';
 import 'core/models/relapse_data.dart';
@@ -95,6 +96,7 @@ Future<void> main() async {
   Hive.registerAdapter(AchievementEntryAdapter());
   Hive.registerAdapter(AchievementDataAdapter());
   Hive.registerAdapter(LifetreeDataAdapter());
+  Hive.registerAdapter(OnboardingDataAdapter());
 
   // Open boxes and SharedPreferences in parallel.
   final results = await Future.wait([
@@ -110,6 +112,7 @@ Future<void> main() async {
     Hive.openBox<ExerciseData>('exercise_data'),
     Hive.openBox<AchievementData>('achievement_data'),
     Hive.openBox<LifetreeData>('lifetree_data'),
+    Hive.openBox<OnboardingData>('onboarding_data'),
   ]);
 
   final userBox = results[0] as Box<UserProfile>;

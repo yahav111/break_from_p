@@ -122,7 +122,7 @@ class AchievementNotifier extends Notifier<AchievementData?> {
         .map<DateTime>((e) => DateTime(e.date.year, e.date.month, e.date.day))
         .toSet()
         .toList()
-      ..sort((a, b) => b.compareTo(a)); // newest first
+      ..sort((DateTime a, DateTime b) => b.compareTo(a)); // newest first
     if (dates.isEmpty) return 0;
 
     var streak = 1;

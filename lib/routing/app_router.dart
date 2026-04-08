@@ -16,15 +16,16 @@ import '../features/journal/journal_history_screen.dart';
 import '../features/journal/journal_screen.dart';
 import '../features/library/library_screen.dart';
 import '../features/library/widgets/mood_history_screen.dart';
+import '../features/onboarding/onboarding_flow_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/paywall/paywall_screen.dart';
-import '../features/profile/profile_screen.dart';
 import '../features/quiz/quiz_screen.dart';
 import '../features/settings/settings_screen.dart';
 import '../features/shell/main_shell.dart';
 import '../features/soundscapes/soundscapes_screen.dart';
 import '../features/statistics/statistics_screen.dart';
 import '../features/urge_tracker/urge_tracker_screen.dart';
+import '../features/auth/auth_screen.dart';
 import '../features/welcome/welcome_screen.dart';
 import 'route_names.dart';
 
@@ -41,7 +42,9 @@ final routerProvider = Provider<GoRouter>((ref) {
         Routes.welcome,
         Routes.quiz,
         Routes.onboarding,
+        Routes.onboardingFlow,
         Routes.paywall,
+        Routes.auth,
       ];
 
       final isOnOnboardingRoute = onboardingPaths.contains(currentPath);
@@ -73,6 +76,20 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.paywall,
         builder: (context, state) => const PaywallScreen(),
+      ),
+      GoRoute(
+        path: Routes.onboardingFlow,
+        builder: (context, state) => const OnboardingFlowScreen(),
+      ),
+      GoRoute(
+        path: Routes.auth,
+        builder: (context, state) {
+          final mode = state.uri.queryParameters['mode'] ?? 'signUp';
+          return AuthScreen(
+            initialMode:
+                mode == 'signIn' ? AuthMode.signIn : AuthMode.signUp,
+          );
+        },
       ),
 
       // Full-screen routes outside the shell (no bottom nav).
@@ -140,11 +157,28 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const BodyScanScreen(),
       ),
 
-      // Main app — bottom nav shell.
+      // Main app — 5-tab bottom nav shell.
+      // Order: Settings (0), Statistics (1), Home (2, center), Tools (3), Journal (4)
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             MainShell(navigationShell: navigationShell),
         branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.settingsTab,
+                builder: (context, state) => const SettingsScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.statisticsTab,
+                builder: (context, state) => const StatisticsScreen(),
+              ),
+            ],
+          ),
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -166,14 +200,6 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: Routes.journal,
                 builder: (context, state) => const JournalScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: Routes.profile,
-                builder: (context, state) => const ProfileScreen(),
               ),
             ],
           ),

@@ -127,6 +127,39 @@ class AuthService {
     return user.linkWithCredential(oauthCredential);
   }
 
+  /// Creates a new account with email and password.
+  Future<UserCredential> createWithEmail(String email, String password) async {
+    return _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  /// Links anonymous account to email/password. Preserves the UID.
+  Future<UserCredential> linkWithEmail(String email, String password) async {
+    final user = _auth.currentUser;
+    if (user == null) throw StateError('No signed-in user to link.');
+
+    final credential = EmailAuthProvider.credential(
+      email: email,
+      password: password,
+    );
+    return user.linkWithCredential(credential);
+  }
+
+  /// Signs in with email and password. For returning users.
+  Future<UserCredential> signInWithEmail(String email, String password) async {
+    return _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  /// Sends a password reset email.
+  Future<void> sendPasswordResetEmail(String email) async {
+    return _auth.sendPasswordResetEmail(email: email);
+  }
+
   /// Signs out the current user.
   Future<void> signOut() async {
     await _googleSignIn.signOut();

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/providers/app_state_provider.dart';
 import '../../design_system/design_system.dart';
 import '../../routing/route_names.dart';
 import '../../shared/widgets/star_field.dart';
@@ -141,14 +140,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
       label: 'CONTINUE',
       isFullWidth: true,
       size: AppButtonSize.large,
-      onPressed: () async {
-        await ref
-            .read(appStateNotifierProvider.notifier)
-            .completeOnboarding();
-        if (mounted) {
-          context.go(Routes.home);
-        }
-      },
+      onPressed: () => context.go(Routes.auth),
     );
   }
 

@@ -23,13 +23,16 @@ class UserProfileAdapter extends TypeAdapter<UserProfile> {
       quizAnswers: (fields[2] as Map).cast<int, int>(),
       subscriptionStatus: fields[3] as SubscriptionStatus,
       updatedAt: fields[5] as DateTime?,
+      gender: fields[6] as String?,
+      age: fields[7] as int?,
+      selectedGoals: (fields[8] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserProfile obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -41,7 +44,13 @@ class UserProfileAdapter extends TypeAdapter<UserProfile> {
       ..writeByte(4)
       ..write(obj.uid)
       ..writeByte(5)
-      ..write(obj.updatedAt);
+      ..write(obj.updatedAt)
+      ..writeByte(6)
+      ..write(obj.gender)
+      ..writeByte(7)
+      ..write(obj.age)
+      ..writeByte(8)
+      ..write(obj.selectedGoals);
   }
 
   @override
@@ -118,6 +127,11 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => UserProfile(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      gender: json['gender'] as String?,
+      age: (json['age'] as num?)?.toInt(),
+      selectedGoals: (json['selectedGoals'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
@@ -130,6 +144,9 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
           _$SubscriptionStatusEnumMap[instance.subscriptionStatus]!,
       'uid': instance.uid,
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'gender': instance.gender,
+      'age': instance.age,
+      'selectedGoals': instance.selectedGoals,
     };
 
 const _$SubscriptionStatusEnumMap = {

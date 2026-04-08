@@ -2,12 +2,16 @@ abstract final class Routes {
   static const welcome = '/welcome';
   static const quiz = '/quiz';
   static const onboarding = '/onboarding';
+  static const onboardingFlow = '/onboarding-flow';
   static const paywall = '/paywall';
+  static const auth = '/auth';
   static const home = '/';
   static const library = '/library';
   static const journal = '/journal';
   static const profile = '/profile';
   static const settings = '/settings';
+  static const settingsTab = '/settings-tab';
+  static const statisticsTab = '/statistics-tab';
   static const panicMode = '/panic';
 
   // Journal sub-routes.

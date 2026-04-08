@@ -23,6 +23,9 @@ class UserProfile extends HiveObject {
     this.quizAnswers = const {},
     this.subscriptionStatus = SubscriptionStatus.free,
     this.updatedAt,
+    this.gender,
+    this.age,
+    this.selectedGoals,
   });
 
   @HiveField(0)
@@ -47,6 +50,15 @@ class UserProfile extends HiveObject {
   @HiveField(5)
   final DateTime? updatedAt;
 
+  @HiveField(6)
+  final String? gender;
+
+  @HiveField(7)
+  final int? age;
+
+  @HiveField(8)
+  final List<String>? selectedGoals;
+
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
       _$UserProfileFromJson(json);
   Map<String, dynamic> toJson() => _$UserProfileToJson(this);
@@ -58,6 +70,9 @@ class UserProfile extends HiveObject {
     Map<int, int>? quizAnswers,
     SubscriptionStatus? subscriptionStatus,
     DateTime? updatedAt,
+    String? gender,
+    int? age,
+    List<String>? selectedGoals,
   }) {
     return UserProfile(
       name: name ?? this.name,
@@ -66,6 +81,9 @@ class UserProfile extends HiveObject {
       quizAnswers: quizAnswers ?? this.quizAnswers,
       subscriptionStatus: subscriptionStatus ?? this.subscriptionStatus,
       updatedAt: updatedAt ?? this.updatedAt,
+      gender: gender ?? this.gender,
+      age: age ?? this.age,
+      selectedGoals: selectedGoals ?? this.selectedGoals,
     );
   }
 }

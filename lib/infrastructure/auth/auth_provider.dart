@@ -59,9 +59,18 @@ class AuthNotifier extends Notifier<AuthState> {
         await service.signInWithGoogle();
       }
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: e.message);
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      final msg = e.toString();
+      // User cancelled — no error to show.
+      if (msg.contains('cancelled') || msg.contains('canceled') || msg.contains('error 1001')) {
+        state = state.copyWith(isLoading: false);
+        return;
+      }
+      state = state.copyWith(
+        isLoading: false,
+        error: 'Google sign-in failed. Please try again.',
+      );
     }
   }
 
@@ -76,9 +85,95 @@ class AuthNotifier extends Notifier<AuthState> {
         await service.signInWithApple();
       }
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: e.message);
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      final msg = e.toString();
+      // User cancelled or not available — no error to show.
+      if (msg.contains('cancelled') || msg.contains('canceled') ||
+          msg.contains('error 1001') || msg.contains('error 1000')) {
+        state = state.copyWith(isLoading: false);
+        return;
+      }
+      state = state.copyWith(
+        isLoading: false,
+        error: 'Apple sign-in failed. Please try again.',
+      );
+    }
+  }
+
+  /// Signs up with email (links if anonymous, creates otherwise).
+  Future<void> signUpWithEmail(String email, String password) async {
+    state = state.copyWith(isLoading: true, error: null);
+    try {
+      final service = ref.read(authServiceProvider);
+      if (state.status == AuthStatus.anonymous) {
+        await service.linkWithEmail(email, password);
+      } else {
+        await service.createWithEmail(email, password);
+      }
+    } on FirebaseAuthException catch (e) {
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.toString()));
+    }
+  }
+
+  /// Signs in with email and password. For returning users.
+  Future<void> signInWithEmail(String email, String password) async {
+    state = state.copyWith(isLoading: true, error: null);
+    try {
+      final service = ref.read(authServiceProvider);
+      await service.signInWithEmail(email, password);
+    } on FirebaseAuthException catch (e) {
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.toString()));
+    }
+  }
+
+  /// Sends a password reset email.
+  Future<void> sendPasswordResetEmail(String email) async {
+    state = state.copyWith(isLoading: true, error: null);
+    try {
+      final service = ref.read(authServiceProvider);
+      await service.sendPasswordResetEmail(email);
+      state = state.copyWith(isLoading: false);
+    } on FirebaseAuthException catch (e) {
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.toString()));
+    }
+  }
+
+  String _friendlyMessage(String code) {
+    switch (code) {
+      case 'email-already-in-use':
+        return 'An account with this email already exists. Try signing in.';
+      case 'invalid-email':
+        return 'Please enter a valid email address.';
+      case 'weak-password':
+        return 'Password must be at least 8 characters.';
+      case 'user-not-found':
+        return 'No account found with this email.';
+      case 'wrong-password':
+        return 'Incorrect password. Try again or reset it.';
+      case 'invalid-credential':
+        return 'Invalid email or password. Please try again.';
+      case 'credential-already-in-use':
+        return 'This account is already linked to another user.';
+      case 'sign-in-cancelled':
+        return '';
+      case 'too-many-requests':
+        return 'Too many attempts. Please try again later.';
+      default:
+        return 'Something went wrong. Please try again.';
+    }
+  }
+
+  /// Clears the current error state.
+  void clearError() {
+    if (state.error != null) {
+      state = state.copyWith(error: null);
     }
   }
 

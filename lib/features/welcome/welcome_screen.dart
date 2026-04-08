@@ -77,7 +77,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: AppSpacing.xl),
             _buildPrimaryButton(context),
             const SizedBox(height: AppSpacing.md),
-            _buildSecondaryButton(),
+            _buildSecondaryButton(context),
             const SizedBox(height: AppSpacing.xxl),
             _buildLegalText(),
             const SizedBox(height: AppSpacing.xxxxxl),
@@ -150,17 +150,17 @@ class WelcomeScreen extends StatelessWidget {
       icon: Icons.arrow_forward_rounded,
       iconPosition: AppButtonIconPosition.trailing,
       size: AppButtonSize.large,
-      onPressed: () => context.go(Routes.quiz),
+      onPressed: () => context.go(Routes.onboardingFlow),
     );
   }
 
-  Widget _buildSecondaryButton() {
+  Widget _buildSecondaryButton(BuildContext context) {
     return AppButton(
       label: 'Already have an account?',
       isFullWidth: true,
       variant: AppButtonVariant.secondary,
       size: AppButtonSize.large,
-      onPressed: () {},
+      onPressed: () => context.go('${Routes.auth}?mode=signIn'),
     );
   }
 

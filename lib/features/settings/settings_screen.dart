@@ -9,6 +9,7 @@ import '../../core/providers/reasons_provider.dart';
 import '../../core/providers/relapse_provider.dart';
 import '../../core/providers/streak_provider.dart';
 import '../../core/providers/user_profile_provider.dart';
+import '../../core/services/streak_engine.dart';
 import '../../data/sync/sync_engine.dart';
 import '../../data/sync/sync_status.dart';
 import '../../design_system/design_system.dart';
@@ -25,9 +26,13 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(userProfileNotifierProvider);
+    final streakData = ref.watch(streakNotifierProvider);
     final notifPrefs = ref.watch(notifPrefsNotifierProvider);
     final authState = ref.watch(authNotifierProvider);
     final syncStatus = ref.watch(syncEngineProvider);
+    final days = streakData != null
+        ? StreakEngine.daysSince(streakData.quitDate)
+        : 0;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -51,6 +56,10 @@ class SettingsScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: AppSpacing.lg),
+
+                      // Profile header.
+                      _buildProfileHeader(profile, days),
+                      const SizedBox(height: AppSpacing.xxl),
 
                       // Profile section.
                       SettingsSection(
@@ -90,12 +99,14 @@ class SettingsScreen extends ConsumerWidget {
                               showChevron: true,
                               onTap: () => _signInWithGoogle(context, ref),
                             ),
-                            _buildTile(
-                              icon: Icons.apple_rounded,
-                              title: 'Sign in with Apple',
-                              showChevron: true,
-                              onTap: () => _signInWithApple(context, ref),
-                            ),
+                            // Apple Sign-In requires paid Apple Developer Program.
+                            // Uncomment when enrolled in the $99/year program.
+                            // _buildTile(
+                            //   icon: Icons.apple_rounded,
+                            //   title: 'Sign in with Apple',
+                            //   showChevron: true,
+                            //   onTap: () => _signInWithApple(context, ref),
+                            // ),
                           ],
                           if (authState.status ==
                               AuthStatus.authenticated) ...[
@@ -232,6 +243,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   Widget _buildAppBar(BuildContext context) {
+    final canPop = Navigator.of(context).canPop();
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.lg,
@@ -239,26 +251,71 @@ class SettingsScreen extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () => context.pop(),
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: AppColors.overlayWhiteSubtle,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.arrow_back_rounded,
-                color: Colors.white,
-                size: 20,
+          if (canPop) ...[
+            GestureDetector(
+              onTap: () => context.pop(),
+              child: Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: AppColors.overlayWhiteSubtle,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: AppSpacing.lg),
+            const SizedBox(width: AppSpacing.lg),
+          ],
           Text(
             'Settings',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProfileHeader(dynamic profile, int days) {
+    final name = profile?.name ?? 'Friend';
+    final initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
+
+    return Center(
+      child: Column(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [Color(0xFF7B61FF), Color(0xFFBE3FD8)],
+              ),
+            ),
+            child: Center(
+              child: Text(
+                initial,
+                style: AppTypography.headlineMedium.copyWith(
+                  color: Colors.white,
+                  fontWeight: AppTypography.bold,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            name,
+            style: AppTypography.titleMedium.copyWith(color: Colors.white),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            'Day $days',
+            style: AppTypography.bodySmall.copyWith(
+              color: AppColors.darkTextSecondary,
+            ),
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import '../../../design_system/design_system.dart';
 import 'character_display.dart';
 import 'day_orbs_row.dart';
 import 'milestone_indicator.dart';
+import 'rank_badge.dart';
 
 /// Streak/progress hero card shown at the top of the Home screen.
 class StreakCard extends StatelessWidget {
@@ -25,6 +26,8 @@ class StreakCard extends StatelessWidget {
         DayOrbsRow(days: days),
         const SizedBox(height: AppSpacing.md),
         CharacterDisplay(days: days),
+        const SizedBox(height: AppSpacing.sm),
+        RankBadge(days: days),
         const SizedBox(height: AppSpacing.md),
         _buildSubLabel(),
         const SizedBox(height: AppSpacing.sm),

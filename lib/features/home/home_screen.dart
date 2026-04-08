@@ -16,11 +16,13 @@ import '../../routing/route_names.dart';
 import '../achievements/widgets/achievement_toast.dart';
 import '../panic_mode/panic_mode_screen.dart';
 import 'widgets/milestone_celebration_dialog.dart';
+import 'widgets/motivational_quote_banner.dart';
 import 'widgets/pledge_card.dart';
 import 'widgets/quick_action_chip.dart';
 import 'widgets/reasons_section.dart';
 import 'widgets/stat_card.dart';
 import 'widgets/streak_card.dart';
+import 'widgets/weekly_clean_days.dart';
 
 /// Main home / dashboard screen.
 /// Shows the user's current streak, stats and quick actions.
@@ -102,11 +104,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       brainRewirePct: brainRewire,
                     ),
                     const SizedBox(height: AppSpacing.xxl),
+                    if (streakData != null)
+                      WeeklyCleanDays(quitDate: streakData.quitDate),
+                    if (streakData != null)
+                      const SizedBox(height: AppSpacing.xxl),
                     _buildStatsRow(days, totalPledges, totalRelapses),
                     const SizedBox(height: AppSpacing.xxl),
                     const PledgeCard(),
                     const SizedBox(height: AppSpacing.xxl),
                     const ReasonsSection(),
+                    const SizedBox(height: AppSpacing.xxl),
+                    const MotivationalQuoteBanner(),
                     const SizedBox(height: AppSpacing.xxl),
                     _buildQuickActionsTitle(),
                     const SizedBox(height: AppSpacing.lg),
@@ -139,45 +147,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildHeader(
       BuildContext context, String greeting, String name, int days) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '$greeting, $name \u{1F44B}',
-              style: AppTypography.bodyMedium.copyWith(
-                color: AppColors.darkTextSecondary,
-              ),
-            ),
-            Text(
-              'Day $days',
-              style: AppTypography.headlineLarge.copyWith(color: Colors.white),
-            ),
-          ],
+        Text(
+          '$greeting, $name \u{1F44B}',
+          style: AppTypography.bodyMedium.copyWith(
+            color: AppColors.darkTextSecondary,
+          ),
         ),
-        _buildSettingsButton(context),
+        Text(
+          'Day $days',
+          style: AppTypography.headlineLarge.copyWith(color: Colors.white),
+        ),
       ],
-    );
-  }
-
-  Widget _buildSettingsButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.push(Routes.settings),
-      child: Container(
-        width: 48,
-        height: 48,
-        decoration: BoxDecoration(
-          color: AppColors.overlayWhiteSubtle,
-          shape: BoxShape.circle,
-        ),
-        child: const Icon(
-          Icons.settings_rounded,
-          color: Colors.white,
-          size: 22,
-        ),
-      ),
     );
   }
 

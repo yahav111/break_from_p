@@ -24,11 +24,17 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
     required String name,
     required DateTime quitDate,
     Map<int, int> quizAnswers = const {},
+    String? gender,
+    int? age,
+    List<String>? selectedGoals,
   }) async {
     final profile = UserProfile(
       name: name,
       quitDate: quitDate,
       quizAnswers: quizAnswers,
+      gender: gender,
+      age: age,
+      selectedGoals: selectedGoals,
     );
     final repo = ref.read(userProfileRepositoryProvider);
     await repo.save(profile);
