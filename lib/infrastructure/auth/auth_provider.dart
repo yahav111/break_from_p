@@ -38,19 +38,18 @@ class AuthNotifier extends Notifier<AuthState> {
 
   /// Signs in anonymously. Called silently after onboarding.
   Future<void> signInAnonymously() async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isEmailLoading: true, error: null);
     try {
       final service = ref.read(authServiceProvider);
       await service.signInAnonymously();
-      // State updated via authStateChanges listener.
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: e.message);
+      state = state.copyWith(isEmailLoading: false, error: e.message);
     }
   }
 
   /// Signs in with Google (for new device) or links (if anonymous).
   Future<void> signInWithGoogle() async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isGoogleLoading: true, error: null);
     try {
       final service = ref.read(authServiceProvider);
       if (state.status == AuthStatus.anonymous) {
@@ -59,16 +58,15 @@ class AuthNotifier extends Notifier<AuthState> {
         await service.signInWithGoogle();
       }
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+      state = state.copyWith(isGoogleLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
       final msg = e.toString();
-      // User cancelled — no error to show.
       if (msg.contains('cancelled') || msg.contains('canceled') || msg.contains('error 1001')) {
-        state = state.copyWith(isLoading: false);
+        state = state.copyWith(isGoogleLoading: false);
         return;
       }
       state = state.copyWith(
-        isLoading: false,
+        isGoogleLoading: false,
         error: 'Google sign-in failed. Please try again.',
       );
     }
@@ -76,7 +74,7 @@ class AuthNotifier extends Notifier<AuthState> {
 
   /// Signs in with Apple (for new device) or links (if anonymous).
   Future<void> signInWithApple() async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isAppleLoading: true, error: null);
     try {
       final service = ref.read(authServiceProvider);
       if (state.status == AuthStatus.anonymous) {
@@ -85,17 +83,16 @@ class AuthNotifier extends Notifier<AuthState> {
         await service.signInWithApple();
       }
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+      state = state.copyWith(isAppleLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
       final msg = e.toString();
-      // User cancelled or not available — no error to show.
       if (msg.contains('cancelled') || msg.contains('canceled') ||
           msg.contains('error 1001') || msg.contains('error 1000')) {
-        state = state.copyWith(isLoading: false);
+        state = state.copyWith(isAppleLoading: false);
         return;
       }
       state = state.copyWith(
-        isLoading: false,
+        isAppleLoading: false,
         error: 'Apple sign-in failed. Please try again.',
       );
     }
@@ -103,7 +100,7 @@ class AuthNotifier extends Notifier<AuthState> {
 
   /// Signs up with email (links if anonymous, creates otherwise).
   Future<void> signUpWithEmail(String email, String password) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isEmailLoading: true, error: null);
     try {
       final service = ref.read(authServiceProvider);
       if (state.status == AuthStatus.anonymous) {
@@ -112,36 +109,36 @@ class AuthNotifier extends Notifier<AuthState> {
         await service.createWithEmail(email, password);
       }
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+      state = state.copyWith(isEmailLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.toString()));
+      state = state.copyWith(isEmailLoading: false, error: _friendlyMessage(e.toString()));
     }
   }
 
   /// Signs in with email and password. For returning users.
   Future<void> signInWithEmail(String email, String password) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isEmailLoading: true, error: null);
     try {
       final service = ref.read(authServiceProvider);
       await service.signInWithEmail(email, password);
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+      state = state.copyWith(isEmailLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.toString()));
+      state = state.copyWith(isEmailLoading: false, error: _friendlyMessage(e.toString()));
     }
   }
 
   /// Sends a password reset email.
   Future<void> sendPasswordResetEmail(String email) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = state.copyWith(isEmailLoading: true, error: null);
     try {
       final service = ref.read(authServiceProvider);
       await service.sendPasswordResetEmail(email);
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isEmailLoading: false);
     } on FirebaseAuthException catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.code));
+      state = state.copyWith(isEmailLoading: false, error: _friendlyMessage(e.code));
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: _friendlyMessage(e.toString()));
+      state = state.copyWith(isEmailLoading: false, error: _friendlyMessage(e.toString()));
     }
   }
 

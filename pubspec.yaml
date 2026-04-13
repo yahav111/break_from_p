@@ -75,8 +75,13 @@ dependencies:
   # JSON serialization (models)
   json_annotation: ^4.9.0
 
+  # Video playback (Course content)
+  video_player: ^2.9.3
+  chewie: ^1.8.5
+
   # Utilities
   crypto: ^3.0.6
+  flutter_svg: ^2.2.4
 
 dev_dependencies:
   flutter_test:
@@ -104,6 +109,8 @@ flutter:
   assets:
     - assets/audio/
     - assets/images/
+    - assets/icons/
+    - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

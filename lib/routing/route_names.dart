@@ -12,6 +12,7 @@ abstract final class Routes {
   static const settings = '/settings';
   static const settingsTab = '/settings-tab';
   static const statisticsTab = '/statistics-tab';
+  static const courseTab = '/course-tab';
   static const panicMode = '/panic';
 
   // Journal sub-routes.

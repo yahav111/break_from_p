@@ -45,12 +45,7 @@ class AppBottomNav extends StatelessWidget {
         ? AppShadows.getElevation(elevation.round(), theme.brightness)
         : AppShadows.none;
 
-    final effectiveMargin = margin ?? const EdgeInsets.fromLTRB(
-      AppSpacing.lg,
-      0,
-      AppSpacing.lg,
-      0,
-    );
+    final effectiveMargin = margin ?? EdgeInsets.zero;
     final isFloating = effectiveMargin != EdgeInsets.zero;
     final borderRadius = isFloating ? AppRadius.bottomNav : BorderRadius.zero;
 

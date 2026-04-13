@@ -15,7 +15,9 @@ class AuthState {
     this.uid,
     this.displayName,
     this.email,
-    this.isLoading = false,
+    this.isGoogleLoading = false,
+    this.isAppleLoading = false,
+    this.isEmailLoading = false,
     this.error,
   });
 
@@ -23,8 +25,12 @@ class AuthState {
   final String? uid;
   final String? displayName;
   final String? email;
-  final bool isLoading;
+  final bool isGoogleLoading;
+  final bool isAppleLoading;
+  final bool isEmailLoading;
   final String? error;
+
+  bool get isLoading => isGoogleLoading || isAppleLoading || isEmailLoading;
 
   bool get isSignedIn =>
       status == AuthStatus.anonymous || status == AuthStatus.authenticated;
@@ -34,7 +40,9 @@ class AuthState {
     String? uid,
     String? displayName,
     String? email,
-    bool? isLoading,
+    bool? isGoogleLoading,
+    bool? isAppleLoading,
+    bool? isEmailLoading,
     String? error,
   }) {
     return AuthState(
@@ -42,7 +50,9 @@ class AuthState {
       uid: uid ?? this.uid,
       displayName: displayName ?? this.displayName,
       email: email ?? this.email,
-      isLoading: isLoading ?? this.isLoading,
+      isGoogleLoading: isGoogleLoading ?? this.isGoogleLoading,
+      isAppleLoading: isAppleLoading ?? this.isAppleLoading,
+      isEmailLoading: isEmailLoading ?? this.isEmailLoading,
       error: error ?? this.error,
     );
   }

@@ -99,14 +99,12 @@ class SettingsScreen extends ConsumerWidget {
                               showChevron: true,
                               onTap: () => _signInWithGoogle(context, ref),
                             ),
-                            // Apple Sign-In requires paid Apple Developer Program.
-                            // Uncomment when enrolled in the $99/year program.
-                            // _buildTile(
-                            //   icon: Icons.apple_rounded,
-                            //   title: 'Sign in with Apple',
-                            //   showChevron: true,
-                            //   onTap: () => _signInWithApple(context, ref),
-                            // ),
+                            _buildTile(
+                              icon: Icons.apple_rounded,
+                              title: 'Sign in with Apple',
+                              showChevron: true,
+                              onTap: () => _signInWithApple(context, ref),
+                            ),
                           ],
                           if (authState.status ==
                               AuthStatus.authenticated) ...[

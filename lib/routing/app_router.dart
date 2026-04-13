@@ -23,6 +23,7 @@ import '../features/quiz/quiz_screen.dart';
 import '../features/settings/settings_screen.dart';
 import '../features/shell/main_shell.dart';
 import '../features/soundscapes/soundscapes_screen.dart';
+import '../features/course/course_screen.dart';
 import '../features/statistics/statistics_screen.dart';
 import '../features/urge_tracker/urge_tracker_screen.dart';
 import '../features/auth/auth_screen.dart';
@@ -158,7 +159,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // Main app — 5-tab bottom nav shell.
-      // Order: Settings (0), Statistics (1), Home (2, center), Tools (3), Journal (4)
+      // Order: Journal (0), Tools (1), Home (2, center), Statistics (3), Settings (4)
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             MainShell(navigationShell: navigationShell),
@@ -166,24 +167,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.settingsTab,
-                builder: (context, state) => const SettingsScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: Routes.statisticsTab,
-                builder: (context, state) => const StatisticsScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: Routes.home,
-                builder: (context, state) => const HomeScreen(),
+                path: Routes.journal,
+                builder: (context, state) => const JournalScreen(),
               ),
             ],
           ),
@@ -198,8 +183,24 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.journal,
-                builder: (context, state) => const JournalScreen(),
+                path: Routes.home,
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.courseTab,
+                builder: (context, state) => const CourseScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.settingsTab,
+                builder: (context, state) => const SettingsScreen(),
               ),
             ],
           ),

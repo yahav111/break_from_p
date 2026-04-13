@@ -246,33 +246,31 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   }
 
   Widget _buildSocialButtons(AuthState authState) {
-    final isLoading = authState.isLoading;
     return Column(
       children: [
         SocialSignInButton(
           label: 'Continue with Google',
-          icon: Icons.g_mobiledata_rounded,
-          isLoading: isLoading,
-          onPressed: () {
+          svgAsset: 'assets/icons/google_logo.svg',
+          isLoading: authState.isGoogleLoading,
+          onPressed: authState.isLoading ? null : () {
             _wasAnonymous =
                 ref.read(authNotifierProvider).status == AuthStatus.anonymous;
             ref.read(authNotifierProvider.notifier).signInWithGoogle();
           },
         ),
-        // TODO: Enable once Apple Developer Program is fully activated.
-        // if (Platform.isIOS) ...[
-        //   const SizedBox(height: AppSpacing.md),
-        //   SocialSignInButton(
-        //     label: 'Continue with Apple',
-        //     icon: Icons.apple_rounded,
-        //     isLoading: isLoading,
-        //     onPressed: () {
-        //       _wasAnonymous =
-        //           ref.read(authNotifierProvider).status == AuthStatus.anonymous;
-        //       ref.read(authNotifierProvider.notifier).signInWithApple();
-        //     },
-        //   ),
-        // ],
+        if (Platform.isIOS) ...[
+          const SizedBox(height: AppSpacing.md),
+          SocialSignInButton(
+            label: 'Continue with Apple',
+            svgAsset: 'assets/icons/apple_logo.svg',
+            isLoading: authState.isAppleLoading,
+            onPressed: authState.isLoading ? null : () {
+              _wasAnonymous =
+                  ref.read(authNotifierProvider).status == AuthStatus.anonymous;
+              ref.read(authNotifierProvider.notifier).signInWithApple();
+            },
+          ),
+        ],
       ],
     );
   }
