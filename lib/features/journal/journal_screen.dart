@@ -21,12 +21,12 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
   String _searchText = '';
 
   static const _moodFilters = [
-    _MoodFilter(null, 'All', null),
-    _MoodFilter(4, 'Great', Icons.sentiment_very_satisfied),
-    _MoodFilter(3, 'Good', Icons.sentiment_satisfied),
-    _MoodFilter(2, 'Okay', Icons.sentiment_neutral),
-    _MoodFilter(1, 'Struggling', Icons.sentiment_dissatisfied),
-    _MoodFilter(0, 'Bad', Icons.sentiment_very_dissatisfied),
+    _MoodFilter(null, 'הכל', null),
+    _MoodFilter(4, 'מעולה', Icons.sentiment_very_satisfied),
+    _MoodFilter(3, 'טוב', Icons.sentiment_satisfied),
+    _MoodFilter(2, 'בסדר', Icons.sentiment_neutral),
+    _MoodFilter(1, 'מתקשה', Icons.sentiment_dissatisfied),
+    _MoodFilter(0, 'רע', Icons.sentiment_very_dissatisfied),
   ];
 
   @override
@@ -107,14 +107,14 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Journal',
+            'יומן',
             style: AppTypography.headlineLarge.copyWith(
               color: Colors.white,
             ),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
-            'Reflect on your journey',
+            'הרהר על המסע שלך',
             style: AppTypography.bodyMedium.copyWith(
               color: AppColors.darkTextSecondary,
             ),
@@ -132,7 +132,7 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
         onChanged: (value) => setState(() => _searchText = value),
         style: AppTypography.bodyMedium.copyWith(color: Colors.white),
         decoration: InputDecoration(
-          hintText: 'Search entries...',
+          hintText: 'חפש רשומות...',
           hintStyle: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextTertiary,
           ),
@@ -274,14 +274,14 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
           ),
           const SizedBox(height: AppSpacing.lg),
           Text(
-            'Start journaling',
+            'התחל ליומן',
             style: AppTypography.titleMedium.copyWith(
               color: Colors.white,
             ),
           ),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            'Write your first entry to begin\ntracking your journey',
+            'כתוב את הרשומה הראשונה שלך כדי להתחיל\nלעקוב אחר המסע שלך',
             textAlign: TextAlign.center,
             style: AppTypography.bodyMedium.copyWith(
               color: AppColors.darkTextSecondary,

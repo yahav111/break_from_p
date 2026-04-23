@@ -105,7 +105,7 @@ class WelcomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Welcome!',
+          'ברוך הבא!',
           style: AppTypography.headlineLarge.copyWith(
             color: Colors.white,
             fontSize: 38,
@@ -113,7 +113,7 @@ class WelcomeScreen extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.md),
         Text(
-          "Let's start by finding out if you have a problem with porn",
+          'נתחיל בלגלות אם יש לך בעיה עם פורנוגרפיה',
           style: AppTypography.bodyLarge.copyWith(
             color: AppColors.darkTextSecondary,
             fontSize: 18,
@@ -144,7 +144,7 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget _buildPrimaryButton(BuildContext context) {
     return AppButton(
-      label: 'Start Quiz',
+      label: 'התחל שאלון',
       isFullWidth: true,
       variant: AppButtonVariant.primary,
       icon: Icons.arrow_forward_rounded,
@@ -156,7 +156,7 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget _buildSecondaryButton(BuildContext context) {
     return AppButton(
-      label: 'Already have an account?',
+      label: 'כבר יש לי חשבון',
       isFullWidth: true,
       variant: AppButtonVariant.secondary,
       size: AppButtonSize.large,
@@ -167,7 +167,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget _buildLegalText() {
     return Center(
       child: Text(
-        'By continuing, you agree to our Terms & Conditions\nand Privacy Policy',
+        'בהמשך, אתה מסכים לתנאי השימוש\nולמדיניות הפרטיות שלנו',
         textAlign: TextAlign.center,
         style: AppTypography.caption.copyWith(
           color: AppColors.darkTextTertiary,

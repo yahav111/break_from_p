@@ -64,7 +64,7 @@ class AuthSignUpPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppSpacing.xxxl),
                 Text(
-                  'Become a\nQUITTR',
+                  'הצטרף ל-\nQUITTR',
                   style: AppTypography.displayLarge.copyWith(
                     color: Colors.white,
                     fontSize: 36,
@@ -73,7 +73,7 @@ class AuthSignUpPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  'Create an account to secure your\nrecovery progress across devices.',
+                  'צור חשבון כדי לשמור את\nההתקדמות שלך בכל המכשירים.',
                   style: AppTypography.bodyMedium.copyWith(
                     color: AppColors.darkTextSecondary,
                     height: 1.5,
@@ -81,7 +81,7 @@ class AuthSignUpPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppSpacing.xxxxxl),
                 SocialSignInButton(
-                  label: 'Continue with Google',
+                  label: 'המשך עם Google',
                   svgAsset: 'assets/icons/google_logo.svg',
                   isLoading: authState.isGoogleLoading,
                   onPressed: authState.isLoading
@@ -95,7 +95,7 @@ class AuthSignUpPage extends ConsumerWidget {
                 if (Platform.isIOS) ...[
                   const SizedBox(height: AppSpacing.md),
                   SocialSignInButton(
-                    label: 'Continue with Apple',
+                    label: 'המשך עם Apple',
                     svgAsset: 'assets/icons/apple_logo.svg',
                     isLoading: authState.isAppleLoading,
                     onPressed: authState.isLoading
@@ -109,7 +109,7 @@ class AuthSignUpPage extends ConsumerWidget {
                 ],
                 const SizedBox(height: AppSpacing.xxl),
                 GradientButton(
-                  label: 'Skip for now',
+                  label: 'דלג לעת עתה',
                   isFullWidth: true,
                   size: AppButtonSize.large,
                   onPressed: authState.isLoading
@@ -135,9 +135,9 @@ class AuthSignUpPage extends ConsumerWidget {
                           color: AppColors.darkTextSecondary,
                         ),
                         children: [
-                          const TextSpan(text: 'Already have an account? '),
+                          const TextSpan(text: 'כבר יש לך חשבון? '),
                           TextSpan(
-                            text: 'Sign In',
+                            text: 'התחבר',
                             style: TextStyle(
                               color: AppColors.primary,
                               fontWeight: AppTypography.semiBold,

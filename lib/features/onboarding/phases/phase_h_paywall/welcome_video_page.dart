@@ -21,7 +21,7 @@ class WelcomeVideoPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Welcome to\nQUITTR, your',
+                'ברוך הבא ל-QUITTR,\nהמסלול שלך מתחיל',
                 textAlign: TextAlign.center,
                 style: AppTypography.displayLarge.copyWith(
                   color: Colors.white,
@@ -51,7 +51,7 @@ class WelcomeVideoPage extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.xxxxxl),
               Text(
-                'Tap to continue',
+                'הקש כדי להמשיך',
                 style: AppTypography.bodyMedium.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),

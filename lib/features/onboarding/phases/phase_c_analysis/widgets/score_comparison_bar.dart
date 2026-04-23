@@ -50,7 +50,7 @@ class _ScoreComparisonBarState extends State<ScoreComparisonBar>
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               _buildBar(
-                label: 'Your Score',
+                label: 'הציון שלך',
                 value: widget.userScore,
                 animatedValue: widget.userScore * t,
                 color: AppColors.error,
@@ -58,7 +58,7 @@ class _ScoreComparisonBarState extends State<ScoreComparisonBar>
               ),
               const SizedBox(width: AppSpacing.xxxl),
               _buildBar(
-                label: 'Average',
+                label: 'ממוצע',
                 value: widget.averageScore,
                 animatedValue: widget.averageScore * t,
                 color: AppColors.success,

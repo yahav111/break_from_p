@@ -21,7 +21,7 @@ class NotificationPermissionPage extends StatelessWidget {
           children: [
             const Spacer(flex: 2),
             Text(
-              'Stay on track\nwith reminders',
+              'תישאר במסלול\nעם תזכורות',
               style: AppTypography.displayLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -31,7 +31,7 @@ class NotificationPermissionPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'Get gentle reminders and motivation so you never lose sight of your goals.',
+              'קבל תזכורות ומוטיבציה עדינות כדי שלא תאבד את הפוקוס על המטרות שלך.',
               style: AppTypography.bodyLarge.copyWith(
                 color: AppColors.darkTextSecondary,
                 height: 1.5,
@@ -39,7 +39,7 @@ class NotificationPermissionPage extends StatelessWidget {
             ),
             const Spacer(flex: 3),
             AppButton(
-              label: 'Enable notifications',
+              label: 'הפעל התראות',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,
@@ -51,7 +51,7 @@ class NotificationPermissionPage extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
             Center(
               child: AppButton(
-                label: 'Not now',
+                label: 'לא עכשיו',
                 variant: AppButtonVariant.ghost,
                 size: AppButtonSize.medium,
                 onPressed: onComplete,

@@ -11,27 +11,27 @@ class _SymptomCategory {
 }
 
 const _categories = <_SymptomCategory>[
-  _SymptomCategory('Mental', [
-    'Difficulty concentrating',
-    'Lack of ambition to pursue goals',
-    'Poor memory or \'brain fog\'',
-    'General anxiety',
-    'Feeling unmotivated',
+  _SymptomCategory('נפשי', [
+    'קושי להתרכז',
+    'חוסר שאיפה לממש מטרות',
+    'זיכרון חלש או "ערפל מוחי"',
+    'חרדה כללית',
+    'חוסר מוטיבציה',
   ]),
-  _SymptomCategory('Physical', [
-    'Tiredness and lethargy',
-    'Weak erections without porn',
-    'Low sex drive or desire',
+  _SymptomCategory('פיזי', [
+    'עייפות ועצלות',
+    'זקפה חלשה ללא פורנו',
+    'חשק מיני נמוך',
   ]),
-  _SymptomCategory('Social', [
-    'Unsuccessful or unenjoyable sex',
-    'Low self-confidence',
-    'Feeling unattractive or unworthy of love',
-    'Feeling isolated from others',
-    'Reduced desire to socialize',
+  _SymptomCategory('חברתי', [
+    'מין לא מוצלח או לא מהנה',
+    'ביטחון עצמי נמוך',
+    'תחושה שאינך אטרקטיבי או ראוי לאהבה',
+    'תחושת בידוד מאחרים',
+    'ירידה ברצון לחברות',
   ]),
-  _SymptomCategory('Faith', [
-    'Feeling distant from God',
+  _SymptomCategory('אמונה', [
+    'תחושת ריחוק מאלוהים',
   ]),
 ];
 
@@ -81,7 +81,7 @@ class _SymptomsSelectionPageState extends State<SymptomsSelectionPage> {
           Padding(
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: GradientButton(
-              label: 'Reboot my brain',
+              label: 'אתחל את המוח שלי',
               isFullWidth: true,
               size: AppButtonSize.large,
               gradientColors: const [Color(0xFFFF5722), Color(0xFFFF9800)],
@@ -116,7 +116,7 @@ class _SymptomsSelectionPageState extends State<SymptomsSelectionPage> {
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Symptoms',
+            'תסמינים',
             style: AppTypography.headlineMedium.copyWith(
               color: Colors.white,
               fontWeight: AppTypography.bold,
@@ -140,7 +140,7 @@ class _SymptomsSelectionPageState extends State<SymptomsSelectionPage> {
               Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
         ),
         child: Text(
-          'Excessive porn use can have negative impacts psychologically.\n\nSelect any symptoms below:',
+          'שימוש מופרז בפורנוגרפיה יכול להשפיע לרעה על הנפש.\n\nסמן תסמינים שאתה חווה:',
           style: AppTypography.bodyMedium.copyWith(
             color: Colors.white,
             height: 1.5,

@@ -10,7 +10,7 @@ class MoodTrendChart extends StatelessWidget {
   /// Pairs of (date, mood) sorted chronologically.
   final List<(DateTime, int)> moodData;
 
-  static const _moodLabels = ['Bad', 'Low', 'OK', 'Good', 'Great'];
+  static const _moodLabels = ['רע', 'נמוך', 'סביר', 'טוב', 'מעולה'];
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +175,7 @@ class MoodTrendChart extends StatelessWidget {
         height: 200,
         child: Center(
           child: Text(
-            'No mood data yet',
+            'אין עדיין נתוני מצב רוח',
             style: AppTypography.bodySmall
                 .copyWith(color: AppColors.darkTextTertiary),
           ),

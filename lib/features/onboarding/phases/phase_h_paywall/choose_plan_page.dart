@@ -28,7 +28,7 @@ class _ChoosePlanPageState extends State<ChoosePlanPage> {
           children: [
             const Spacer(flex: 2),
             Text(
-              'Choose Your Plan',
+              'בחר את המסלול שלך',
               style: AppTypography.headlineLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -43,7 +43,7 @@ class _ChoosePlanPageState extends State<ChoosePlanPage> {
                     color: AppColors.primary, size: 18),
                 const SizedBox(width: AppSpacing.xs),
                 Text(
-                  '60% Off Sale',
+                  'מבצע 60% הנחה',
                   style: AppTypography.titleSmall.copyWith(
                     color: AppColors.primary,
                     fontWeight: AppTypography.bold,
@@ -51,7 +51,7 @@ class _ChoosePlanPageState extends State<ChoosePlanPage> {
                 ),
                 const SizedBox(width: AppSpacing.xxl),
                 Text(
-                  '9 spots remaining',
+                  'נותרו 9 מקומות',
                   style: AppTypography.titleSmall.copyWith(
                     color: AppColors.error,
                     fontWeight: AppTypography.semiBold,
@@ -63,25 +63,25 @@ class _ChoosePlanPageState extends State<ChoosePlanPage> {
             // Plan cards
             _buildPlanCard(
               index: 0,
-              title: 'Annual',
+              title: 'שנתי',
               price: '\u20AA8.32',
-              period: 'per month',
+              period: 'לחודש',
               originalPrice: '\u20AA14.99',
               isSelected: _selectedPlan == 0,
             ),
             const SizedBox(height: AppSpacing.md),
             _buildPlanCard(
               index: 1,
-              title: 'Lifetime',
+              title: 'לכל החיים',
               price: '\u20AA179.90',
-              period: 'pay once',
+              period: 'תשלום חד-פעמי',
               originalPrice: '\u20AA449.90',
               isSelected: _selectedPlan == 1,
             ),
             const Spacer(flex: 1),
             // CTA
             GradientButton(
-              label: 'CONTINUE',
+              label: 'המשך',
               isFullWidth: true,
               size: AppButtonSize.large,
               onPressed: widget.onComplete,
@@ -94,7 +94,7 @@ class _ChoosePlanPageState extends State<ChoosePlanPage> {
                     color: AppColors.success, size: 14),
                 const SizedBox(width: AppSpacing.xs),
                 Text(
-                  'No commitment, cancel anytime',
+                  'ללא התחייבות, ניתן לבטל בכל עת',
                   style: AppTypography.bodySmall.copyWith(
                     color: AppColors.success,
                   ),

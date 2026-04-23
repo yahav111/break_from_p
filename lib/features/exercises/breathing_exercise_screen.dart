@@ -27,7 +27,7 @@ class _BreathingExerciseScreenState
   late final AnimationController _controller;
 
   int _currentCycle = 0;
-  String _phase = 'Breathe In';
+  String _phase = 'שאיפה';
   bool _isStarted = false;
   bool _isComplete = false;
   DateTime? _startTime;
@@ -40,7 +40,7 @@ class _BreathingExerciseScreenState
         hold: 4,
         exhale: 4,
         cycles: 5,
-        label: '4-4-4 Box Breathing',
+        label: 'נשימת קופסה 4-4-4',
       );
 
   int get _totalCycles => _bp.cycles;
@@ -60,11 +60,11 @@ class _BreathingExerciseScreenState
     final value = _controller.value;
     String newPhase;
     if (value <= _bp.inhaleEnd) {
-      newPhase = 'Breathe In';
+      newPhase = 'שאיפה';
     } else if (_bp.hold > 0 && value <= _bp.holdEnd) {
-      newPhase = 'Hold';
+      newPhase = 'עצור';
     } else {
-      newPhase = 'Breathe Out';
+      newPhase = 'נשיפה';
     }
     if (newPhase != _phase) {
       setState(() => _phase = newPhase);
@@ -79,7 +79,7 @@ class _BreathingExerciseScreenState
       } else {
         setState(() {
           _currentCycle = next;
-          _phase = 'Breathe In';
+          _phase = 'שאיפה';
         });
         _controller.forward(from: 0.0);
       }
@@ -91,7 +91,7 @@ class _BreathingExerciseScreenState
       _isStarted = true;
       _startTime = DateTime.now();
       _currentCycle = 0;
-      _phase = 'Breathe In';
+      _phase = 'שאיפה';
     });
     _controller.forward(from: 0.0);
   }
@@ -168,7 +168,7 @@ class _BreathingExerciseScreenState
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Breathing Exercise',
+            'תרגיל נשימה',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -188,7 +188,7 @@ class _BreathingExerciseScreenState
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          '$_totalCycles cycles \u00b7 ~${(_totalCycles * _bp.cycleDuration / 60).ceil()} min',
+          '$_totalCycles מחזורים \u00b7 כ-${(_totalCycles * _bp.cycleDuration / 60).ceil()} דקות',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -197,7 +197,7 @@ class _BreathingExerciseScreenState
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxxl),
           child: GradientButton(
-            label: 'Begin',
+            label: 'התחל',
             onPressed: _start,
           ),
         ),
@@ -221,7 +221,7 @@ class _BreathingExerciseScreenState
         ),
         const SizedBox(height: AppSpacing.lg),
         Text(
-          'Cycle ${_currentCycle + 1} of $_totalCycles',
+          'מחזור ${_currentCycle + 1} מתוך $_totalCycles',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),

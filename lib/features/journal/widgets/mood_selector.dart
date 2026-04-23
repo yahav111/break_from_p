@@ -15,11 +15,11 @@ class MoodSelector extends StatelessWidget {
   final ValueChanged<int> onMoodSelected;
 
   static const _moods = [
-    _MoodOption(0, Icons.sentiment_very_dissatisfied, 'Bad'),
-    _MoodOption(1, Icons.sentiment_dissatisfied, 'Struggling'),
-    _MoodOption(2, Icons.sentiment_neutral, 'Okay'),
-    _MoodOption(3, Icons.sentiment_satisfied, 'Good'),
-    _MoodOption(4, Icons.sentiment_very_satisfied, 'Great'),
+    _MoodOption(0, Icons.sentiment_very_dissatisfied, 'רע'),
+    _MoodOption(1, Icons.sentiment_dissatisfied, 'מתקשה'),
+    _MoodOption(2, Icons.sentiment_neutral, 'בסדר'),
+    _MoodOption(3, Icons.sentiment_satisfied, 'טוב'),
+    _MoodOption(4, Icons.sentiment_very_satisfied, 'מעולה'),
   ];
 
   @override

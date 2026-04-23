@@ -60,7 +60,7 @@ class MilestoneCelebrationDialog extends StatelessWidget {
 
             // Title.
             Text(
-              '${milestone.days} Days!',
+              '${milestone.days} ימים!',
               style: AppTypography.displayLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -105,7 +105,7 @@ class MilestoneCelebrationDialog extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: AppButton(
-                label: 'Keep Going',
+                label: 'המשך הלאה',
                 variant: AppButtonVariant.gradient,
                 onPressed: () => Navigator.of(context).pop(),
               ),

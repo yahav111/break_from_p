@@ -13,8 +13,8 @@ class ReasonsSetupSheet extends ConsumerStatefulWidget {
   static Future<void> show(BuildContext context) {
     return AppModalSheet.show(
       context: context,
-      title: 'My Reasons for Quitting',
-      subtitle: 'Add your personal motivations',
+      title: 'הסיבות שלי להפסיק',
+      subtitle: 'הוסף את המניעים האישיים שלך',
       showCloseButton: true,
       maxHeight: 0.85,
       child: const ReasonsSetupSheet(),
@@ -57,7 +57,7 @@ class _ReasonsSetupSheetState extends ConsumerState<ReasonsSetupSheet> {
                 controller: _controller,
                 style: AppTypography.bodyMedium.copyWith(color: Colors.white),
                 decoration: InputDecoration(
-                  hintText: 'Add a custom reason...',
+                  hintText: 'הוסף סיבה מותאמת אישית...',
                   hintStyle: AppTypography.bodyMedium.copyWith(
                     color: AppColors.darkTextTertiary,
                   ),
@@ -97,7 +97,7 @@ class _ReasonsSetupSheetState extends ConsumerState<ReasonsSetupSheet> {
         // Current reasons.
         if (reasons.isNotEmpty) ...[
           Text(
-            'Your Reasons',
+            'הסיבות שלך',
             style: AppTypography.labelMedium.copyWith(
               color: AppColors.darkTextSecondary,
             ),
@@ -120,7 +120,7 @@ class _ReasonsSetupSheetState extends ConsumerState<ReasonsSetupSheet> {
 
         // Suggested reasons.
         Text(
-          'Suggestions',
+          'הצעות',
           style: AppTypography.labelMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),

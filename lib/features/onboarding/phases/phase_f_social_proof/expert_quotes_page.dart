@@ -14,21 +14,21 @@ class _Quote {
 const _quotes = <_Quote>[
   _Quote(
     'Andrew Huberman',
-    'Ph.D.',
-    'Drastically improve your life',
-    'Resetting your dopamine balance by taking a break from highly stimulating content can dramatically improve motivation, emotional stability, and everyday pleasure.',
+    'ד״ר',
+    'שפר את חייך באופן דרמטי',
+    'איפוס מאזן הדופמין על ידי הפסקה מתוכן ממריץ ביותר יכול לשפר באופן דרמטי את המוטיבציה, היציבות הרגשית וההנאה היומיומית.',
   ),
   _Quote(
     'Steven Bartlett',
-    'Entrepreneur',
-    'There\'s no good in porn',
-    'Pornography doesn\'t have an educational role — it\'s only an open window for a market that brings more emptiness and addiction that profit to porn.',
+    'יזם',
+    'אין שום דבר טוב בפורנו',
+    'לפורנוגרפיה אין תפקיד חינוכי — היא רק חלון פתוח לשוק שמביא יותר ריקנות והתמכרות מאשר תועלת.',
   ),
   _Quote(
-    'Connor',
-    'QUITTR User',
-    'Quitting has allowed me to change my mindset on the little things in life.',
-    'I was coming to grips with the fact that life is dark, boring, depressing and then I die. Screw that. Quitting has allowed me to change my mindset on the little things in life.',
+    'קונור',
+    'משתמש QUITTR',
+    'הגמילה אפשרה לי לשנות את התפיסה על הדברים הקטנים בחיים.',
+    'הייתי בשלב שבו כבר השלמתי עם העובדה שהחיים אפלים, משעממים, מדכאים, ובסוף מתים. די לזה. הגמילה אפשרה לי לשנות את התפיסה שלי על הדברים הקטנים בחיים.',
   ),
 ];
 
@@ -57,7 +57,7 @@ class ExpertQuotesPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: AppButton(
-              label: 'Next',
+              label: 'המשך',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,

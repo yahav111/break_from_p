@@ -17,7 +17,7 @@ class ReasonsDisplay extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Remember why you started',
+          'זכור למה התחלת',
           style: AppTypography.labelMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),

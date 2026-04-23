@@ -19,9 +19,9 @@ class LifetreeUnlockCondition {
 
   String describe() {
     final parts = <String>[];
-    if (minStreakDays > 0) parts.add('$minStreakDays-day streak');
-    if (minExercises > 0) parts.add('$minExercises exercises completed');
-    if (minJournalEntries > 0) parts.add('$minJournalEntries journal entries');
+    if (minStreakDays > 0) parts.add('רצף של $minStreakDays ימים');
+    if (minExercises > 0) parts.add('$minExercises תרגילים שהושלמו');
+    if (minJournalEntries > 0) parts.add('$minJournalEntries רשומות יומן');
     return parts.join(' + ');
   }
 }
@@ -61,10 +61,10 @@ abstract final class LifetreeEngine {
     // ── Breathing branch (top-left) ──
     LifetreeNode(
       id: 'breathing_478',
-      title: '4-7-8 Relaxing Breath',
+      title: 'נשימה מרגיעה 4-7-8',
       description:
-          'A calming pattern: 4s inhale, 7s hold, 8s exhale. '
-          'Activates the parasympathetic nervous system.',
+          'תבנית מרגיעה: 4 שניות שאיפה, 7 שניות עצירה, 8 שניות נשיפה. '
+          'מפעילה את מערכת העצבים הפָּרָסִימְפָּתֶטית.',
       category: LifetreeCategory.breathing,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 3),
       position: Offset(0.2, 0.2),
@@ -73,15 +73,15 @@ abstract final class LifetreeEngine {
         hold: 7,
         exhale: 8,
         cycles: 4,
-        label: '4-7-8 Relaxing',
+        label: '4-7-8 מרגיעה',
       ),
     ),
     LifetreeNode(
       id: 'breathing_55',
-      title: '5-5 Equal Breath',
+      title: 'נשימה מאוזנת 5-5',
       description:
-          'Balanced breathing: 5s inhale, 5s exhale. '
-          'Creates equilibrium between sympathetic and parasympathetic systems.',
+          'נשימה מאוזנת: 5 שניות שאיפה, 5 שניות נשיפה. '
+          'יוצרת שיווי משקל בין המערכת הסימפתטית לפרה-סימפתטית.',
       category: LifetreeCategory.breathing,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 7),
       position: Offset(0.15, 0.35),
@@ -90,15 +90,15 @@ abstract final class LifetreeEngine {
         hold: 0,
         exhale: 5,
         cycles: 6,
-        label: '5-5 Equal',
+        label: '5-5 מאוזנת',
       ),
     ),
     LifetreeNode(
       id: 'breathing_627',
-      title: '6-2-7 Energizing Breath',
+      title: 'נשימה ממריצה 6-2-7',
       description:
-          'An energizing pattern: 6s inhale, 2s hold, 7s exhale. '
-          'Increases alertness while maintaining calm.',
+          'תבנית ממריצה: 6 שניות שאיפה, 2 שניות עצירה, 7 שניות נשיפה. '
+          'מגבירה ערנות תוך שמירה על רוגע.',
       category: LifetreeCategory.breathing,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 14),
       position: Offset(0.25, 0.48),
@@ -107,34 +107,34 @@ abstract final class LifetreeEngine {
         hold: 2,
         exhale: 7,
         cycles: 5,
-        label: '6-2-7 Energizing',
+        label: '6-2-7 ממריצה',
       ),
     ),
 
     // ── Journaling branch (top-right) ──
     LifetreeNode(
       id: 'journal_deep',
-      title: 'Deep Reflection',
-      description: 'Unlock introspective prompts that help you '
-          'understand your patterns and triggers.',
+      title: 'הרהור עמוק',
+      description: 'פתיחת פרומפטים התבוננותיים שעוזרים לך '
+          'להבין את הדפוסים והטריגרים שלך.',
       category: LifetreeCategory.journaling,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 5),
       position: Offset(0.8, 0.2),
     ),
     LifetreeNode(
       id: 'journal_gratitude',
-      title: 'Gratitude Practice',
-      description: 'Unlock gratitude-focused prompts that shift '
-          'your mindset toward appreciation and hope.',
+      title: 'תרגול הכרת תודה',
+      description: 'פתיחת פרומפטים ממוקדי הכרת תודה שמסיטים '
+          'את החשיבה שלך לעבר הערכה ותקווה.',
       category: LifetreeCategory.journaling,
       unlockCondition: LifetreeUnlockCondition(minJournalEntries: 10),
       position: Offset(0.85, 0.35),
     ),
     LifetreeNode(
       id: 'journal_future',
-      title: 'Future Self Letters',
-      description: 'Unlock prompts for writing to your future self '
-          'and envisioning the person you are becoming.',
+      title: 'מכתבים לעצמך העתידי',
+      description: 'פתיחת פרומפטים לכתיבה לעצמך העתידי '
+          'ודמיון האדם שאתה הופך להיות.',
       category: LifetreeCategory.journaling,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 14),
       position: Offset(0.75, 0.48),
@@ -143,9 +143,9 @@ abstract final class LifetreeEngine {
     // ── Meditation branch (bottom-left) ──
     LifetreeNode(
       id: 'meditation_body_scan',
-      title: 'Body Scan',
-      description: 'A guided body scan meditation that builds '
-          'awareness of physical sensations and releases tension.',
+      title: 'סריקת גוף',
+      description: 'מדיטציית סריקת גוף מודרכת שבונה '
+          'מודעות לתחושות גופניות ומשחררת מתח.',
       category: LifetreeCategory.meditation,
       unlockCondition: LifetreeUnlockCondition(minExercises: 5),
       position: Offset(0.3, 0.7),
@@ -154,9 +154,9 @@ abstract final class LifetreeEngine {
     // ── Soundscapes branch (bottom-right) ──
     LifetreeNode(
       id: 'soundscape_cosmic',
-      title: 'Cosmic Drift',
-      description: 'Deep space ambient soundscape for '
-          'meditation and relaxation.',
+      title: 'מסע קוסמי',
+      description: 'נוף קולי של חלל עמוק '
+          'למדיטציה והרפיה.',
       category: LifetreeCategory.soundscapes,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 21),
       position: Offset(0.7, 0.7),
@@ -164,9 +164,9 @@ abstract final class LifetreeEngine {
     ),
     LifetreeNode(
       id: 'soundscape_nebula',
-      title: 'Nebula Rain',
-      description: 'Ethereal rain filtered through a nebula. '
-          'Perfect for sleep and focus.',
+      title: 'גשם ערפילית',
+      description: 'גשם אתרי המסונן דרך ערפילית. '
+          'מושלם לשינה ולריכוז.',
       category: LifetreeCategory.soundscapes,
       unlockCondition: LifetreeUnlockCondition(minStreakDays: 30),
       position: Offset(0.8, 0.82),

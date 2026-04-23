@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/models/journal_entry.dart';
 import '../../../design_system/design_system.dart';
@@ -30,16 +31,11 @@ class JournalEntryCard extends StatelessWidget {
     4: AppColors.primary,
   };
 
-  static const _months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-  ];
-
   @override
   Widget build(BuildContext context) {
     final icon = _moodIcons[entry.mood] ?? Icons.sentiment_neutral;
     final color = _moodColors[entry.mood] ?? AppColors.darkTextSecondary;
-    final dateText = '${_months[entry.date.month - 1]} ${entry.date.day}, ${entry.date.year}';
+    final dateText = DateFormat('d בMMMM y', 'he_IL').format(entry.date);
 
     return GestureDetector(
       onTap: onTap,

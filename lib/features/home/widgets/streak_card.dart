@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../design_system/design_system.dart';
 import 'day_orbs_row.dart';
 import 'milestone_indicator.dart';
-import 'rank_badge.dart';
 
 /// Streak/progress hero card shown at the top of the Home screen.
 class StreakCard extends StatelessWidget {
@@ -24,8 +23,6 @@ class StreakCard extends StatelessWidget {
       children: [
         DayOrbsRow(days: days),
         const SizedBox(height: AppSpacing.md),
-        RankBadge(days: days),
-        const SizedBox(height: AppSpacing.md),
         _buildSubLabel(),
         const SizedBox(height: AppSpacing.sm),
         _buildDaysCounter(),
@@ -38,7 +35,7 @@ class StreakCard extends StatelessWidget {
 
   Widget _buildSubLabel() {
     return Text(
-      "You've been porn-free for:",
+      'אתה נקי מפורנו כבר:',
       style: AppTypography.bodyMedium.copyWith(
         color: AppColors.darkTextSecondary,
       ),
@@ -47,7 +44,7 @@ class StreakCard extends StatelessWidget {
 
   Widget _buildDaysCounter() {
     return Text(
-      '$days days',
+      '$days ימים',
       style: AppTypography.displayLarge.copyWith(
         color: Colors.white,
         fontSize: 44,
@@ -73,7 +70,7 @@ class StreakCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Brain Rewiring',
+              'חיווט המוח מחדש',
               style: AppTypography.caption.copyWith(
                 color: AppColors.darkTextSecondary,
               ),

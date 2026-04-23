@@ -29,6 +29,7 @@ import 'phases/phase_h_paywall/choose_plan_page.dart';
 import 'phases/phase_h_paywall/custom_plan_page.dart';
 import 'phases/phase_h_paywall/invest_in_yourself_page.dart';
 import 'phases/phase_h_paywall/recovery_plan_page.dart';
+import 'phases/phase_h_paywall/recovery_plan_provider.dart';
 import 'phases/phase_h_paywall/welcome_video_page.dart';
 
 /// Main orchestrator for the entire onboarding flow.
@@ -45,7 +46,6 @@ class _OnboardingFlowScreenState extends ConsumerState<OnboardingFlowScreen> {
   late PageController _pageController;
   // ignore: unused_field — stored for potential future use in OnboardingData.
   List<String> _selectedSymptoms = [];
-  List<String> _selectedGoals = [];
   bool _completing = false;
 
   @override
@@ -89,15 +89,16 @@ class _OnboardingFlowScreenState extends ConsumerState<OnboardingFlowScreen> {
     _completing = true;
 
     final quizState = ref.read(extendedQuizProvider);
+    final selectedGoals = ref.read(selectedGoalsProvider);
 
     // Create user profile.
     await ref.read(userProfileNotifierProvider.notifier).createProfile(
-          name: quizState.name.isNotEmpty ? quizState.name : 'Friend',
+          name: quizState.name.isNotEmpty ? quizState.name : 'חבר',
           quitDate: DateTime.now(),
           quizAnswers: quizState.answers,
           gender: quizState.gender,
           age: quizState.age,
-          selectedGoals: _selectedGoals,
+          selectedGoals: selectedGoals,
         );
 
     // Start streak from now.
@@ -130,7 +131,9 @@ class _OnboardingFlowScreenState extends ConsumerState<OnboardingFlowScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xFF0A0D2E),
-      body: PageView(
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
@@ -180,7 +183,8 @@ class _OnboardingFlowScreenState extends ConsumerState<OnboardingFlowScreen> {
           // Page 10: Goals selection
           GoalsSelectionPage(
             onComplete: _nextPage,
-            onGoalsChanged: (g) => _selectedGoals = g,
+            onGoalsChanged: (g) =>
+                ref.read(selectedGoalsProvider.notifier).state = g,
           ),
           // Page 11: Testimonials
           TestimonialsPage(onNext: _nextPage),
@@ -195,7 +199,7 @@ class _OnboardingFlowScreenState extends ConsumerState<OnboardingFlowScreen> {
           // Page 14: Invest in yourself
           InvestInYourselfPage(onNext: _nextPage, userName: userName),
           // Page 15: Custom plan
-          CustomPlanPage(onNext: _nextPage, userName: userName),
+          CustomPlanPage(onNext: _nextPage),
           // Page 16: Build relationships
           BuildRelationshipsPage(onNext: _nextPage),
           // Page 17: Recovery plan
@@ -203,6 +207,7 @@ class _OnboardingFlowScreenState extends ConsumerState<OnboardingFlowScreen> {
           // Page 18: Choose plan (final)
           ChoosePlanPage(onComplete: _completeOnboarding),
         ],
+      ),
       ),
     );
   }

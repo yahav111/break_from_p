@@ -63,20 +63,20 @@ class SettingsScreen extends ConsumerWidget {
 
                       // Profile section.
                       SettingsSection(
-                        title: 'Profile',
+                        title: 'פרופיל',
                         children: [
                           _buildTile(
                             icon: Icons.person_rounded,
-                            title: 'Name',
-                            value: profile?.name ?? 'Not set',
+                            title: 'שם',
+                            value: profile?.name ?? 'לא הוגדר',
                             onTap: () => ProfileEditSheet.show(context),
                           ),
                           _buildTile(
                             icon: Icons.calendar_today_rounded,
-                            title: 'Quit Date',
+                            title: 'תאריך התחלה',
                             value: profile != null
                                 ? '${profile.quitDate.day}/${profile.quitDate.month}/${profile.quitDate.year}'
-                                : 'Not set',
+                                : 'לא הוגדר',
                             onTap: () => ProfileEditSheet.show(context),
                           ),
                         ],
@@ -85,23 +85,23 @@ class SettingsScreen extends ConsumerWidget {
 
                       // Account & Cloud Backup section.
                       SettingsSection(
-                        title: 'Account',
+                        title: 'חשבון',
                         children: [
                           _buildTile(
                             icon: _syncIcon(syncStatus.state),
-                            title: 'Backup Status',
+                            title: 'סטטוס גיבוי',
                             value: _syncLabel(syncStatus.state),
                           ),
                           if (authState.status == AuthStatus.anonymous) ...[
                             _buildTile(
                               icon: Icons.g_mobiledata_rounded,
-                              title: 'Sign in with Google',
+                              title: 'התחבר עם Google',
                               showChevron: true,
                               onTap: () => _signInWithGoogle(context, ref),
                             ),
                             _buildTile(
                               icon: Icons.apple_rounded,
-                              title: 'Sign in with Apple',
+                              title: 'התחבר עם Apple',
                               showChevron: true,
                               onTap: () => _signInWithApple(context, ref),
                             ),
@@ -110,12 +110,12 @@ class SettingsScreen extends ConsumerWidget {
                               AuthStatus.authenticated) ...[
                             _buildTile(
                               icon: Icons.account_circle_rounded,
-                              title: 'Account',
+                              title: 'חשבון',
                               value: authState.email ?? authState.displayName,
                             ),
                             _buildTile(
                               icon: Icons.logout_rounded,
-                              title: 'Sign Out',
+                              title: 'התנתק',
                               onTap: () => _showSignOutDialog(context, ref),
                             ),
                           ],
@@ -125,11 +125,11 @@ class SettingsScreen extends ConsumerWidget {
 
                       // Notifications section.
                       SettingsSection(
-                        title: 'Notifications',
+                        title: 'התראות',
                         children: [
                           _buildToggleTile(
                             icon: Icons.wb_sunny_rounded,
-                            title: 'Morning Pledge',
+                            title: 'התחייבות בוקר',
                             subtitle: _formatTime(
                               notifPrefs.morningPledgeHour,
                               notifPrefs.morningPledgeMinute,
@@ -141,7 +141,7 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                           _buildToggleTile(
                             icon: Icons.emoji_events_rounded,
-                            title: 'Milestones',
+                            title: 'אבני דרך',
                             value: notifPrefs.milestoneEnabled,
                             onChanged: (v) => ref
                                 .read(notifPrefsNotifierProvider.notifier)
@@ -149,7 +149,7 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                           _buildToggleTile(
                             icon: Icons.format_quote_rounded,
-                            title: 'Daily Motivation',
+                            title: 'מוטיבציה יומית',
                             value: notifPrefs.dailyMotivationEnabled,
                             onChanged: (v) => ref
                                 .read(notifPrefsNotifierProvider.notifier)
@@ -157,7 +157,7 @@ class SettingsScreen extends ConsumerWidget {
                           ),
                           _buildToggleTile(
                             icon: Icons.nightlight_round,
-                            title: 'Evening Check-in',
+                            title: 'צ׳ק-אין ערב',
                             subtitle: _formatTime(
                               notifPrefs.eveningCheckInHour,
                               notifPrefs.eveningCheckInMinute,
@@ -173,11 +173,11 @@ class SettingsScreen extends ConsumerWidget {
 
                       // Recovery section.
                       SettingsSection(
-                        title: 'Recovery',
+                        title: 'החלמה',
                         children: [
                           _buildTile(
                             icon: Icons.refresh_rounded,
-                            title: 'Reset Streak',
+                            title: 'אפס רצף',
                             titleColor: AppColors.error,
                             onTap: () => _showResetDialog(context, ref),
                           ),
@@ -187,18 +187,18 @@ class SettingsScreen extends ConsumerWidget {
 
                       // Data section.
                       SettingsSection(
-                        title: 'Data',
+                        title: 'נתונים',
                         children: [
                           _buildTile(
                             icon: Icons.delete_forever_rounded,
-                            title: 'Delete All Data',
+                            title: 'מחק את כל הנתונים',
                             titleColor: AppColors.error,
                             onTap: () => _showDeleteDialog(context, ref),
                           ),
                           if (authState.isSignedIn)
                             _buildTile(
                               icon: Icons.person_remove_rounded,
-                              title: 'Delete Account',
+                              title: 'מחק חשבון',
                               titleColor: AppColors.error,
                               onTap: () =>
                                   _showDeleteAccountDialog(context, ref),
@@ -209,21 +209,21 @@ class SettingsScreen extends ConsumerWidget {
 
                       // About section.
                       SettingsSection(
-                        title: 'About',
+                        title: 'אודות',
                         children: [
                           _buildTile(
                             icon: Icons.info_outline_rounded,
-                            title: 'Version',
+                            title: 'גרסה',
                             value: '1.0.0',
                           ),
                           _buildTile(
                             icon: Icons.privacy_tip_outlined,
-                            title: 'Privacy Policy',
+                            title: 'מדיניות פרטיות',
                             showChevron: true,
                           ),
                           _buildTile(
                             icon: Icons.description_outlined,
-                            title: 'Terms of Service',
+                            title: 'תנאי שימוש',
                             showChevron: true,
                           ),
                         ],
@@ -269,7 +269,7 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(width: AppSpacing.lg),
           ],
           Text(
-            'Settings',
+            'הגדרות',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -278,7 +278,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   Widget _buildProfileHeader(dynamic profile, int days) {
-    final name = profile?.name ?? 'Friend';
+    final name = profile?.name ?? 'חבר';
     final initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
 
     return Center(
@@ -310,7 +310,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
-            'Day $days',
+            'יום $days',
             style: AppTypography.bodySmall.copyWith(
               color: AppColors.darkTextSecondary,
             ),
@@ -430,15 +430,15 @@ class SettingsScreen extends ConsumerWidget {
   String _syncLabel(SyncState state) {
     switch (state) {
       case SyncState.synced:
-        return 'Synced';
+        return 'מסונכרן';
       case SyncState.syncing:
-        return 'Syncing...';
+        return 'מסנכרן...';
       case SyncState.error:
-        return 'Sync error';
+        return 'שגיאת סנכרון';
       case SyncState.offline:
-        return 'Offline';
+        return 'לא מקוון';
       case SyncState.idle:
-        return 'Not synced';
+        return 'לא מסונכרן';
     }
   }
 
@@ -459,13 +459,17 @@ class SettingsScreen extends ConsumerWidget {
   void _showSignOutDialog(BuildContext context, WidgetRef ref) {
     AppBottomDialog.show(
       context: context,
-      title: 'Sign Out?',
+      title: 'להתנתק?',
       message:
-          'Your data will remain on this device but will no longer sync to the cloud.',
-      primaryButtonLabel: 'Sign Out',
-      secondaryButtonLabel: 'Cancel',
-      onPrimaryPressed: () {
-        ref.read(authNotifierProvider.notifier).signOut();
+          'הנתונים שלך יישארו במכשיר הזה אך לא יסתנכרנו יותר לענן.',
+      primaryButtonLabel: 'התנתק',
+      secondaryButtonLabel: 'ביטול',
+      onPrimaryPressed: () async {
+        await ref.read(authNotifierProvider.notifier).signOut();
+        await ref.read(appStateNotifierProvider.notifier).resetAllState();
+        if (context.mounted) {
+          context.go(Routes.welcome);
+        }
       },
     );
   }
@@ -473,11 +477,11 @@ class SettingsScreen extends ConsumerWidget {
   void _showResetDialog(BuildContext context, WidgetRef ref) {
     AppBottomDialog.show(
       context: context,
-      title: 'Reset Streak?',
+      title: 'לאפס את הרצף?',
       message:
-          'This will reset your current streak to Day 0. Your longest streak will be saved.',
-      primaryButtonLabel: 'Reset Streak',
-      secondaryButtonLabel: 'Cancel',
+          'פעולה זו תאפס את הרצף הנוכחי ליום 0. הרצף הארוך ביותר שלך יישמר.',
+      primaryButtonLabel: 'אפס רצף',
+      secondaryButtonLabel: 'ביטול',
       isPrimaryDestructive: true,
       onPrimaryPressed: () {
         ref.read(streakNotifierProvider.notifier).resetStreak();
@@ -488,11 +492,11 @@ class SettingsScreen extends ConsumerWidget {
   void _showDeleteDialog(BuildContext context, WidgetRef ref) {
     AppBottomDialog.show(
       context: context,
-      title: 'Delete All Data?',
+      title: 'למחוק את כל הנתונים?',
       message:
-          'This will permanently erase all your data including streaks, pledges, relapses, and reasons. You will be returned to the welcome screen.',
-      primaryButtonLabel: 'Delete Everything',
-      secondaryButtonLabel: 'Cancel',
+          'פעולה זו תמחק לצמיתות את כל הנתונים שלך כולל רצפים, התחייבויות, החלקות וסיבות. תוחזר למסך הפתיחה.',
+      primaryButtonLabel: 'מחק הכל',
+      secondaryButtonLabel: 'ביטול',
       isPrimaryDestructive: true,
       onPrimaryPressed: () async {
         // Clear all provider data (deletes from both Hive and Firestore
@@ -526,11 +530,11 @@ class SettingsScreen extends ConsumerWidget {
   void _showDeleteAccountDialog(BuildContext context, WidgetRef ref) {
     AppBottomDialog.show(
       context: context,
-      title: 'Delete Account?',
+      title: 'למחוק חשבון?',
       message:
-          'This will permanently delete your account and all cloud data. This action cannot be undone.',
-      primaryButtonLabel: 'Delete Account',
-      secondaryButtonLabel: 'Cancel',
+          'פעולה זו תמחק לצמיתות את החשבון שלך ואת כל נתוני הענן. לא ניתן לבטל פעולה זו.',
+      primaryButtonLabel: 'מחק חשבון',
+      secondaryButtonLabel: 'ביטול',
       isPrimaryDestructive: true,
       onPrimaryPressed: () async {
         // Delete all local data first.

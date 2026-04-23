@@ -2,39 +2,39 @@
 abstract final class JournalPromptsEngine {
   /// Default prompts (always available).
   static const defaultPrompts = [
-    'What am I grateful for today?',
-    'What triggered me today?',
-    'How did I cope with urges?',
-    'What progress have I noticed?',
-    'What would I tell a friend in my situation?',
-    'What are my goals for tomorrow?',
+    'על מה אני אסיר תודה היום?',
+    'מה היה הטריגר שלי היום?',
+    'איך התמודדתי עם דחפים?',
+    'איזו התקדמות הבחנתי בה?',
+    'מה הייתי אומר לחבר במצב שלי?',
+    'מהן המטרות שלי למחר?',
   ];
 
   /// Deep Reflection prompts (unlocked via Lifetree node 'journal_deep').
   static const deepReflectionPrompts = [
-    'What patterns do I notice in my behavior?',
-    'What emotion am I avoiding right now?',
-    'When I imagine my best self, what does that person look like?',
-    'What would I lose if I gave in today?',
-    'What have I learned about myself this week?',
+    'אילו דפוסים אני מבחין בהתנהגות שלי?',
+    'מאיזה רגש אני נמנע כרגע?',
+    'כשאני מדמיין את עצמי הטוב ביותר, איך הוא נראה?',
+    'מה הייתי מאבד אם הייתי נכנע היום?',
+    'מה למדתי על עצמי השבוע?',
   ];
 
   /// Gratitude prompts (unlocked via Lifetree node 'journal_gratitude').
   static const gratitudePrompts = [
-    'What are three things I am grateful for today?',
-    'Who has supported me on this journey?',
-    'What small victory can I celebrate today?',
-    'What part of my recovery am I most proud of?',
-    'What good thing happened that I did not expect?',
+    'מהם שלושה דברים שאני אסיר תודה עליהם היום?',
+    'מי תמך בי במסע הזה?',
+    'איזה ניצחון קטן אני יכול לחגוג היום?',
+    'באיזה חלק מההחלמה שלי אני הכי גאה?',
+    'איזה דבר טוב קרה שלא ציפיתי לו?',
   ];
 
   /// Future Self prompts (unlocked via Lifetree node 'journal_future').
   static const futureSelfPrompts = [
-    'Dear future me, I want you to know...',
-    'In one year, I hope my life looks like...',
-    'The person I am becoming would tell me...',
-    'What advice would my 90-day self give me today?',
-    'What habits am I building now that my future self will thank me for?',
+    'עצמי היקר לעתיד, אני רוצה שתדע...',
+    'בעוד שנה, אני מקווה שהחיים שלי ייראו כך...',
+    'האדם שאני הופך להיות היה אומר לי...',
+    'איזו עצה עצמי בן 90 הימים היה נותן לי היום?',
+    'אילו הרגלים אני בונה עכשיו שעצמי העתידי יודה לי עליהם?',
   ];
 
   /// Node ID → prompt set mapping.

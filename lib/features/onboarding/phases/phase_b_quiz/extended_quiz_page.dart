@@ -134,10 +134,10 @@ class _ExtendedQuizPageState extends ConsumerState<ExtendedQuizPage> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('\u{1F1FA}\u{1F1F8}', style: TextStyle(fontSize: 14)),
+          const Text('\u{1F1EE}\u{1F1F1}', style: TextStyle(fontSize: 14)),
           const SizedBox(width: AppSpacing.xs),
           Text(
-            'EN',
+            'עב',
             style: AppTypography.labelLarge.copyWith(
               color: Colors.white,
               fontWeight: AppTypography.bold,
@@ -173,7 +173,7 @@ class _ExtendedQuizPageState extends ConsumerState<ExtendedQuizPage> {
               clipBehavior: Clip.none,
               children: [
                 Text(
-                  'Question #${quizState.currentIndex + 1}',
+                  'שאלה #${quizState.currentIndex + 1}',
                   style: AppTypography.displayMedium.copyWith(
                     color: Colors.white,
                     fontWeight: AppTypography.bold,
@@ -206,7 +206,7 @@ class _ExtendedQuizPageState extends ConsumerState<ExtendedQuizPage> {
         height: 1.5,
         fontSize: 18,
       ),
-      textAlign: TextAlign.left,
+      textAlign: TextAlign.right,
     );
   }
 
@@ -308,7 +308,7 @@ class _ExtendedQuizPageState extends ConsumerState<ExtendedQuizPage> {
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
       child: Center(
         child: AppButton(
-          label: 'Skip',
+          label: 'דלג',
           isFullWidth: false,
           variant: AppButtonVariant.ghost,
           size: AppButtonSize.small,

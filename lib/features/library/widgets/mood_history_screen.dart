@@ -31,7 +31,7 @@ class MoodHistoryScreen extends ConsumerWidget {
     AppColors.primary, // 4
   ];
 
-  static const _moodLabels = ['Bad', 'Hard', 'Okay', 'Good', 'Great'];
+  static const _moodLabels = ['רע', 'קשה', 'בסדר', 'טוב', 'מעולה'];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -143,7 +143,7 @@ class MoodHistoryScreen extends ConsumerWidget {
           ),
           const SizedBox(width: AppSpacing.md),
           Text(
-            'Mood & Urges',
+            'מצב רוח ודחפים',
             style: AppTypography.titleMedium.copyWith(color: Colors.white),
           ),
         ],
@@ -154,13 +154,13 @@ class MoodHistoryScreen extends ConsumerWidget {
   // ── Mood summary ─────────────────────────────────────────────
 
   Widget _buildMoodSection(Map<DateTime, int?> dayMoods, double? avgMood) {
-    final dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    final dayNames = ['ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳', 'א׳'];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Last 7 Days',
+          '7 הימים האחרונים',
           style: AppTypography.titleSmall.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.lg),
@@ -205,7 +205,7 @@ class MoodHistoryScreen extends ConsumerWidget {
               borderRadius: AppRadius.borderMedium,
             ),
             child: Text(
-              'Average mood: ${_moodLabels[avgMood.round().clamp(0, 4)]}',
+              'מצב רוח ממוצע: ${_moodLabels[avgMood.round().clamp(0, 4)]}',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
@@ -223,21 +223,21 @@ class MoodHistoryScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Quick Actions',
+          'פעולות מהירות',
           style: AppTypography.titleSmall.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.lg),
         _buildActionCard(
           icon: Icons.flash_on_rounded,
           iconColor: AppColors.tertiary,
-          label: 'Log an Urge',
+          label: 'תעד דחף',
           onTap: () => context.push(Routes.urgeTracker),
         ),
         const SizedBox(height: AppSpacing.md),
         _buildActionCard(
           icon: Icons.edit_note_rounded,
           iconColor: AppColors.secondary,
-          label: 'Write in Journal',
+          label: 'כתוב ביומן',
           onTap: () => context.push(Routes.journalEntry),
         ),
       ],
@@ -295,7 +295,7 @@ class MoodHistoryScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Urge Summary',
+          'סיכום דחפים',
           style: AppTypography.titleSmall.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.lg),
@@ -319,8 +319,8 @@ class MoodHistoryScreen extends ConsumerWidget {
                     const SizedBox(height: AppSpacing.xs),
                     Text(
                       urgeCount == 1
-                          ? 'urge logged this week'
-                          : 'urges logged this week',
+                          ? 'דחף שתועד השבוע'
+                          : 'דחפים שתועדו השבוע',
                       style: AppTypography.bodyMedium.copyWith(
                         color: AppColors.darkTextSecondary,
                       ),
@@ -336,7 +336,7 @@ class MoodHistoryScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     Text(
-                      'No urges logged this week. Great job!',
+                      'לא תועדו דחפים השבוע. עבודה מצוינת!',
                       style: AppTypography.bodyMedium.copyWith(
                         color: AppColors.darkTextSecondary,
                       ),
@@ -365,7 +365,7 @@ class MoodHistoryScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'Start tracking to see insights here',
+              'התחל לעקוב כדי לראות תובנות כאן',
               style: AppTypography.bodyLarge.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
@@ -384,7 +384,7 @@ class MoodHistoryScreen extends ConsumerWidget {
                   borderRadius: AppRadius.borderPill,
                 ),
                 child: Text(
-                  'Write First Entry',
+                  'כתוב רשומה ראשונה',
                   style: AppTypography.button.copyWith(color: Colors.white),
                 ),
               ),

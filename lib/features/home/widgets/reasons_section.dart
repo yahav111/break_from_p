@@ -18,8 +18,8 @@ class ReasonsSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppSectionTitle(
-          title: 'My Reasons',
-          actionLabel: reasons.isEmpty ? 'Add' : 'Edit',
+          title: 'הסיבות שלי',
+          actionLabel: reasons.isEmpty ? 'הוסף' : 'ערוך',
           onActionTap: () => ReasonsSetupSheet.show(context),
         ),
         if (reasons.isEmpty)
@@ -54,7 +54,7 @@ class ReasonsSection extends ConsumerWidget {
             const SizedBox(width: AppSpacing.md),
             Expanded(
               child: Text(
-                'Add your personal reasons for quitting',
+                'הוסף את הסיבות האישיות שלך להפסיק',
                 style: AppTypography.bodyMedium.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),

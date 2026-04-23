@@ -23,7 +23,7 @@ class ProfileScreen extends ConsumerWidget {
     final pledgeData = ref.watch(pledgeNotifierProvider);
     final relapseData = ref.watch(relapseNotifierProvider);
 
-    final name = profile?.name ?? 'Friend';
+    final name = profile?.name ?? 'חבר';
     final initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
     final days = streakData != null
         ? StreakEngine.daysSince(streakData.quitDate)
@@ -82,7 +82,7 @@ class ProfileScreen extends ConsumerWidget {
               if (profile != null) ...[
                 const SizedBox(height: AppSpacing.xs),
                 Text(
-                  'Started ${profile.quitDate.day}/${profile.quitDate.month}/${profile.quitDate.year}',
+                  'התחיל ${profile.quitDate.day}/${profile.quitDate.month}/${profile.quitDate.year}',
                   style: AppTypography.bodySmall.copyWith(
                     color: AppColors.darkTextSecondary,
                   ),
@@ -93,11 +93,11 @@ class ProfileScreen extends ConsumerWidget {
               // Quick stats.
               Row(
                 children: [
-                  _buildStat('Streak', '$days days', AppColors.tertiary),
+                  _buildStat('רצף', '$days ימים', AppColors.tertiary),
                   const SizedBox(width: AppSpacing.md),
-                  _buildStat('Pledges', '$totalPledges', AppColors.secondary),
+                  _buildStat('התחייבויות', '$totalPledges', AppColors.secondary),
                   const SizedBox(width: AppSpacing.md),
-                  _buildStat('Relapses', '$totalRelapses', AppColors.primary),
+                  _buildStat('החלקות', '$totalRelapses', AppColors.primary),
                 ],
               ),
               const SizedBox(height: AppSpacing.xxxl),
@@ -105,14 +105,14 @@ class ProfileScreen extends ConsumerWidget {
               // Phase 4: Gamification tiles.
               _buildNavTile(
                 icon: Icons.military_tech_rounded,
-                title: 'Achievements',
+                title: 'הישגים',
                 trailing: '$unlockedCount/${AchievementEngine.definitions.length}',
                 onTap: () => context.push(Routes.badges),
               ),
               const SizedBox(height: AppSpacing.md),
               _buildNavTile(
                 icon: Icons.bar_chart_rounded,
-                title: 'Statistics',
+                title: 'סטטיסטיקה',
                 onTap: () => context.push(Routes.statistics),
               ),
               const SizedBox(height: AppSpacing.md),
@@ -120,7 +120,7 @@ class ProfileScreen extends ConsumerWidget {
               // Settings tile.
               _buildNavTile(
                 icon: Icons.settings_rounded,
-                title: 'Settings',
+                title: 'הגדרות',
                 onTap: () => context.push(Routes.settings),
               ),
               const SizedBox(height: AppSpacing.xxxxl),

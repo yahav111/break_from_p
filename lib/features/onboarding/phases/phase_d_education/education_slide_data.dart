@@ -20,37 +20,37 @@ class EducationSlideData {
 
 const educationSlides = <EducationSlideData>[
   EducationSlideData(
-    title: 'Porn is a drug',
+    title: 'פורנו הוא סם',
     body:
-        'Using porn releases a chemical in the brain called **dopamine**. This chemical makes you **feel good** — it\'s why you feel pleasure when you watch porn.',
+        'צפייה בפורנו משחררת במוח חומר בשם **דופמין**. חומר זה גורם לך **להרגיש טוב** — לכן אתה חש הנאה כשאתה צופה.',
     icon: Icons.psychology_rounded,
     iconColor: Color(0xFFFF8A80),
   ),
   EducationSlideData(
-    title: 'Porn destroys relationships',
+    title: 'פורנו הורס מערכות יחסים',
     body:
-        'Porn **reduces** your hunger for a **real relationship** and replaces it with the hunger for more porn.',
+        'פורנו **מפחית** את הרצון שלך ל**מערכת יחסים אמיתית** ומחליף אותו בצמא לעוד פורנו.',
     icon: Icons.heart_broken_rounded,
     iconColor: Color(0xFFFF8A80),
   ),
   EducationSlideData(
-    title: 'Porn shatters sex drive',
+    title: 'פורנו מרסק את החשק המיני',
     body:
-        'More than **50%** of porn addicts have reported a **loss of interest** in real sex, and an overall **decrease** in their sex drive.',
+        'יותר מ-**50%** ממכורי הפורנו דיווחו על **אובדן עניין** במין אמיתי וירידה כללית בחשק המיני.',
     icon: Icons.block_rounded,
     iconColor: Color(0xFFFF8A80),
   ),
   EducationSlideData(
-    title: 'Feeling unhappy?',
+    title: 'מרגיש לא מרוצה?',
     body:
-        'An **elevated dopamine level** means you need more dopamine to feel good. This is why so many heavy porn users report feeling **depressed**, **unmotivated**, and **anti-social**.',
+        '**רמת דופמין גבוהה** אומרת שאתה זקוק ליותר דופמין כדי להרגיש טוב. לכן משתמשים כבדים רבים מרגישים **דיכאון**, **חוסר מוטיבציה** ו**בידוד חברתי**.',
     icon: Icons.sentiment_dissatisfied_rounded,
     iconColor: Color(0xFF90CAF9),
   ),
   EducationSlideData(
-    title: 'Path to Recovery',
+    title: 'הדרך להחלמה',
     body:
-        'Recovery is possible. By **abstaining from porn**, your brain can **reset its dopamine sensitivity**, leading to healthier relationships and **improved well-being**.',
+        'החלמה אפשרית. באמצעות **התנזרות מפורנו**, המוח שלך יכול **לאפס את רגישות הדופמין** ולהוביל למערכות יחסים בריאות יותר ולתחושת **רווחה משופרת**.',
     icon: Icons.eco_rounded,
     iconColor: Color(0xFF81C784),
     background: OnboardingBackgroundVariant.blue,

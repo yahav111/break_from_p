@@ -25,17 +25,17 @@ class BuildRelationshipsPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.xxxl),
             Text(
-              'Build real relationships',
+              'בנה מערכות יחסים אמיתיות',
               style: AppTypography.headlineLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
               ),
             ),
             const SizedBox(height: AppSpacing.xxl),
-            _buildBenefit('\u{1F49A}', 'Enhance your emotional intelligence'),
-            _buildBenefit('\u{1F49C}', 'Be more trustworthy and dependable'),
-            _buildBenefit('\u{2764}', 'Experience real intimacy and connection'),
-            _buildBenefit('\u{1F49B}', 'Become the person they deserve'),
+            _buildBenefit('\u{1F49A}', 'שפר את האינטליגנציה הרגשית שלך'),
+            _buildBenefit('\u{1F49C}', 'היה אמין ויציב יותר'),
+            _buildBenefit('\u{2764}', 'חווה אינטימיות וקשר אמיתיים'),
+            _buildBenefit('\u{1F49B}', 'היה האדם שהם ראויים לו'),
             const SizedBox(height: AppSpacing.xxl),
             // Stars
             Row(
@@ -49,7 +49,7 @@ class BuildRelationshipsPage extends StatelessWidget {
             const SizedBox(height: AppSpacing.lg),
             // Quote
             Text(
-              '\'Porn was hindering my ability to love, and I see now there was a distance in my relationship. I\'m so glad I turned things around when I did.\'',
+              '"הפורנו פגע ביכולת שלי לאהוב, ואני רואה היום שהיה מרחק במערכת היחסים שלי. אני כל כך שמח ששיניתי את זה בזמן."',
               textAlign: TextAlign.center,
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
@@ -59,7 +59,7 @@ class BuildRelationshipsPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.xxxl),
             AppButton(
-              label: 'Become a QUITTR',
+              label: 'הפוך ל-QUITTR',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,
@@ -67,7 +67,7 @@ class BuildRelationshipsPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'Purchase appears Discretely\nCancel Anytime \u{2705} Finally Quit Porn \u{1F337}',
+              'הרכישה מופיעה בדיסקרטיות\nניתן לבטל בכל עת \u{2705} סוף סוף להיגמל מפורנו \u{1F337}',
               textAlign: TextAlign.center,
               style: AppTypography.caption.copyWith(
                 color: AppColors.darkTextTertiary,

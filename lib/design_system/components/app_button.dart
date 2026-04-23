@@ -482,8 +482,8 @@ class _GradientButtonState extends State<GradientButton> {
       gradient: isDisabled
           ? null
           : LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+              begin: AlignmentDirectional.centerStart,
+              end: AlignmentDirectional.centerEnd,
               colors: colors,
             ),
       color: isDisabled ? AppColors.darkElevated : null,

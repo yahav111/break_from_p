@@ -34,14 +34,14 @@ class LibraryScreen extends ConsumerWidget {
               children: [
                 const SizedBox(height: AppSpacing.xl),
                 Text(
-                  'Library',
+                  'ספרייה',
                   style: AppTypography.headlineLarge.copyWith(
                     color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  'Your recovery toolkit',
+                  'ארגז הכלים להחלמה',
                   style: AppTypography.bodyMedium.copyWith(
                     color: AppColors.darkTextSecondary,
                   ),
@@ -57,29 +57,29 @@ class LibraryScreen extends ConsumerWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     LibraryCategoryCard(
-                      title: 'Mood',
-                      subtitle: 'Track & reflect',
+                      title: 'מצב רוח',
+                      subtitle: 'עקוב ושקף',
                       imagePath: 'assets/images/mood.jpeg',
                       color: AppColors.tertiary,
                       onTap: () => context.push(Routes.moodHistory),
                     ),
                     LibraryCategoryCard(
-                      title: 'Meditate',
-                      subtitle: 'Exercises & breathing',
+                      title: 'מדיטציה',
+                      subtitle: 'תרגילים ונשימה',
                       imagePath: 'assets/images/meditate.jpeg',
                       color: AppColors.secondary,
                       onTap: () => context.push(Routes.meditate),
                     ),
                     LibraryCategoryCard(
-                      title: 'Lifetree',
-                      subtitle: 'Unlock bonus content',
+                      title: 'עץ החיים',
+                      subtitle: 'פתח תוכן בונוס',
                       imagePath: 'assets/images/lifetree.jpeg',
                       color: AppColors.primary,
                       onTap: () => context.push(Routes.lifetree),
                     ),
                     LibraryCategoryCard(
-                      title: 'Soundscapes',
-                      subtitle: 'Ambient sounds',
+                      title: 'נופים קוליים',
+                      subtitle: 'צלילי רקע',
                       imagePath: 'assets/images/soundscapes.jpeg',
                       color: AppColors.info,
                       onTap: () => context.push(Routes.soundscapes),

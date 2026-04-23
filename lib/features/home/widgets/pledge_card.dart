@@ -75,7 +75,7 @@ class _PledgeCardState extends ConsumerState<PledgeCard>
           ),
           const SizedBox(height: AppSpacing.md),
           Text(
-            'I pledge to stay clean today',
+            'אני מתחייב להישאר נקי היום',
             style: AppTypography.titleSmall.copyWith(color: Colors.white),
             textAlign: TextAlign.center,
           ),
@@ -83,7 +83,7 @@ class _PledgeCardState extends ConsumerState<PledgeCard>
           SizedBox(
             width: double.infinity,
             child: AppButton(
-              label: 'Make Pledge',
+              label: 'התחייב',
               variant: AppButtonVariant.primary,
               onPressed: _makePledge,
             ),
@@ -125,7 +125,7 @@ class _PledgeCardState extends ConsumerState<PledgeCard>
             ),
           const SizedBox(width: AppSpacing.md),
           Text(
-            'You pledged today',
+            'התחייבת היום',
             style: AppTypography.titleSmall.copyWith(
               color: AppColors.secondary,
             ),

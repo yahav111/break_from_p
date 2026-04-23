@@ -42,7 +42,7 @@ class StreakHistoryChart extends StatelessWidget {
                 tooltipRoundedRadius: AppRadius.small,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
-                    '${streakLengths[group.x.toInt()]}d',
+                    '${streakLengths[group.x.toInt()]} ימים',
                     AppTypography.caption.copyWith(color: Colors.white),
                   );
                 },
@@ -63,9 +63,9 @@ class StreakHistoryChart extends StatelessWidget {
                     if (idx < 0 || idx >= streakLengths.length) {
                       return const SizedBox.shrink();
                     }
-                    // Show label for last bar as "Now", others as index+1.
+                    // Show label for last bar as "עכשיו", others as index+1.
                     final label = idx == streakLengths.length - 1
-                        ? 'Now'
+                        ? 'עכשיו'
                         : '#${idx + 1}';
                     return Padding(
                       padding: const EdgeInsets.only(top: AppSpacing.xs),
@@ -144,7 +144,7 @@ class StreakHistoryChart extends StatelessWidget {
         height: 200,
         child: Center(
           child: Text(
-            'No streaks yet',
+            'אין רצפים עדיין',
             style: AppTypography.bodySmall
                 .copyWith(color: AppColors.darkTextTertiary),
           ),

@@ -10,28 +10,28 @@ class CourseScreen extends ConsumerWidget {
 
   static const _lessons = [
     _Lesson(
-      title: 'Understanding Addiction',
-      subtitle: 'How porn rewires your brain',
+      title: 'להבין את ההתמכרות',
+      subtitle: 'איך פורנו מעצב מחדש את המוח',
       videoAsset: 'assets/videos/vid1.mp4',
-      durationLabel: 'Lesson 1',
+      durationLabel: 'שיעור 1',
     ),
     _Lesson(
-      title: 'The Dopamine Trap',
-      subtitle: 'Breaking the cycle of instant gratification',
+      title: 'מלכודת הדופמין',
+      subtitle: 'שבירת מעגל הסיפוק המיידי',
       videoAsset: 'assets/videos/vid2.mp4',
-      durationLabel: 'Lesson 2',
+      durationLabel: 'שיעור 2',
     ),
     _Lesson(
-      title: 'Building New Habits',
-      subtitle: 'Replacing old patterns with healthy routines',
+      title: 'בניית הרגלים חדשים',
+      subtitle: 'החלפת דפוסים ישנים בשגרות בריאות',
       videoAsset: 'assets/videos/vid3.mp4',
-      durationLabel: 'Lesson 3',
+      durationLabel: 'שיעור 3',
     ),
     _Lesson(
-      title: 'Long-Term Recovery',
-      subtitle: 'Staying committed to your journey',
+      title: 'החלמה ארוכת טווח',
+      subtitle: 'להישאר מחויבים למסע שלך',
       videoAsset: 'assets/videos/vid4.mp4',
-      durationLabel: 'Lesson 4',
+      durationLabel: 'שיעור 4',
     ),
   ];
 
@@ -62,14 +62,14 @@ class CourseScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Content',
+                        'תוכן',
                         style: AppTypography.headlineLarge.copyWith(
                           color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: AppSpacing.xs),
                       Text(
-                        'Your recovery mini-course',
+                        'קורס המיני שלך להחלמה',
                         style: AppTypography.bodyMedium.copyWith(
                           color: AppColors.darkTextSecondary,
                         ),

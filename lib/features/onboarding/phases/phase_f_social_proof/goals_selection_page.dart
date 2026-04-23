@@ -12,19 +12,19 @@ class _GoalItem {
 }
 
 const _goals = <_GoalItem>[
-  _GoalItem('energy', 'More energy and motivation', Icons.bolt_rounded,
+  _GoalItem('energy', 'יותר אנרגיה ומוטיבציה', Icons.bolt_rounded,
       Color(0xFFFFA726)),
-  _GoalItem('thoughts', 'Pure and healthy thoughts',
+  _GoalItem('thoughts', 'מחשבות טהורות ובריאות',
       Icons.self_improvement_rounded, Color(0xFF66BB6A)),
-  _GoalItem('relationships', 'Stronger relationships',
+  _GoalItem('relationships', 'מערכות יחסים חזקות יותר',
       Icons.favorite_rounded, Color(0xFFEF5350)),
-  _GoalItem('confidence', 'Improved self-confidence',
+  _GoalItem('confidence', 'ביטחון עצמי משופר',
       Icons.emoji_events_rounded, Color(0xFF42A5F5)),
-  _GoalItem('control', 'Improved self-control', Icons.fitness_center_rounded,
+  _GoalItem('control', 'שליטה עצמית משופרת', Icons.fitness_center_rounded,
       Color(0xFF78909C)),
-  _GoalItem('mood', 'Improved mood and happiness',
+  _GoalItem('mood', 'מצב רוח ואושר משופרים',
       Icons.sentiment_very_satisfied_rounded, Color(0xFFFFEE58)),
-  _GoalItem('focus', 'Improved focus and clarity',
+  _GoalItem('focus', 'ריכוז ובהירות משופרים',
       Icons.visibility_rounded, Color(0xFFAB47BC)),
 ];
 
@@ -72,7 +72,7 @@ class _GoalsSelectionPageState extends State<GoalsSelectionPage> {
                 ),
                 const SizedBox(width: AppSpacing.lg),
                 Text(
-                  'Choose Your Goals',
+                  'בחר את המטרות שלך',
                   style: AppTypography.headlineMedium.copyWith(
                     color: Colors.white,
                     fontWeight: AppTypography.bold,
@@ -85,7 +85,7 @@ class _GoalsSelectionPageState extends State<GoalsSelectionPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
             child: Text(
-              'Select the goals you wish to track during your reboot.',
+              'בחר את המטרות שתרצה לעקוב אחריהן במהלך ההתאפסות.',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
@@ -105,7 +105,7 @@ class _GoalsSelectionPageState extends State<GoalsSelectionPage> {
           Padding(
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: AppButton(
-              label: 'Track these goals',
+              label: 'עקוב אחר המטרות האלו',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,

@@ -60,7 +60,7 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
 
                       // Mood selector section.
                       Text(
-                        'How are you feeling?',
+                        'איך אתה מרגיש?',
                         style: AppTypography.titleSmall.copyWith(
                           color: Colors.white,
                         ),
@@ -76,7 +76,7 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
 
                       // Prompt chips section.
                       Text(
-                        'Need a prompt?',
+                        'צריך פרומפט?',
                         style: AppTypography.titleSmall.copyWith(
                           color: Colors.white,
                         ),
@@ -89,7 +89,7 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
 
                       // Content text field.
                       Text(
-                        'Your thoughts',
+                        'המחשבות שלך',
                         style: AppTypography.titleSmall.copyWith(
                           color: Colors.white,
                         ),
@@ -135,14 +135,14 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
           const SizedBox(width: AppSpacing.lg),
           Expanded(
             child: Text(
-              'New Entry',
+              'רשומה חדשה',
               style: AppTypography.headlineSmall.copyWith(
                 color: Colors.white,
               ),
             ),
           ),
           AppButton(
-            label: 'Save',
+            label: 'שמור',
             variant: AppButtonVariant.primary,
             size: AppButtonSize.small,
             isLoading: _isSaving,
@@ -161,7 +161,7 @@ class _JournalEntryScreenState extends ConsumerState<JournalEntryScreen> {
       minLines: 8,
       style: AppTypography.bodyMedium.copyWith(color: Colors.white),
       decoration: InputDecoration(
-        hintText: 'Write your thoughts...',
+        hintText: 'כתוב את המחשבות שלך...',
         hintStyle: AppTypography.bodyMedium.copyWith(
           color: AppColors.darkTextTertiary,
         ),

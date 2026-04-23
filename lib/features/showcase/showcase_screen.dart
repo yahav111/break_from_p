@@ -28,7 +28,7 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
     const QuizScreen(),
   ];
 
-  static const _labels = ['Welcome', 'Onboarding', 'Home', 'Paywall', 'Quiz'];
+  static const _labels = ['ברוך הבא', 'הצטרפות', 'בית', 'מנוי', 'שאלון'];
 
   @override
   void dispose() {

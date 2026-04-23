@@ -24,16 +24,16 @@ class _BodyScanScreenState extends ConsumerState<BodyScanScreen>
   int _currentStep = 0;
 
   static const _steps = <_BodyScanStep>[
-    _BodyScanStep('Close your eyes and take three deep breaths', 15),
-    _BodyScanStep('Focus on the top of your head. Notice any tension.', 20),
-    _BodyScanStep('Move your attention to your face and jaw. Relax.', 20),
-    _BodyScanStep('Feel your neck and shoulders. Let them soften.', 20),
-    _BodyScanStep('Scan down through your arms to your fingertips.', 20),
-    _BodyScanStep('Notice your chest rising and falling.', 20),
-    _BodyScanStep('Feel your stomach and lower back.', 20),
-    _BodyScanStep('Move through your hips, legs, down to your feet.', 20),
-    _BodyScanStep('Now feel your whole body at once. Breathe.', 25),
-    _BodyScanStep('Gently open your eyes when ready.', 10),
+    _BodyScanStep('עצום עיניים וקח שלוש נשימות עמוקות', 15),
+    _BodyScanStep('התמקד בראש שלך. שים לב למתח.', 20),
+    _BodyScanStep('העבר את תשומת הלב לפנים ולסת. הרפה.', 20),
+    _BodyScanStep('הרגש את הצוואר והכתפיים. תן להם להתרכך.', 20),
+    _BodyScanStep('סרוק מטה דרך הזרועות עד קצות האצבעות.', 20),
+    _BodyScanStep('שים לב לחזה שלך עולה ויורד.', 20),
+    _BodyScanStep('הרגש את הבטן והגב התחתון.', 20),
+    _BodyScanStep('עבור דרך הירכיים, הרגליים, עד כפות הרגליים.', 20),
+    _BodyScanStep('עכשיו הרגש את כל הגוף בבת אחת. נשום.', 25),
+    _BodyScanStep('פקח בעדינות את העיניים כשאתה מוכן.', 10),
   ];
 
   /// Total duration in seconds across all steps.
@@ -161,7 +161,7 @@ class _BodyScanScreenState extends ConsumerState<BodyScanScreen>
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Body Scan',
+            'סריקת גוף',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -176,12 +176,12 @@ class _BodyScanScreenState extends ConsumerState<BodyScanScreen>
         _buildBodyIcon(0.0),
         const SizedBox(height: AppSpacing.xxxl),
         Text(
-          'Body Scan Meditation',
+          'מדיטציית סריקת גוף',
           style: AppTypography.headlineMedium.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          '10 steps \u00b7 ~3 minutes',
+          '10 שלבים \u00b7 כ-3 דקות',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -190,8 +190,8 @@ class _BodyScanScreenState extends ConsumerState<BodyScanScreen>
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxxl),
           child: Text(
-            'A guided scan through your body to build awareness '
-            'of physical sensations and release tension.',
+            'סריקה מודרכת דרך הגוף לבניית מודעות '
+            'לתחושות גופניות ולשחרור מתח.',
             textAlign: TextAlign.center,
             style: AppTypography.bodySmall.copyWith(
               color: AppColors.darkTextTertiary,
@@ -202,7 +202,7 @@ class _BodyScanScreenState extends ConsumerState<BodyScanScreen>
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxxl),
           child: GradientButton(
-            label: 'Begin',
+            label: 'התחל',
             onPressed: _start,
           ),
         ),
@@ -239,7 +239,7 @@ class _BodyScanScreenState extends ConsumerState<BodyScanScreen>
             ),
             const SizedBox(height: AppSpacing.xxl),
             Text(
-              'Step ${_currentStep + 1} of ${_steps.length}',
+              'שלב ${_currentStep + 1} מתוך ${_steps.length}',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),

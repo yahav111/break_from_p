@@ -159,7 +159,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // Main app — 5-tab bottom nav shell.
-      // Order: Journal (0), Tools (1), Home (2, center), Statistics (3), Settings (4)
+      // Code order: Home (0), Content (1), Tools (2), Journal (3), Settings (4).
+      // Under app-wide RTL the bar renders visually as: Settings ← Journal ← Tools ← Content ← Home.
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             MainShell(navigationShell: navigationShell),
@@ -167,8 +168,16 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.journal,
-                builder: (context, state) => const JournalScreen(),
+                path: Routes.home,
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.courseTab,
+                builder: (context, state) => const CourseScreen(),
               ),
             ],
           ),
@@ -183,16 +192,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.home,
-                builder: (context, state) => const HomeScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: Routes.courseTab,
-                builder: (context, state) => const CourseScreen(),
+                path: Routes.journal,
+                builder: (context, state) => const JournalScreen(),
               ),
             ],
           ),

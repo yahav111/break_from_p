@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/models/urge_entry.dart';
 import '../../core/providers/urge_provider.dart';
@@ -71,7 +72,7 @@ class UrgePatternsScreen extends ConsumerWidget {
           ),
           const SizedBox(width: AppSpacing.md),
           Text(
-            'Urge Patterns',
+            'דפוסי דחפים',
             style: AppTypography.titleMedium.copyWith(
               color: Colors.white,
             ),
@@ -95,14 +96,14 @@ class UrgePatternsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.xl),
             Text(
-              'No urges logged yet',
+              'עדיין לא תועדו דחפים',
               style: AppTypography.titleMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'When you track urges, patterns will appear here to help you understand your triggers.',
+              'כשתתעד דחפים, דפוסים יופיעו כאן שיעזרו לך להבין את הטריגרים שלך.',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextTertiary,
               ),
@@ -147,7 +148,7 @@ class UrgePatternsScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: _buildSummaryCard(
-            'Total Urges',
+            'סה״כ דחפים',
             '$totalUrges',
             Icons.trending_up_rounded,
           ),
@@ -155,7 +156,7 @@ class UrgePatternsScreen extends ConsumerWidget {
         const SizedBox(width: AppSpacing.md),
         Expanded(
           child: _buildSummaryCard(
-            'Avg Intensity',
+            'עוצמה ממוצעת',
             avgIntensity.toStringAsFixed(1),
             Icons.speed_rounded,
           ),
@@ -205,7 +206,7 @@ class UrgePatternsScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppSectionTitle(
-          title: 'Time of Day',
+          title: 'שעה ביום',
           showAccent: true,
           padding: const EdgeInsets.only(bottom: AppSpacing.md),
         ),
@@ -238,7 +239,7 @@ class UrgePatternsScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppSectionTitle(
-          title: 'Top Triggers',
+          title: 'טריגרים מובילים',
           showAccent: true,
           padding: const EdgeInsets.only(bottom: AppSpacing.md),
         ),
@@ -317,14 +318,14 @@ class UrgePatternsScreen extends ConsumerWidget {
 
   String _formatTriggerLabel(String key) {
     const labels = {
-      'boredom': 'Boredom',
-      'stress': 'Stress',
-      'loneliness': 'Loneliness',
-      'anxiety': 'Anxiety',
-      'habit': 'Habit',
-      'social_media': 'Social Media',
-      'late_night': 'Late Night',
-      'other': 'Other',
+      'boredom': 'שעמום',
+      'stress': 'לחץ',
+      'loneliness': 'בדידות',
+      'anxiety': 'חרדה',
+      'habit': 'הרגל',
+      'social_media': 'רשתות חברתיות',
+      'late_night': 'שעות מאוחרות',
+      'other': 'אחר',
     };
     return labels[key] ?? key;
   }
@@ -338,7 +339,7 @@ class UrgePatternsScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppSectionTitle(
-          title: 'Recent',
+          title: 'אחרונים',
           showAccent: true,
           padding: const EdgeInsets.only(bottom: AppSpacing.md),
         ),
@@ -402,7 +403,7 @@ class UrgePatternsScreen extends ConsumerWidget {
                   ),
                 ),
                 Text(
-                  'Intensity: ${entry.intensity}/10',
+                  'עוצמה: ${entry.intensity}/10',
                   style: AppTypography.caption.copyWith(
                     color: AppColors.darkTextTertiary,
                   ),
@@ -436,17 +437,11 @@ class UrgePatternsScreen extends ConsumerWidget {
     final now = DateTime.now();
     final diff = now.difference(dt);
 
-    if (diff.inMinutes < 1) return 'Just now';
-    if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
-    if (diff.inHours < 24) return '${diff.inHours}h ago';
-    if (diff.inDays < 7) return '${diff.inDays}d ago';
+    if (diff.inMinutes < 1) return 'הרגע';
+    if (diff.inMinutes < 60) return 'לפני ${diff.inMinutes} דקות';
+    if (diff.inHours < 24) return 'לפני ${diff.inHours} שעות';
+    if (diff.inDays < 7) return 'לפני ${diff.inDays} ימים';
 
-    final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ];
-    final hour = dt.hour % 12 == 0 ? 12 : dt.hour % 12;
-    final period = dt.hour < 12 ? 'AM' : 'PM';
-    return '${months[dt.month - 1]} ${dt.day}, $hour:${dt.minute.toString().padLeft(2, '0')} $period';
+    return DateFormat('d בMMMM HH:mm', 'he_IL').format(dt);
   }
 }

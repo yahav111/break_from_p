@@ -51,7 +51,7 @@ class SoundscapeCard extends StatelessWidget {
             if (isPlaying) ...[
               const SizedBox(height: AppSpacing.xs),
               Text(
-                'Now Playing',
+                'מתנגן כעת',
                 style: AppTypography.caption.copyWith(color: color),
               ),
             ],
@@ -63,7 +63,7 @@ class SoundscapeCard extends StatelessWidget {
             if (isPlaying) ...[
               const SizedBox(height: AppSpacing.xs),
               Text(
-                'Playing',
+                'מתנגן',
                 style: AppTypography.caption.copyWith(color: color),
               ),
             ],

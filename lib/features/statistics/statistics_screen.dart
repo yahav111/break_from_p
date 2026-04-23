@@ -79,25 +79,25 @@ class StatisticsScreen extends ConsumerWidget {
                       const SizedBox(height: AppSpacing.xxl),
 
                       // Streak History section.
-                      _buildSectionTitle('Streak History'),
+                      _buildSectionTitle('היסטוריית רצפים'),
                       const SizedBox(height: AppSpacing.md),
                       StreakHistoryChart(streakLengths: streakLengths),
                       const SizedBox(height: AppSpacing.xxl),
 
                       // Mood Trends section.
-                      _buildSectionTitle('Mood Trends'),
+                      _buildSectionTitle('מגמות מצב רוח'),
                       const SizedBox(height: AppSpacing.md),
                       MoodTrendChart(moodData: moodData),
                       const SizedBox(height: AppSpacing.xxl),
 
                       // Exercises section.
-                      _buildSectionTitle('Exercises'),
+                      _buildSectionTitle('תרגילים'),
                       const SizedBox(height: AppSpacing.md),
                       ExercisePieChart(exerciseCounts: exerciseCounts),
                       const SizedBox(height: AppSpacing.xxl),
 
                       // Additional stats section.
-                      _buildSectionTitle('Insights'),
+                      _buildSectionTitle('תובנות'),
                       const SizedBox(height: AppSpacing.md),
                       _buildInsightsCard(
                         pledgeRate: pledgeRate,
@@ -149,7 +149,7 @@ class StatisticsScreen extends ConsumerWidget {
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Statistics',
+            'סטטיסטיקה',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -170,7 +170,7 @@ class StatisticsScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: _buildStatCard(
-            label: 'Total Clean Days',
+            label: 'סה״כ ימים נקיים',
             value: totalDays.toString(),
             icon: Icons.calendar_today_rounded,
             color: AppColors.secondary,
@@ -179,8 +179,8 @@ class StatisticsScreen extends ConsumerWidget {
         const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: _buildStatCard(
-            label: 'Longest Streak',
-            value: '${longestStreak}d',
+            label: 'הרצף הארוך ביותר',
+            value: '$longestStreak ימים',
             icon: Icons.emoji_events_rounded,
             color: AppColors.tertiary,
           ),
@@ -188,8 +188,8 @@ class StatisticsScreen extends ConsumerWidget {
         const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: _buildStatCard(
-            label: 'Avg Streak',
-            value: '${avgStreak.toStringAsFixed(1)}d',
+            label: 'רצף ממוצע',
+            value: '${avgStreak.toStringAsFixed(1)} ימים',
             icon: Icons.show_chart_rounded,
             color: AppColors.primary,
           ),
@@ -266,29 +266,29 @@ class StatisticsScreen extends ConsumerWidget {
         children: [
           _buildInsightRow(
             icon: Icons.handshake_rounded,
-            label: 'Pledge Rate',
+            label: 'שיעור התחייבות',
             value: '${(pledgeRate * 100).toStringAsFixed(0)}%',
             color: AppColors.secondary,
           ),
           const Divider(color: AppColors.darkBorderSubtle, height: 24),
           _buildInsightRow(
             icon: Icons.auto_stories_rounded,
-            label: 'Journal / week',
+            label: 'יומן בשבוע',
             value: journalPerWeek.toStringAsFixed(1),
             color: AppColors.primary,
           ),
           const Divider(color: AppColors.darkBorderSubtle, height: 24),
           _buildInsightRow(
             icon: Icons.access_time_rounded,
-            label: 'Urge Peak Hour',
+            label: 'שעת שיא דחפים',
             value: peakHourLabel,
             color: AppColors.tertiary,
           ),
           const Divider(color: AppColors.darkBorderSubtle, height: 24),
           _buildInsightRow(
             icon: Icons.local_fire_department_rounded,
-            label: 'Current Streak',
-            value: '${currentDays}d',
+            label: 'רצף נוכחי',
+            value: '$currentDays ימים',
             color: AppColors.error,
           ),
         ],
@@ -334,8 +334,6 @@ class StatisticsScreen extends ConsumerWidget {
   // ---------------------------------------------------------------------------
 
   String _formatHour(int hour) {
-    final h = hour % 12 == 0 ? 12 : hour % 12;
-    final period = hour < 12 ? 'AM' : 'PM';
-    return '$h $period';
+    return '${hour.toString().padLeft(2, '0')}:00';
   }
 }

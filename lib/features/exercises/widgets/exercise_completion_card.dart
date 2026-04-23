@@ -18,13 +18,13 @@ class ExerciseCompletionCard extends StatelessWidget {
   String get _exerciseLabel {
     switch (exerciseType) {
       case 'breathing':
-        return 'Breathing';
+        return 'נשימה';
       case 'urge_surfing':
-        return 'Urge Surfing';
+        return 'גלישה על דחף';
       case 'grounding':
-        return 'Grounding';
+        return 'הארקה';
       case 'body_scan':
-        return 'Body Scan';
+        return 'סריקת גוף';
       default:
         return exerciseType;
     }
@@ -48,7 +48,7 @@ class ExerciseCompletionCard extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.xxl),
         Text(
-          'Well Done!',
+          'כל הכבוד!',
           style: AppTypography.headlineLarge.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.sm),
@@ -62,7 +62,7 @@ class ExerciseCompletionCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxxl),
           child: GradientButton(
-            label: 'Done',
+            label: 'סיום',
             onPressed: onDone,
           ),
         ),

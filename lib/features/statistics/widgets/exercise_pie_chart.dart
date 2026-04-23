@@ -18,10 +18,10 @@ class ExercisePieChart extends StatelessWidget {
   };
 
   static const _typeLabels = <String, String>{
-    'breathing': 'Breathing',
-    'urge_surfing': 'Urge Surfing',
-    'grounding': 'Grounding',
-    'body_scan': 'Body Scan',
+    'breathing': 'נשימה',
+    'urge_surfing': 'גלישה על דחף',
+    'grounding': 'הארקה',
+    'body_scan': 'סריקת גוף',
   };
 
   @override
@@ -123,7 +123,7 @@ class ExercisePieChart extends StatelessWidget {
         height: 150,
         child: Center(
           child: Text(
-            'No exercises completed yet',
+            'עדיין לא הושלמו תרגילים',
             style: AppTypography.bodySmall
                 .copyWith(color: AppColors.darkTextTertiary),
           ),

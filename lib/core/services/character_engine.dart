@@ -28,13 +28,13 @@ abstract final class CharacterEngine {
   /// Display name for a character stage.
   static String stageName(CharacterStage stage) {
     return switch (stage) {
-      CharacterStage.sprout => 'Sprout',
-      CharacterStage.ember => 'Ember',
-      CharacterStage.flame => 'Flame',
-      CharacterStage.blaze => 'Blaze',
-      CharacterStage.phoenix => 'Phoenix',
-      CharacterStage.nova => 'Nova',
-      CharacterStage.cosmos => 'Cosmos',
+      CharacterStage.sprout => 'ניצן',
+      CharacterStage.ember => 'גחלת',
+      CharacterStage.flame => 'להבה',
+      CharacterStage.blaze => 'מדורה',
+      CharacterStage.phoenix => 'פניקס',
+      CharacterStage.nova => 'נובה',
+      CharacterStage.cosmos => 'קוסמוס',
     };
   }
 
@@ -42,19 +42,19 @@ abstract final class CharacterEngine {
   static String stageDescription(CharacterStage stage) {
     return switch (stage) {
       CharacterStage.sprout =>
-        'A tiny seed of change. Your journey begins here.',
+        'זרע קטן של שינוי. המסע שלך מתחיל כאן.',
       CharacterStage.ember =>
-        'A spark ignites within. You are gathering strength.',
+        'ניצוץ מתלקח בפנים. אתה אוגר כוח.',
       CharacterStage.flame =>
-        'Growing stronger every day. The fire is taking hold.',
+        'מתחזק מיום ליום. האש אוחזת.',
       CharacterStage.blaze =>
-        'Burning bright with determination. Nothing can stop you.',
+        'בוער בעוצמה ובנחישות. שום דבר לא יעצור אותך.',
       CharacterStage.phoenix =>
-        'Reborn from the ashes. A new version of yourself emerges.',
+        'נולד מחדש מהאפר. גרסה חדשה של עצמך מתגלה.',
       CharacterStage.nova =>
-        'Radiating power and purpose. Your light inspires others.',
+        'מקרין כוח ומשמעות. האור שלך מעורר השראה באחרים.',
       CharacterStage.cosmos =>
-        'Transcendent. You have mastered yourself and reached the stars.',
+        'נשגב. שלטת בעצמך והגעת עד הכוכבים.',
     };
   }
 

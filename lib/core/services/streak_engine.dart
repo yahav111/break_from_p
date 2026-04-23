@@ -21,13 +21,13 @@ abstract final class StreakEngine {
     return (days / 90).clamp(0.0, 1.0);
   }
 
-  /// Formats a [Duration] as "Xd Xh Xm Xs".
+  /// Formats a [Duration] as "X ימים X שעות X דקות X שניות".
   static String formatDuration(Duration d) {
     final days = d.inDays;
     final hours = d.inHours.remainder(24);
     final minutes = d.inMinutes.remainder(60);
     final seconds = d.inSeconds.remainder(60);
-    return '${days}d ${hours}h ${minutes}m ${seconds}s';
+    return '$days ימים $hours שעות $minutes דקות $seconds שניות';
   }
 
   /// Returns [MilestoneInfo] if [days] exactly matches a milestone.
@@ -53,48 +53,48 @@ abstract final class StreakEngine {
   static const _milestoneData = <int, MilestoneInfo>{
     7: MilestoneInfo(
       days: 7,
-      title: 'First Week',
-      description: 'You survived the hardest part.',
+      title: 'שבוע ראשון',
+      description: 'שרדת את החלק הקשה ביותר.',
       scienceMessage:
-          'Your brain is beginning to reduce dopamine receptor downregulation. '
-          'Withdrawal symptoms like irritability and cravings are at their peak '
-          'but will start to ease.',
+          'המוח שלך מתחיל להפחית את ויסות-הירידה של קולטני הדופמין. '
+          'תסמיני הגמילה כמו עצבנות וחשקים נמצאים בשיא '
+          'אך יתחילו להתרכך.',
     ),
     14: MilestoneInfo(
       days: 14,
-      title: 'Two Weeks Strong',
-      description: 'New neural pathways are forming.',
+      title: 'שבועיים של עוצמה',
+      description: 'נתיבים עצביים חדשים נבנים.',
       scienceMessage:
-          'Your prefrontal cortex is regaining control over impulse responses. '
-          'Sleep quality and focus are measurably improving as your brain '
-          'recalibrates its reward circuitry.',
+          'קליפת המוח הקדם-מצחית מחזירה שליטה על תגובות דחף. '
+          'איכות השינה והריכוז משתפרים באופן מדיד, ככל שהמוח '
+          'מכייל מחדש את מעגלי התגמול שלו.',
     ),
     30: MilestoneInfo(
       days: 30,
-      title: 'One Month Free',
-      description: 'A real habit change is taking hold.',
+      title: 'חודש של חופש',
+      description: 'שינוי הרגלים אמיתי תופס אחיזה.',
       scienceMessage:
-          'Dopamine receptor density is increasing back toward baseline. '
-          'Your brain now finds more pleasure in everyday activities. '
-          'Motivation and emotional regulation are noticeably stronger.',
+          'צפיפות קולטני הדופמין גדֵלה בחזרה אל קו הבסיס. '
+          'המוח שלך מוצא עכשיו יותר הנאה בפעילויות יומיומיות. '
+          'המוטיבציה וויסות הרגשות מתחזקים באופן מורגש.',
     ),
     60: MilestoneInfo(
       days: 60,
-      title: 'Two Months Clean',
-      description: 'Your brain is deeply rewiring.',
+      title: 'חודשיים של חופש',
+      description: 'המוח שלך עובר חיווט מחדש עמוק.',
       scienceMessage:
-          'The neural pathways associated with the old habit are weakening '
-          'through synaptic pruning. New, healthier patterns are being '
-          'reinforced. Confidence and self-control are at their highest.',
+          'הנתיבים העצביים שקשורים להרגל הישן נחלשים '
+          'דרך גיזום סינפטי. דפוסים חדשים ובריאים יותר '
+          'מתחזקים. הביטחון העצמי והשליטה העצמית בשיאם.',
     ),
     90: MilestoneInfo(
       days: 90,
-      title: 'Brain Rewired',
-      description: 'You did it. Your brain has reset.',
+      title: 'המוח חוּוט מחדש',
+      description: 'הצלחת. המוח שלך התאפס.',
       scienceMessage:
-          'Research suggests 90 days is the threshold for significant '
-          'neuroplastic change. Your dopamine system has largely returned to '
-          'baseline. The compulsive pull is replaced by genuine freedom of choice.',
+          'מחקרים מצביעים על 90 יום כסף לשינוי '
+          'נוירופלסטי משמעותי. מערכת הדופמין שלך חזרה במידה רבה '
+          'לקו הבסיס. המשיכה הכפייתית מוחלפת בחופש אמיתי של בחירה.',
     ),
   };
 }

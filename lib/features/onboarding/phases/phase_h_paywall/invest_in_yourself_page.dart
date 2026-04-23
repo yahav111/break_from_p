@@ -16,7 +16,7 @@ class InvestInYourselfPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = (userName?.isNotEmpty == true) ? userName! : 'Friend';
+    final name = (userName?.isNotEmpty == true) ? userName! : 'חבר';
     final now = DateTime.now();
     final dateStr =
         '${now.month.toString().padLeft(2, '0')}/${now.day.toString().padLeft(2, '0')}';
@@ -28,7 +28,7 @@ class InvestInYourselfPage extends StatelessWidget {
           children: [
             const Spacer(flex: 2),
             Text(
-              'Now, it\'s time to\ninvest in yourself.',
+              'עכשיו הזמן\nלהשקיע בעצמך.',
               textAlign: TextAlign.center,
               style: AppTypography.displayLarge.copyWith(
                 color: Colors.white,
@@ -76,10 +76,10 @@ class InvestInYourselfPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: AppSpacing.xl),
-                  Text('Active Streak',
+                  Text('רצף פעיל',
                       style: AppTypography.caption
                           .copyWith(color: Colors.white70)),
-                  Text('0 days',
+                  Text('0 ימים',
                       style: AppTypography.headlineSmall
                           .copyWith(color: Colors.white, fontWeight: AppTypography.bold)),
                   const Divider(color: Colors.white24, height: AppSpacing.xl),
@@ -89,7 +89,7 @@ class InvestInYourselfPage extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Name',
+                          Text('שם',
                               style: AppTypography.caption
                                   .copyWith(color: Colors.white54, fontSize: 9)),
                           Text(name,
@@ -100,7 +100,7 @@ class InvestInYourselfPage extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text('Free since',
+                          Text('נקי מאז',
                               style: AppTypography.caption
                                   .copyWith(color: Colors.white54, fontSize: 9)),
                           Text(dateStr,
@@ -117,7 +117,7 @@ class InvestInYourselfPage extends StatelessWidget {
             GestureDetector(
               onTap: onNext,
               child: Text(
-                'Tap to continue',
+                'הקש כדי להמשיך',
                 style: AppTypography.bodyMedium.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),

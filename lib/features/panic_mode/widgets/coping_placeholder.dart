@@ -37,12 +37,12 @@ class CopingPlaceholder extends StatelessWidget {
         const SizedBox(height: AppSpacing.xxl),
 
         Text(
-          'Coping Tools',
+          'כלי התמודדות',
           style: AppTypography.headlineMedium.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          'Choose a tool to help you through this moment',
+          'בחר כלי שיעזור לך לעבור את הרגע הזה',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -51,22 +51,22 @@ class CopingPlaceholder extends StatelessWidget {
 
         _buildToolCard(
           icon: Icons.air_rounded,
-          title: 'Breathing Exercise',
-          subtitle: 'Coming in Phase 3',
+          title: 'תרגיל נשימה',
+          subtitle: 'בקרוב בשלב 3',
           color: AppColors.secondary,
         ),
         const SizedBox(height: AppSpacing.md),
         _buildToolCard(
           icon: Icons.edit_note_rounded,
-          title: 'Journal Entry',
-          subtitle: 'Coming in Phase 3',
+          title: 'רישום ביומן',
+          subtitle: 'בקרוב בשלב 3',
           color: AppColors.tertiary,
         ),
         const SizedBox(height: AppSpacing.md),
         _buildToolCard(
           icon: Icons.self_improvement_rounded,
-          title: 'Guided Meditation',
-          subtitle: 'Coming in Phase 3',
+          title: 'מדיטציה מודרכת',
+          subtitle: 'בקרוב בשלב 3',
           color: AppColors.primary,
         ),
       ],

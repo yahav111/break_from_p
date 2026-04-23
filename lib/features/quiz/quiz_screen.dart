@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/models/quiz_question.dart';
 import '../../core/providers/quiz_provider.dart';
@@ -163,10 +164,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('\u{1F1FA}\u{1F1F8}', style: TextStyle(fontSize: 14)),
+          const Text('\u{1F1EE}\u{1F1F1}', style: TextStyle(fontSize: 14)),
           const SizedBox(width: AppSpacing.xs),
           Text(
-            'EN',
+            'עב',
             style: AppTypography.labelLarge.copyWith(
               color: Colors.white,
               fontWeight: AppTypography.bold,
@@ -184,7 +185,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         clipBehavior: Clip.none,
         children: [
           Text(
-            'Question #${quizState.currentIndex + 1}',
+            'שאלה #${quizState.currentIndex + 1}',
             style: AppTypography.displayMedium.copyWith(
               color: Colors.white,
               fontWeight: AppTypography.bold,
@@ -215,7 +216,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         height: 1.5,
         fontSize: 18,
       ),
-      textAlign: TextAlign.left,
+      textAlign: TextAlign.start,
     );
   }
 
@@ -291,7 +292,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         ),
         const SizedBox(height: AppSpacing.xxl),
         AppButton(
-          label: 'Continue',
+          label: 'המשך',
           isFullWidth: true,
           variant: AppButtonVariant.primary,
           size: AppButtonSize.large,
@@ -380,7 +381,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         ),
         const SizedBox(height: AppSpacing.xxl),
         GradientButton(
-          label: 'Start My Journey',
+          label: 'התחל את המסע שלי',
           isFullWidth: true,
           size: AppButtonSize.large,
           onPressed: () {
@@ -420,11 +421,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   }
 
   String _formatDate(DateTime date) {
-    const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ];
-    return '${months[date.month - 1]} ${date.day}, ${date.year}';
+    return DateFormat('d בMMMM y', 'he_IL').format(date);
   }
 
   Widget _buildFooter(QuizState quizState) {
@@ -439,7 +436,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       child: Align(
         alignment: Alignment.center,
         child: AppButton(
-          label: 'Skip',
+          label: 'דלג',
           isFullWidth: false,
           variant: AppButtonVariant.secondary,
           size: AppButtonSize.small,

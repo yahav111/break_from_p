@@ -93,7 +93,7 @@ class PlaybackControls extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Sleep Timer',
+                'טיימר שינה',
                 style: AppTypography.caption.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),
@@ -105,7 +105,7 @@ class PlaybackControls extends StatelessWidget {
                   child: Row(
                     children: _timerOptions.map((option) {
                       final isSelected = timerMinutes == option;
-                      final label = option == null ? 'Off' : '${option}m';
+                      final label = option == null ? 'כבוי' : '$option דק׳';
                       return Padding(
                         padding: const EdgeInsets.only(right: AppSpacing.sm),
                         child: GestureDetector(

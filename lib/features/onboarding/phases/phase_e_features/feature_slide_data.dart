@@ -16,37 +16,37 @@ class FeatureSlideData {
 
 const featureSlides = <FeatureSlideData>[
   FeatureSlideData(
-    title: 'Welcome to QUITTR',
+    title: 'ברוכים הבאים ל-QUITTR',
     body:
-        'With over 1,000,000 users, QUITTR is **class-leading** and based on **years of research** and user-interaction.',
+        'עם מעל 1,000,000 משתמשים, QUITTR הוא **מוביל בתחומו** ומבוסס על **שנים של מחקר** ואינטראקציה עם משתמשים.',
     icon: Icons.rocket_launch_rounded,
     iconColor: Color(0xFF64B5F6),
   ),
   FeatureSlideData(
-    title: 'Rewire your brain',
+    title: 'אתחל את המוח שלך',
     body:
-        'Science-backed exercises help you **rewire** your brain, **rebuild** your dopamine receptors, and **avoid setbacks**.',
+        'תרגילים מבוססי מדע עוזרים לך **לחווט מחדש** את המוח, **לשחזר** את קולטני הדופמין, ו**למנוע הישנות**.',
     icon: Icons.psychology_alt_rounded,
     iconColor: Color(0xFFFFD54F),
   ),
   FeatureSlideData(
-    title: 'Conquer yourself',
+    title: 'כבוש את עצמך',
     body:
-        '**Know yourself** to conquer yourself. Understand your **strengths** and **weaknesses**, earn medals, and track your **progress**.',
+        '**הכר את עצמך** כדי לכבוש את עצמך. הבן את **נקודות החוזק** וה**חולשה** שלך, אסוף הישגים ועקוב אחר **התקדמותך**.',
     icon: Icons.military_tech_rounded,
     iconColor: Color(0xFF81C784),
   ),
   FeatureSlideData(
-    title: 'Avoid setbacks',
+    title: 'מנע הישנות',
     body:
-        'QUITTR **learns your habits** and temptation triggers, providing you with **24/7 protection**.',
+        'QUITTR **לומד את ההרגלים שלך** ואת הטריגרים, ומספק לך **הגנה 24/7**.',
     icon: Icons.shield_rounded,
     iconColor: Color(0xFFFF8A65),
   ),
   FeatureSlideData(
-    title: 'Level up your life',
+    title: 'שדרג את החיים שלך',
     body:
-        'Rebooting has immense **psychological** and **physical** benefits. Grow stronger, healthier, and happier.',
+        'התאפסות מביאה ליתרונות **נפשיים** ו**פיזיים** עצומים. תהיה חזק, בריא ומאושר יותר.',
     icon: Icons.trending_up_rounded,
     iconColor: Color(0xFF4FC3F7),
   ),

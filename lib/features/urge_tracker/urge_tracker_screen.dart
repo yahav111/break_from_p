@@ -117,7 +117,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           // Title
           Expanded(
             child: Text(
-              'Track Urge',
+              'תעד דחף',
               style: AppTypography.titleMedium.copyWith(
                 color: Colors.white,
               ),
@@ -135,7 +135,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
                 borderRadius: AppRadius.borderPill,
               ),
               child: Text(
-                'Step ${_currentStep + 1} of 3',
+                'שלב ${_currentStep + 1} מתוך 3',
                 style: AppTypography.labelMedium.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),
@@ -164,7 +164,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
         children: [
           const Spacer(flex: 1),
           Text(
-            'How intense is this urge?',
+            'כמה חזק הדחף הזה?',
             style: AppTypography.headlineMedium.copyWith(
               color: Colors.white,
             ),
@@ -186,7 +186,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           ),
           const Spacer(flex: 2),
           GradientButton(
-            label: 'Next',
+            label: 'הבא',
             onPressed: _nextStep,
           ),
           const SizedBox(height: AppSpacing.xxxl),
@@ -203,7 +203,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
         children: [
           const Spacer(flex: 1),
           Text(
-            'What triggered this urge?',
+            'מה היה הטריגר לדחף הזה?',
             style: AppTypography.headlineMedium.copyWith(
               color: Colors.white,
             ),
@@ -216,7 +216,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           ),
           const Spacer(flex: 2),
           GradientButton(
-            label: 'Next',
+            label: 'הבא',
             onPressed: _trigger != null ? _nextStep : null,
           ),
           const SizedBox(height: AppSpacing.xxxl),
@@ -233,7 +233,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
         children: [
           const SizedBox(height: AppSpacing.xxxl),
           Text(
-            'Add a note (optional)',
+            'הוסף הערה (לא חובה)',
             style: AppTypography.headlineMedium.copyWith(
               color: Colors.white,
             ),
@@ -247,7 +247,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
               color: Colors.white,
             ),
             decoration: InputDecoration(
-              hintText: "What's going on?",
+              hintText: 'מה קורה?',
               hintStyle: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextTertiary,
               ),
@@ -273,7 +273,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           ),
           const Spacer(),
           GradientButton(
-            label: 'Log Urge',
+            label: 'תעד דחף',
             onPressed: _submitUrge,
           ),
           const SizedBox(height: AppSpacing.md),
@@ -282,7 +282,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
             child: TextButton(
               onPressed: _submitUrge,
               child: Text(
-                'Skip',
+                'דלג',
                 style: AppTypography.button.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),
@@ -309,7 +309,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           ),
           const SizedBox(height: AppSpacing.xxl),
           Text(
-            'Urge Logged',
+            'הדחף תועד',
             style: AppTypography.headlineLarge.copyWith(
               color: Colors.white,
             ),
@@ -319,7 +319,7 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
             child: Text(
-              'You acknowledged it instead of acting on it. That\'s real strength.',
+              'הכרת בו במקום לפעול לפיו. זה כוח אמיתי.',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
@@ -329,12 +329,12 @@ class _UrgeTrackerScreenState extends ConsumerState<UrgeTrackerScreen> {
           const SizedBox(height: AppSpacing.xxl),
           const Spacer(flex: 2),
           GradientButton(
-            label: 'Done',
+            label: 'סיום',
             onPressed: () => context.pop(),
           ),
           const SizedBox(height: AppSpacing.md),
           AppButton(
-            label: 'I Need Help',
+            label: 'אני צריך עזרה',
             variant: AppButtonVariant.secondary,
             isFullWidth: true,
             onPressed: () {

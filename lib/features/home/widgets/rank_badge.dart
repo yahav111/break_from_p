@@ -24,13 +24,13 @@ class RankBadge extends StatelessWidget {
 
     String subLabel;
     if (isMaxRank) {
-      subLabel = 'Max Rank';
+      subLabel = 'דרגה מקסימלית';
     } else {
       final nextStage = stageValues[currentIndex + 1];
       final nextName = CharacterEngine.stageName(nextStage);
       final nextMinDays = CharacterEngine.stageMinDays(nextStage);
       final daysUntil = nextMinDays - days;
-      subLabel = 'Next: $nextName in $daysUntil ${daysUntil == 1 ? 'day' : 'days'}';
+      subLabel = 'הבא: $nextName בעוד $daysUntil ${daysUntil == 1 ? 'יום' : 'ימים'}';
     }
 
     return Column(

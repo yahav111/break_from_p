@@ -144,7 +144,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
   Widget _buildHeadline() {
     return Text(
-      _isSignIn ? 'Welcome\nback' : 'Create your\naccount',
+      _isSignIn ? 'ברוך שובך' : 'צור\nחשבון',
       style: AppTypography.displayLarge.copyWith(
         color: Colors.white,
         fontSize: 36,
@@ -156,8 +156,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   Widget _buildSubtitle() {
     return Text(
       _isSignIn
-          ? 'Sign in to restore your progress.'
-          : 'Secure your recovery progress\nand access it on any device.',
+          ? 'התחבר כדי לשחזר את ההתקדמות שלך.'
+          : 'אבטח את ההתקדמות שלך\nוגש אליה מכל מכשיר.',
       style: AppTypography.bodyMedium.copyWith(
         color: AppColors.darkTextSecondary,
         height: 1.5,
@@ -191,7 +191,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       children: [
         AuthTextField(
           controller: _emailController,
-          label: 'Email',
+          label: 'אימייל',
           hintText: 'your@email.com',
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
@@ -199,8 +199,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         const SizedBox(height: AppSpacing.md),
         AuthTextField(
           controller: _passwordController,
-          label: 'Password',
-          hintText: 'At least 8 characters',
+          label: 'סיסמה',
+          hintText: 'לפחות 8 תווים',
           obscureText: !_isPasswordVisible,
           textInputAction:
               _isSignIn ? TextInputAction.done : TextInputAction.next,
@@ -211,8 +211,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           const SizedBox(height: AppSpacing.md),
           AuthTextField(
             controller: _confirmPasswordController,
-            label: 'Confirm Password',
-            hintText: 'Re-enter your password',
+            label: 'אימות סיסמה',
+            hintText: 'הזן שוב את הסיסמה',
             obscureText: !_isConfirmPasswordVisible,
             textInputAction: TextInputAction.done,
             onToggleObscure: () => setState(
@@ -227,7 +227,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
   Widget _buildSubmitButton(AuthState authState) {
     return GradientButton(
-      label: _isSignIn ? 'SIGN IN' : 'CREATE ACCOUNT',
+      label: _isSignIn ? 'התחבר' : 'צור חשבון',
       isFullWidth: true,
       size: AppButtonSize.large,
       onPressed: authState.isLoading ? null : _onSubmit,
@@ -237,7 +237,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   Widget _buildForgotPassword() {
     return Center(
       child: AppButton(
-        label: 'Forgot password?',
+        label: 'שכחת סיסמה?',
         variant: AppButtonVariant.ghost,
         size: AppButtonSize.small,
         onPressed: _showForgotPasswordSheet,
@@ -249,7 +249,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     return Column(
       children: [
         SocialSignInButton(
-          label: 'Continue with Google',
+          label: 'המשך עם Google',
           svgAsset: 'assets/icons/google_logo.svg',
           isLoading: authState.isGoogleLoading,
           onPressed: authState.isLoading ? null : () {
@@ -261,7 +261,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         if (Platform.isIOS) ...[
           const SizedBox(height: AppSpacing.md),
           SocialSignInButton(
-            label: 'Continue with Apple',
+            label: 'המשך עם Apple',
             svgAsset: 'assets/icons/apple_logo.svg',
             isLoading: authState.isAppleLoading,
             onPressed: authState.isLoading ? null : () {
@@ -289,10 +289,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             ),
             children: [
               TextSpan(
-                text: _isSignIn ? 'New here? ' : 'Already have an account? ',
+                text: _isSignIn ? 'חדש כאן? ' : 'כבר יש לך חשבון? ',
               ),
               TextSpan(
-                text: _isSignIn ? 'Create Account' : 'Sign In',
+                text: _isSignIn ? 'צור חשבון' : 'התחבר',
                 style: const TextStyle(
                   color: AppColors.primary,
                   fontWeight: AppTypography.semiBold,
@@ -308,7 +308,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   Widget _buildSkipButton(AuthState authState) {
     return Center(
       child: AppButton(
-        label: 'Maybe later',
+        label: 'אולי מאוחר יותר',
         variant: AppButtonVariant.ghost,
         size: AppButtonSize.medium,
         onPressed: authState.isLoading
@@ -335,17 +335,17 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     final password = _passwordController.text;
 
     if (email.isEmpty || !email.contains('@')) {
-      _showValidationError('Please enter a valid email address.');
+      _showValidationError('נא להזין כתובת אימייל תקינה.');
       return;
     }
     if (password.length < 8) {
-      _showValidationError('Password must be at least 8 characters.');
+      _showValidationError('הסיסמה חייבת להכיל לפחות 8 תווים.');
       return;
     }
     if (!_isSignIn) {
       final confirm = _confirmPasswordController.text;
       if (password != confirm) {
-        _showValidationError('Passwords do not match.');
+        _showValidationError('הסיסמאות אינן תואמות.');
         return;
       }
     }
@@ -413,14 +413,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Reset Password',
+                'איפוס סיסמה',
                 style: AppTypography.headlineMedium.copyWith(
                   color: Colors.white,
                 ),
               ),
               const SizedBox(height: AppSpacing.sm),
               Text(
-                'Enter your email and we\'ll send you a reset link.',
+                'הזן את האימייל שלך ונשלח לך קישור לאיפוס.',
                 style: AppTypography.bodyMedium.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),
@@ -428,14 +428,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               const SizedBox(height: AppSpacing.lg),
               AuthTextField(
                 controller: resetEmailController,
-                label: 'Email',
+                label: 'אימייל',
                 hintText: 'your@email.com',
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.done,
               ),
               const SizedBox(height: AppSpacing.lg),
               GradientButton(
-                label: 'SEND RESET LINK',
+                label: 'שלח קישור לאיפוס',
                 isFullWidth: true,
                 size: AppButtonSize.large,
                 onPressed: () async {
@@ -453,7 +453,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     navigator.pop();
                     messenger.showSnackBar(
                       const SnackBar(
-                        content: Text('Password reset email sent. Check your inbox.'),
+                        content: Text('אימייל לאיפוס סיסמה נשלח. בדוק את תיבת הדואר הנכנס.'),
                         behavior: SnackBarBehavior.floating,
                       ),
                     );

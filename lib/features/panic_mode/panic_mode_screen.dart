@@ -157,7 +157,7 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
               // ── "Panic Button" subtitle ──
               const SizedBox(height: AppSpacing.sm),
               Text(
-                'Panic Button',
+                'כפתור מצוקה',
                 style: AppTypography.headlineSmall.copyWith(
                   color: AppColors.error,
                   fontWeight: AppTypography.bold,
@@ -189,7 +189,7 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
                     const SizedBox(height: AppSpacing.xxl),
                     Center(
                       child: Text(
-                        'Side Effects of Relapsing',
+                        'תופעות לוואי של החלקה',
                         style: AppTypography.bodyMedium.copyWith(
                           color: AppColors.darkTextTertiary,
                         ),
@@ -227,7 +227,7 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
                                 color: Colors.white, size: 18),
                             const SizedBox(width: AppSpacing.sm),
                             Text(
-                              "I'm thinking of relapsing",
+                              'אני חושב להיכנע',
                               style: AppTypography.button
                                   .copyWith(color: Colors.white),
                             ),
@@ -256,7 +256,7 @@ class _PanicModeScreenState extends State<PanicModeScreen> {
                                 size: 18),
                             const SizedBox(width: AppSpacing.sm),
                             Text(
-                              'I Relapsed',
+                              'החלקתי',
                               style: AppTypography.button.copyWith(
                                 color: AppColors.darkTextSecondary,
                               ),

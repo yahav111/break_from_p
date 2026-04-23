@@ -48,7 +48,7 @@ class BadgeCollectionScreen extends ConsumerWidget {
                   horizontal: AppSpacing.lg,
                 ),
                 child: Text(
-                  '$unlockedCount of $totalCount unlocked',
+                  '$unlockedCount מתוך $totalCount נפתחו',
                   style: AppTypography.caption.copyWith(
                     color: AppColors.darkTextSecondary,
                   ),
@@ -111,7 +111,7 @@ class BadgeCollectionScreen extends ConsumerWidget {
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Achievements',
+            'הישגים',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],

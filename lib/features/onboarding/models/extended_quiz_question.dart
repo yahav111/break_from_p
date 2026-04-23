@@ -24,35 +24,35 @@ class ExtendedQuizQuestion {
   final List<IconData> optionIcons;
   final bool isSkippable;
 
-  /// Optional label shown above the question (e.g. "Finally").
+  /// Optional label shown above the question (e.g. "לסיום").
   final String? titleLabel;
 }
 
 const extendedQuizQuestions = <ExtendedQuizQuestion>[
   // Q1: Gender
   ExtendedQuizQuestion(
-    questionText: 'What is your gender?',
+    questionText: 'מה המגדר שלך?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Male', 'Female'],
+    options: ['זכר', 'נקבה'],
   ),
 
   // Q2: Frequency
   ExtendedQuizQuestion(
-    questionText: 'How often do you typically view pornography?',
+    questionText: 'באיזו תדירות אתה צופה בפורנוגרפיה?',
     stepType: ExtendedQuizStepType.multipleChoice,
     options: [
-      'More than once a day',
-      'Once a day',
-      'A few times a week',
-      'Less than once a week',
+      'יותר מפעם ביום',
+      'פעם ביום',
+      'כמה פעמים בשבוע',
+      'פחות מפעם בשבוע',
     ],
   ),
 
   // Q3: Attribution (with icons)
   ExtendedQuizQuestion(
-    questionText: 'Where did you hear about us?',
+    questionText: 'איך שמעת עלינו?',
     stepType: ExtendedQuizStepType.multipleChoiceWithIcons,
-    options: ['Instagram', 'X', 'Facebook', 'TikTok', 'Google', 'TV'],
+    options: ['אינסטגרם', 'X', 'פייסבוק', 'טיקטוק', 'גוגל', 'טלוויזיה'],
     optionIcons: [
       Icons.camera_alt_rounded,
       Icons.close_rounded,
@@ -65,63 +65,60 @@ const extendedQuizQuestions = <ExtendedQuizQuestion>[
 
   // Q4: Escalation
   ExtendedQuizQuestion(
-    questionText:
-        'Have you noticed a shift towards more extreme or graphic material?',
+    questionText: 'האם הבחנת במעבר לתוכן קיצוני או גרפי יותר?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Yes', 'No'],
+    options: ['כן', 'לא'],
   ),
 
   // Q5: First exposure age
   ExtendedQuizQuestion(
-    questionText:
-        'At what age did you first come across explicit content?',
+    questionText: 'באיזה גיל נחשפת לראשונה לתוכן מיני?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['12 or younger', '13 to 16', '17 to 24', '25 or older'],
+    options: ['12 או פחות', '13 עד 16', '17 עד 24', '25 ומעלה'],
   ),
 
   // Q6: Arousal dependency
   ExtendedQuizQuestion(
     questionText:
-        'Do you find it difficult to achieve sexual arousal without pornography or fantasy?',
+        'האם קשה לך להתעורר מינית ללא פורנוגרפיה או פנטזיה?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Frequently', 'Occasionally', 'Rarely or never'],
+    options: ['לעיתים קרובות', 'לפעמים', 'לעיתים רחוקות או אף פעם'],
   ),
 
   // Q7: Emotional coping
   ExtendedQuizQuestion(
     questionText:
-        'Do you use pornography as a way to cope with emotional discomfort or pain?',
+        'האם אתה משתמש בפורנוגרפיה כדי להתמודד עם מצוקה רגשית או כאב?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Frequently', 'Occasionally', 'Rarely or never'],
+    options: ['לעיתים קרובות', 'לפעמים', 'לעיתים רחוקות או אף פעם'],
   ),
 
   // Q8: Stress trigger
   ExtendedQuizQuestion(
-    questionText: 'Do you turn to pornography when feeling stressed?',
+    questionText: 'האם אתה פונה לפורנוגרפיה כשאתה בלחץ?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Frequently', 'Occasionally', 'Rarely or never'],
+    options: ['לעיתים קרובות', 'לפעמים', 'לעיתים רחוקות או אף פעם'],
   ),
 
   // Q9: Boredom trigger
   ExtendedQuizQuestion(
-    questionText: 'Do you watch pornography out of boredom?',
+    questionText: 'האם אתה צופה בפורנוגרפיה משעמום?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Frequently', 'Occasionally', 'Rarely or never'],
+    options: ['לעיתים קרובות', 'לפעמים', 'לעיתים רחוקות או אף פעם'],
   ),
 
   // Q10: Spent money
   ExtendedQuizQuestion(
-    questionText:
-        'Have you ever spent money on accessing explicit content?',
+    questionText: 'האם הוצאת כסף על גישה לתוכן מיני?',
     stepType: ExtendedQuizStepType.multipleChoice,
-    options: ['Yes', 'No'],
+    options: ['כן', 'לא'],
   ),
 
   // Final: Name & Age
   ExtendedQuizQuestion(
-    questionText: 'A little more about you',
+    questionText: 'קצת יותר עליך',
     stepType: ExtendedQuizStepType.textAndNumberInput,
-    titleLabel: 'Finally',
+    titleLabel: 'לסיום',
     isSkippable: false,
   ),
 ];

@@ -89,12 +89,12 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
           const SizedBox(height: AppSpacing.xxl),
 
           Text(
-            "It's okay.",
+            'זה בסדר.',
             style: AppTypography.headlineLarge.copyWith(color: Colors.white),
           ),
           const SizedBox(height: AppSpacing.md),
           Text(
-            'Recovery is not a straight line. What matters is that you keep going.',
+            'החלמה אינה קו ישר. מה שחשוב זה שאתה ממשיך.',
             style: AppTypography.bodyLarge.copyWith(
               color: AppColors.darkTextSecondary,
             ),
@@ -103,7 +103,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
 
           // Optional reason.
           Text(
-            'What triggered this? (optional)',
+            'מה היה הטריגר? (לא חובה)',
             style: AppTypography.labelMedium.copyWith(
               color: AppColors.darkTextSecondary,
             ),
@@ -114,7 +114,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
             style: AppTypography.bodyMedium.copyWith(color: Colors.white),
             maxLines: 3,
             decoration: InputDecoration(
-              hintText: 'This helps you identify patterns...',
+              hintText: 'זה יעזור לך לזהות דפוסים...',
               hintStyle: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextTertiary,
               ),
@@ -133,7 +133,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
           SizedBox(
             width: double.infinity,
             child: AppButton(
-              label: _processing ? 'Recording...' : 'Confirm Reset',
+              label: _processing ? 'מעדכן...' : 'אשר איפוס',
               variant: AppButtonVariant.danger,
               onPressed: _processing ? null : _recordRelapse,
             ),
@@ -142,7 +142,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
           SizedBox(
             width: double.infinity,
             child: AppButton(
-              label: 'Go Back',
+              label: 'חזור',
               variant: AppButtonVariant.ghost,
               onPressed: widget.onBack,
             ),
@@ -175,7 +175,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
             ),
             const SizedBox(height: AppSpacing.xxl),
             Text(
-              "You're still here.\nThat takes courage.",
+              'אתה עדיין כאן.\nזה דורש אומץ.',
               style: AppTypography.headlineMedium.copyWith(
                 color: Colors.white,
               ),
@@ -183,7 +183,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'Every day is a fresh start. Your streak has been reset, but your journey continues.',
+              'כל יום הוא התחלה חדשה. הרצף שלך אופס, אבל המסע שלך ממשיך.',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
@@ -193,7 +193,7 @@ class _RelapseFlowState extends ConsumerState<RelapseFlow> {
             SizedBox(
               width: double.infinity,
               child: AppButton(
-                label: 'Back to Home',
+                label: 'חזרה לבית',
                 variant: AppButtonVariant.primary,
                 onPressed: () => context.go(Routes.home),
               ),

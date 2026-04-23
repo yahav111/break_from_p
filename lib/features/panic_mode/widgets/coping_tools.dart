@@ -39,12 +39,12 @@ class CopingTools extends StatelessWidget {
         const SizedBox(height: AppSpacing.xxl),
 
         Text(
-          'Coping Tools',
+          'כלי התמודדות',
           style: AppTypography.headlineMedium.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          'Choose a tool to help you through this moment',
+          'בחר כלי שיעזור לך לעבור את הרגע הזה',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -54,8 +54,8 @@ class CopingTools extends StatelessWidget {
         _buildToolCard(
           context,
           icon: Icons.air_rounded,
-          title: 'Breathing Exercise',
-          subtitle: '4-4-4 box breathing to calm your mind',
+          title: 'תרגיל נשימה',
+          subtitle: 'נשימת קופסה 4-4-4 להרגיע את המחשבות',
           color: AppColors.secondary,
           onTap: () => context.push(Routes.breathingExercise),
         ),
@@ -63,8 +63,8 @@ class CopingTools extends StatelessWidget {
         _buildToolCard(
           context,
           icon: Icons.edit_note_rounded,
-          title: 'Journal Entry',
-          subtitle: 'Write about what you\'re feeling',
+          title: 'רשומת יומן',
+          subtitle: 'כתוב על מה שאתה מרגיש',
           color: AppColors.tertiary,
           onTap: () => context.push(Routes.journalEntry),
         ),
@@ -72,8 +72,8 @@ class CopingTools extends StatelessWidget {
         _buildToolCard(
           context,
           icon: Icons.self_improvement_rounded,
-          title: 'Guided Meditation',
-          subtitle: 'Exercises to regain control',
+          title: 'מדיטציה מודרכת',
+          subtitle: 'תרגילים להחזיר שליטה',
           color: AppColors.primary,
           onTap: () => context.push(Routes.meditate),
         ),

@@ -49,7 +49,7 @@ class MilestoneIndicator extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${milestone}d',
+                      '$milestone',
                       style: TextStyle(
                         fontSize: 8,
                         color: reached

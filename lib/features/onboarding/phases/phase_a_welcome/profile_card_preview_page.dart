@@ -16,7 +16,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = (userName?.isNotEmpty == true) ? userName! : 'Friend';
+    final name = (userName?.isNotEmpty == true) ? userName! : 'חבר';
     final now = DateTime.now();
     final dateStr =
         '${now.month.toString().padLeft(2, '0')}/${now.day.toString().padLeft(2, '0')}';
@@ -35,7 +35,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'Let\'s Go!',
+              'יאללה, יוצאים לדרך!',
               style: AppTypography.displayLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -43,7 +43,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'Welcome to QUITTR. Here\'s your tracked\nprofile card.',
+              'ברוך הבא ל-QUITTR. הנה כרטיס\nהפרופיל האישי שלך.',
               textAlign: TextAlign.center,
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
@@ -103,13 +103,13 @@ class ProfileCardPreviewPage extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.xxxl),
                   Text(
-                    'Active Streak',
+                    'רצף פעיל',
                     style: AppTypography.caption.copyWith(
                       color: Colors.white.withValues(alpha: 0.7),
                     ),
                   ),
                   Text(
-                    '0 days',
+                    '0 ימים',
                     style: AppTypography.headlineLarge.copyWith(
                       color: Colors.white,
                       fontWeight: AppTypography.bold,
@@ -128,7 +128,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Name',
+                            'שם',
                             style: AppTypography.caption.copyWith(
                               color: Colors.white.withValues(alpha: 0.6),
                             ),
@@ -145,7 +145,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'Free since',
+                            'נקי מאז',
                             style: AppTypography.caption.copyWith(
                               color: Colors.white.withValues(alpha: 0.6),
                             ),
@@ -165,7 +165,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
             ),
             const Spacer(flex: 1),
             Text(
-              'Now, let\'s build the app around you.',
+              'עכשיו נתאים את האפליקציה בשבילך.',
               style: AppTypography.bodyLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.medium,
@@ -173,7 +173,7 @@ class ProfileCardPreviewPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.xxl),
             AppButton(
-              label: 'Next',
+              label: 'המשך',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,

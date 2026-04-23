@@ -18,12 +18,12 @@ class UrgeSurfingScreen extends ConsumerStatefulWidget {
 class _UrgeSurfingScreenState extends ConsumerState<UrgeSurfingScreen>
     with SingleTickerProviderStateMixin {
   static const _steps = [
-    'Notice the urge.\nWhere do you feel it in your body?',
-    'Observe the sensation\nwithout judgment.',
-    'Imagine the urge as a wave.\nIt rises, peaks, and falls.',
-    'The wave is cresting.\nStay with it.',
-    'Feel it receding.\nYou\'re still here.',
-    'The urge has passed.\nYou are in control.',
+    'שים לב לדחף.\nאיפה אתה מרגיש אותו בגוף?',
+    'הבחן בתחושה\nללא שיפוט.',
+    'דמיין את הדחף כגל.\nהוא עולה, מגיע לשיא, ויורד.',
+    'הגל מגיע לשיא.\nהישאר איתו.',
+    'הרגש אותו נסוג.\nאתה עדיין כאן.',
+    'הדחף חלף.\nאתה בשליטה.',
   ];
 
   late final AnimationController _controller;
@@ -140,7 +140,7 @@ class _UrgeSurfingScreenState extends ConsumerState<UrgeSurfingScreen>
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Urge Surfing',
+            'גלישה על דחף',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -159,12 +159,12 @@ class _UrgeSurfingScreenState extends ConsumerState<UrgeSurfingScreen>
         ),
         const SizedBox(height: AppSpacing.xxl),
         Text(
-          'Urge Surfing',
+          'גלישה על דחף',
           style: AppTypography.headlineMedium.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          'Ride the wave \u00b7 ~3 minutes',
+          'גלישה על הגל \u00b7 כ-3 דקות',
           style: AppTypography.bodyMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -173,7 +173,7 @@ class _UrgeSurfingScreenState extends ConsumerState<UrgeSurfingScreen>
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxxl),
           child: GradientButton(
-            label: 'Begin',
+            label: 'התחל',
             onPressed: _start,
           ),
         ),

@@ -43,7 +43,7 @@ class AchievementToast {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Achievement Unlocked',
+                    'הישג נפתח',
                     style: AppTypography.caption.copyWith(
                       color: Colors.white70,
                     ),

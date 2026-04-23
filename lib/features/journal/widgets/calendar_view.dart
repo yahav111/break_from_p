@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/models/journal_entry.dart';
 import '../../../design_system/design_system.dart';
@@ -21,12 +22,7 @@ class CalendarView extends StatefulWidget {
 class _CalendarViewState extends State<CalendarView> {
   late DateTime _currentMonth;
 
-  static const _dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-
-  static const _monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
-  ];
+  static const _dayLabels = ['ב', 'ג', 'ד', 'ה', 'ו', 'ש', 'א'];
 
   static const _moodColors = <int, Color>{
     0: AppColors.error,
@@ -69,7 +65,7 @@ class _CalendarViewState extends State<CalendarView> {
           onPressed: _previousMonth,
         ),
         Text(
-          '${_monthNames[_currentMonth.month - 1]} ${_currentMonth.year}',
+          DateFormat('MMMM y', 'he_IL').format(_currentMonth),
           style: AppTypography.titleMedium.copyWith(color: Colors.white),
         ),
         IconButton(

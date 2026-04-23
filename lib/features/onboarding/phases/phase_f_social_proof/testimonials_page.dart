@@ -13,21 +13,21 @@ class _Testimonial {
 
 const _testimonials = <_Testimonial>[
   _Testimonial(
-    'Tony Coleman',
+    'טוני קולמן',
     '@tcoleman23',
-    'I was skeptical at first, but QUITTR\'s panic button feature has helped me resist temptation multiple times. The app\'s educational content has also opened my eyes to the negative effects of porn. Highly recommend!',
+    'בהתחלה הייתי סקפטי, אבל כפתור הפניקה של QUITTR עזר לי להתגבר על פיתויים הרבה פעמים. גם התוכן החינוכי פקח לי את העיניים לגבי ההשפעה השלילית של פורנו. ממליץ בחום!',
     5,
   ),
   _Testimonial(
-    'David Lee',
+    'דיוויד לי',
     '@davidleeeee',
-    'Thanks to QUITTR, I\'ve been able to quit porn and focus on healthier habits. The app\'s adult content blocker is incredibly effective, and the benefits of quitting have been amazing.',
+    'הודות ל-QUITTR הצלחתי לגמול מעצמי ולהתמקד בהרגלים בריאים יותר. החוסם של תוכן למבוגרים יעיל מאוד, והיתרונות של הגמילה מדהימים.',
     5,
   ),
   _Testimonial(
-    'Michael R.',
+    'מייקל ר.',
     '@michaelr_fit',
-    'The progress tracking and motivational notifications have kept me on track. I haven\'t watched porn in 3 months and feel more in control of my life.',
+    'מעקב ההתקדמות וההתראות המעודדות שמרו אותי על המסלול. כבר 3 חודשים שלא צפיתי בפורנו ואני מרגיש הרבה יותר שולט בחיים שלי.',
     5,
   ),
 ];
@@ -57,7 +57,7 @@ class TestimonialsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: AppButton(
-              label: 'Next',
+              label: 'המשך',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,

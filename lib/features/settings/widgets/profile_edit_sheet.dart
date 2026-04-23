@@ -12,7 +12,7 @@ class ProfileEditSheet extends ConsumerStatefulWidget {
   static Future<void> show(BuildContext context) {
     return AppModalSheet.show(
       context: context,
-      title: 'Edit Profile',
+      title: 'עריכת פרופיל',
       showCloseButton: true,
       child: const ProfileEditSheet(),
     );
@@ -90,7 +90,7 @@ class _ProfileEditSheetState extends ConsumerState<ProfileEditSheet> {
       children: [
         // Name field.
         Text(
-          'Name',
+          'שם',
           style: AppTypography.labelMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -116,7 +116,7 @@ class _ProfileEditSheetState extends ConsumerState<ProfileEditSheet> {
 
         // Quit date.
         Text(
-          'Quit Date',
+          'תאריך התחלה',
           style: AppTypography.labelMedium.copyWith(
             color: AppColors.darkTextSecondary,
           ),
@@ -153,7 +153,7 @@ class _ProfileEditSheetState extends ConsumerState<ProfileEditSheet> {
 
         // Save button.
         AppButton(
-          label: 'Save Changes',
+          label: 'שמור שינויים',
           variant: AppButtonVariant.primary,
           onPressed: _save,
         ),

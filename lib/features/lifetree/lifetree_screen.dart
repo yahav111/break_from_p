@@ -107,7 +107,7 @@ class LifetreeScreen extends ConsumerWidget {
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Lifetree',
+            'עץ החיים',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -119,7 +119,7 @@ class LifetreeScreen extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
       child: Text(
-        'Unlock bonus content as you progress',
+        'פתח תוכן בונוס ככל שאתה מתקדם',
         style: AppTypography.bodyMedium.copyWith(
           color: AppColors.darkTextSecondary,
         ),
@@ -135,7 +135,7 @@ class LifetreeScreen extends ConsumerWidget {
         top: AppSpacing.sm,
       ),
       child: Text(
-        '$unlocked of $total nodes unlocked',
+        '$unlocked מתוך $total נקודות נפתחו',
         style: AppTypography.labelMedium.copyWith(
           color: AppColors.darkTextTertiary,
         ),
@@ -149,10 +149,10 @@ class LifetreeScreen extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [
-          _LegendDot(color: Color(0xFF4ECB71), label: 'Breathing'),
-          _LegendDot(color: Color(0xFF7B61FF), label: 'Journaling'),
-          _LegendDot(color: Color(0xFF4ECBFF), label: 'Meditation'),
-          _LegendDot(color: Color(0xFFFF9F43), label: 'Soundscapes'),
+          _LegendDot(color: Color(0xFF4ECB71), label: 'נשימה'),
+          _LegendDot(color: Color(0xFF7B61FF), label: 'יומן'),
+          _LegendDot(color: Color(0xFF4ECBFF), label: 'מדיטציה'),
+          _LegendDot(color: Color(0xFFFF9F43), label: 'נופים קוליים'),
         ],
       ),
     );

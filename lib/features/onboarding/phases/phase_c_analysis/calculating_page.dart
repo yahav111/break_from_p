@@ -85,7 +85,7 @@ class _CalculatingPageState extends State<CalculatingPage>
             ),
             const SizedBox(height: AppSpacing.xxxl),
             Text(
-              'Calculating',
+              'מחשבים',
               style: AppTypography.headlineMedium.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -93,7 +93,7 @@ class _CalculatingPageState extends State<CalculatingPage>
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'Understanding responses',
+              'מנתחים את התשובות שלך',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.primary,
               ),

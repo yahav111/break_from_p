@@ -31,7 +31,7 @@ class AnalysisCompletePage extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'Analysis Complete',
+              'הניתוח הושלם',
               style: AppTypography.displayMedium.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -39,14 +39,14 @@ class AnalysisCompletePage extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
-              'We\'ve got some news to break to you...',
+              'יש לנו חדשות עבורך...',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'Your responses indicate a clear\ndependence on internet porn*',
+              'התשובות שלך מצביעות על\nתלות ברורה בפורנוגרפיה*',
               textAlign: TextAlign.center,
               style: AppTypography.bodyLarge.copyWith(
                 color: Colors.white,
@@ -61,7 +61,7 @@ class AnalysisCompletePage extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              '${score.round()}% higher dependence on porn',
+              '${score.round()}% תלות גבוהה יותר מהממוצע',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.error,
                 fontWeight: AppTypography.semiBold,
@@ -69,7 +69,7 @@ class AnalysisCompletePage extends ConsumerWidget {
             ),
             const Spacer(flex: 1),
             Text(
-              '* This result is an indication only, not a medical diagnosis.',
+              '* תוצאה זו היא לצורך מידע בלבד ואינה אבחנה רפואית.',
               style: AppTypography.caption.copyWith(
                 color: AppColors.darkTextTertiary,
               ),
@@ -77,7 +77,7 @@ class AnalysisCompletePage extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             AppButton(
-              label: 'Check your symptoms',
+              label: 'בדיקת תסמינים',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,

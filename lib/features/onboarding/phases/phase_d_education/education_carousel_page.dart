@@ -79,7 +79,7 @@ class _EducationCarouselPageState extends State<EducationCarouselPage> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.xxl),
                 child: AppButton(
-                  label: 'Next',
+                  label: 'המשך',
                   isFullWidth: true,
                   variant: AppButtonVariant.primary,
                   size: AppButtonSize.large,

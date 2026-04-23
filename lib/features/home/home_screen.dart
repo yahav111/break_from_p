@@ -51,12 +51,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         : 0;
     final brainRewire = StreakEngine.brainRewireProgress(days);
     final greeting = _greeting();
-    final name = profile?.name ?? 'Friend';
+    final name = profile?.name ?? 'חבר';
 
     final timeLabel = liveStreak.when(
       data: (d) => StreakEngine.formatDuration(d),
-      loading: () => '${days}d 0h 0m 0s',
-      error: (_, _) => '${days}d 0h 0m 0s',
+      loading: () => '$days ימים 0 שעות 0 דקות 0 שניות',
+      error: (_, _) => '$days ימים 0 שעות 0 דקות 0 שניות',
     );
 
     final totalPledges = pledgeData?.pledgeDates.length ?? 0;
@@ -140,9 +140,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   String _greeting() {
     final hour = DateTime.now().hour;
-    if (hour < 12) return 'Good morning';
-    if (hour < 17) return 'Good afternoon';
-    return 'Good evening';
+    if (hour < 12) return 'בוקר טוב';
+    if (hour < 17) return 'צהריים טובים';
+    return 'ערב טוב';
   }
 
   Widget _buildHeader(
@@ -157,7 +157,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
         Text(
-          'Day $days',
+          'יום $days',
           style: AppTypography.headlineLarge.copyWith(color: Colors.white),
         ),
       ],
@@ -169,7 +169,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       children: [
         Expanded(
           child: StatCard(
-            label: 'Streak',
+            label: 'רצף',
             value: '$days',
             icon: Icons.local_fire_department_rounded,
             iconColor: AppColors.tertiary,
@@ -178,7 +178,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         const SizedBox(width: AppSpacing.md),
         Expanded(
           child: StatCard(
-            label: 'Pledges',
+            label: 'התחייבויות',
             value: '$totalPledges',
             icon: Icons.handshake_rounded,
             iconColor: AppColors.secondary,
@@ -187,7 +187,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         const SizedBox(width: AppSpacing.md),
         Expanded(
           child: StatCard(
-            label: 'Relapses',
+            label: 'החלקות',
             value: '$totalRelapses',
             icon: Icons.refresh_rounded,
             iconColor: AppColors.primary,
@@ -199,7 +199,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildQuickActionsTitle() {
     return Text(
-      'Quick Actions',
+      'פעולות מהירות',
       style: AppTypography.titleMedium.copyWith(color: Colors.white),
     );
   }
@@ -210,22 +210,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       runSpacing: AppSpacing.md,
       children: [
         QuickActionChip(
-          label: 'Meditate',
+          label: 'מדיטציה',
           icon: Icons.self_improvement_rounded,
           onTap: () => context.push(Routes.meditate),
         ),
         QuickActionChip(
-          label: 'Journal',
+          label: 'יומן',
           icon: Icons.edit_note_rounded,
           onTap: () => context.push(Routes.journalEntry),
         ),
         QuickActionChip(
-          label: 'Track Urge',
+          label: 'תעד דחף',
           icon: Icons.warning_amber_rounded,
           onTap: () => context.push(Routes.urgeTracker),
         ),
         QuickActionChip(
-          label: 'Reset',
+          label: 'איפוס',
           icon: Icons.refresh_rounded,
           onTap: () => _showResetDialog(context, ref),
         ),
@@ -259,7 +259,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             Icon(Icons.warning_rounded, color: AppColors.error, size: 18),
             const SizedBox(width: AppSpacing.sm),
             Text(
-              'Panic Button',
+              'כפתור מצוקה',
               style: AppTypography.button.copyWith(color: AppColors.error),
             ),
           ],
@@ -300,11 +300,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void _showResetDialog(BuildContext context, WidgetRef ref) {
     AppBottomDialog.show(
       context: context,
-      title: 'Reset Streak?',
+      title: 'לאפס את הרצף?',
       message:
-          'This will reset your current streak to Day 0. Your longest streak will be saved. This action cannot be undone.',
-      primaryButtonLabel: 'Reset Streak',
-      secondaryButtonLabel: 'Cancel',
+          'פעולה זו תאפס את הרצף הנוכחי שלך ליום 0. הרצף הארוך ביותר שלך יישמר. לא ניתן לבטל פעולה זו.',
+      primaryButtonLabel: 'אפס רצף',
+      secondaryButtonLabel: 'ביטול',
       isPrimaryDestructive: true,
       onPrimaryPressed: () {
         ref.read(streakNotifierProvider.notifier).resetStreak();

@@ -18,31 +18,31 @@ class GroundingScreen extends ConsumerStatefulWidget {
 class _GroundingScreenState extends ConsumerState<GroundingScreen> {
   static const _steps = [
     _GroundingStep(
-      text: 'Name 5 things\nyou can SEE',
+      text: 'ציין 5 דברים\nשאתה יכול לראות',
       icon: Icons.visibility_rounded,
       color: AppColors.primary,
       count: 5,
     ),
     _GroundingStep(
-      text: 'Name 4 things\nyou can TOUCH',
+      text: 'ציין 4 דברים\nשאתה יכול לגעת בהם',
       icon: Icons.touch_app_rounded,
       color: AppColors.secondary,
       count: 4,
     ),
     _GroundingStep(
-      text: 'Name 3 things\nyou can HEAR',
+      text: 'ציין 3 דברים\nשאתה יכול לשמוע',
       icon: Icons.hearing_rounded,
       color: AppColors.tertiary,
       count: 3,
     ),
     _GroundingStep(
-      text: 'Name 2 things\nyou can SMELL',
+      text: 'ציין 2 דברים\nשאתה יכול להריח',
       icon: Icons.air_rounded,
       color: AppColors.info,
       count: 2,
     ),
     _GroundingStep(
-      text: 'Name 1 thing\nyou can TASTE',
+      text: 'ציין דבר אחד\nשאתה יכול לטעום',
       icon: Icons.restaurant_rounded,
       color: AppColors.primary,
       count: 1,
@@ -126,7 +126,7 @@ class _GroundingScreenState extends ConsumerState<GroundingScreen> {
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Grounding',
+            'הארקה',
             style: AppTypography.headlineSmall.copyWith(color: Colors.white),
           ),
         ],
@@ -185,7 +185,7 @@ class _GroundingScreenState extends ConsumerState<GroundingScreen> {
 
           // Instruction.
           Text(
-            'Take a moment, then tap to continue',
+            'קח רגע, ואז הקש כדי להמשיך',
             style: AppTypography.bodyMedium.copyWith(
               color: AppColors.darkTextSecondary,
             ),

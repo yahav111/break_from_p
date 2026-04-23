@@ -32,8 +32,8 @@ abstract final class LifetreeNodeDialog {
     AppBottomDialog.show(
       context: context,
       title: node.title,
-      message: '${node.description}\n\nComing soon!',
-      primaryButtonLabel: 'OK',
+      message: '${node.description}\n\nבקרוב!',
+      primaryButtonLabel: 'אישור',
       onPrimaryPressed: () {},
     );
   }
@@ -46,8 +46,8 @@ abstract final class LifetreeNodeDialog {
     AppBottomDialog.show(
       context: context,
       title: node.title,
-      message: '${node.description}\n\nUnlock requirement: $requirement',
-      primaryButtonLabel: 'OK',
+      message: '${node.description}\n\nדרישת פתיחה: $requirement',
+      primaryButtonLabel: 'אישור',
       onPrimaryPressed: () {},
     );
   }
@@ -62,9 +62,9 @@ abstract final class LifetreeNodeDialog {
     AppBottomDialog.show(
       context: context,
       title: node.title,
-      message: '${node.description}\n\nReady to unlock!',
-      primaryButtonLabel: 'Unlock',
-      secondaryButtonLabel: 'Cancel',
+      message: '${node.description}\n\nמוכן לפתיחה!',
+      primaryButtonLabel: 'פתח',
+      secondaryButtonLabel: 'ביטול',
       onPrimaryPressed: () {
         ref.read(lifetreeNotifierProvider.notifier).unlockNode(node.id);
         _navigateToContent(context, node);
@@ -84,8 +84,8 @@ abstract final class LifetreeNodeDialog {
       context: context,
       title: node.title,
       message: node.description,
-      primaryButtonLabel: 'Start',
-      secondaryButtonLabel: 'Close',
+      primaryButtonLabel: 'התחל',
+      secondaryButtonLabel: 'סגור',
       onPrimaryPressed: () => _navigateToContent(context, node),
       onSecondaryPressed: () {},
     );

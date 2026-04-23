@@ -22,7 +22,7 @@ class WeeklyCleanDays extends StatelessWidget {
     // Find the Sunday that starts the current week.
     final weekStart = today.subtract(Duration(days: today.weekday % 7));
 
-    const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const dayLabels = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -38,7 +38,7 @@ class WeeklyCleanDays extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'This Week',
+            'השבוע',
             style: AppTypography.caption.copyWith(
               color: AppColors.darkTextSecondary,
               fontWeight: AppTypography.semiBold,

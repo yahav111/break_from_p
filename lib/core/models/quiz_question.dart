@@ -19,42 +19,42 @@ class QuizQuestion {
 
 const quizQuestions = <QuizQuestion>[
   QuizQuestion(
-    questionText: 'What should we call you?',
+    questionText: 'איך נקרא לך?',
     stepType: QuizStepType.textInput,
-    placeholder: 'Enter your name',
+    placeholder: 'הכנס את שמך',
   ),
   QuizQuestion(
-    questionText: 'How often do you watch pornography?',
+    questionText: 'באיזו תדירות אתה צופה בפורנוגרפיה?',
     stepType: QuizStepType.multipleChoice,
-    options: ['Daily', 'Several times a week', 'Weekly', 'Rarely'],
+    options: ['יומי', 'כמה פעמים בשבוע', 'שבועי', 'לעיתים רחוקות'],
     isRequired: false,
   ),
   QuizQuestion(
-    questionText: 'How long have you been struggling with this habit?',
+    questionText: 'כמה זמן אתה מתמודד עם ההרגל הזה?',
     stepType: QuizStepType.multipleChoice,
-    options: ['Less than a year', '1–3 years', '3–5 years', '5+ years'],
+    options: ['פחות משנה', '1-3 שנים', '3-5 שנים', '5+ שנים'],
     isRequired: false,
   ),
   QuizQuestion(
-    questionText: 'Have you noticed a shift towards more extreme material?',
+    questionText: 'שמת לב לשינוי לעבר תוכן קיצוני יותר?',
     stepType: QuizStepType.multipleChoice,
-    options: ['Yes', 'No'],
+    options: ['כן', 'לא'],
     isRequired: false,
   ),
   QuizQuestion(
-    questionText: 'How does this habit affect your daily life?',
+    questionText: 'כיצד ההרגל הזה משפיע על חייך היומיומיים?',
     stepType: QuizStepType.multipleChoice,
-    options: ['Significantly', 'Somewhat', 'Not much', 'Not sure'],
+    options: ['משמעותית', 'במידה מסוימת', 'לא הרבה', 'לא בטוח'],
     isRequired: false,
   ),
   QuizQuestion(
-    questionText: "What's your main reason for wanting to quit?",
+    questionText: 'מהי הסיבה העיקרית שלך לרצות להפסיק?',
     stepType: QuizStepType.multipleChoice,
-    options: ['Mental health', 'Relationships', 'Self-discipline', 'Productivity'],
+    options: ['בריאות נפשית', 'יחסים', 'משמעת עצמית', 'פרודוקטיביות'],
     isRequired: false,
   ),
   QuizQuestion(
-    questionText: 'When do you want to start your journey?',
+    questionText: 'מתי תרצה להתחיל את המסע שלך?',
     stepType: QuizStepType.datePicker,
   ),
 ];

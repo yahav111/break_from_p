@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../core/providers/journal_provider.dart';
 import '../../design_system/design_system.dart';
@@ -85,7 +86,7 @@ class JournalHistoryScreen extends ConsumerWidget {
           ),
           const SizedBox(width: AppSpacing.lg),
           Text(
-            'Journal History',
+            'היסטוריית יומן',
             style: AppTypography.headlineSmall.copyWith(
               color: Colors.white,
             ),
@@ -109,14 +110,14 @@ class JournalHistoryScreen extends ConsumerWidget {
               ),
               const SizedBox(height: AppSpacing.lg),
               Text(
-                'No entries yet',
+                'אין עדיין רשומות',
                 style: AppTypography.titleSmall.copyWith(
                   color: AppColors.darkTextSecondary,
                 ),
               ),
               const SizedBox(height: AppSpacing.sm),
               Text(
-                'Start writing to see your history here',
+                'התחל לכתוב כדי לראות את ההיסטוריה כאן',
                 style: AppTypography.bodyMedium.copyWith(
                   color: AppColors.darkTextTertiary,
                 ),
@@ -134,7 +135,7 @@ class JournalHistoryScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Recent Entries',
+          'רשומות אחרונות',
           style: AppTypography.titleMedium.copyWith(color: Colors.white),
         ),
         const SizedBox(height: AppSpacing.md),
@@ -161,11 +162,7 @@ class JournalHistoryScreen extends ConsumerWidget {
 
     if (dayEntries.isEmpty) return;
 
-    const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ];
-    final dateLabel = '${months[date.month - 1]} ${date.day}, ${date.year}';
+    final dateLabel = DateFormat('d בMMMM y', 'he_IL').format(date);
 
     showModalBottomSheet(
       context: context,

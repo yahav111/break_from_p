@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../design_system/design_system.dart';
 import '../../widgets/onboarding_page_template.dart';
+import '../phase_h_paywall/models/recovery_plan.dart';
+import '../phase_h_paywall/recovery_plan_provider.dart';
 
 /// Recovery graph showing 3 paths: relapses, conventional, QUITTR.
-class RecoveryGraphPage extends StatelessWidget {
+/// Curves are generated from the user's computed [RecoveryPlan] so the week
+/// count and trajectory reflect their own quiz answers.
+class RecoveryGraphPage extends ConsumerWidget {
   const RecoveryGraphPage({super.key, required this.onNext});
 
   final VoidCallback onNext;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final plan = ref.watch(recoveryPlanProvider);
+
     return OnboardingPageTemplate(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
@@ -25,7 +32,7 @@ class RecoveryGraphPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Porn Recovery',
+                      'החלמה מפורנו',
                       style: AppTypography.headlineMedium.copyWith(
                         color: Colors.white,
                         fontWeight: AppTypography.bold,
@@ -42,7 +49,7 @@ class RecoveryGraphPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          ' - relapses',
+                          ' - הישנות',
                           style: AppTypography.bodySmall.copyWith(
                             color: AppColors.darkTextSecondary,
                           ),
@@ -52,7 +59,7 @@ class RecoveryGraphPage extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'QUITTR',
+                  'QUITTER PRO',
                   style: AppTypography.headlineSmall.copyWith(
                     color: AppColors.primary,
                     fontWeight: AppTypography.bold,
@@ -62,12 +69,12 @@ class RecoveryGraphPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppSpacing.xxl),
-            // Custom painted graph
+            // Custom painted graph, driven by the user's plan.
             SizedBox(
               height: 200,
               child: CustomPaint(
                 size: const Size(double.infinity, 200),
-                painter: _RecoveryGraphPainter(),
+                painter: _RecoveryGraphPainter(weeks: plan.weeks),
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
@@ -75,14 +82,14 @@ class RecoveryGraphPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildLegend(AppColors.success, 'QUITTR'),
-                _buildLegend(Colors.white, 'Conventional'),
-                _buildLegend(AppColors.error, 'Relapses'),
+                _buildLegend(AppColors.success, 'QUITTER PRO'),
+                _buildLegend(Colors.white, 'רגיל'),
+                _buildLegend(AppColors.error, 'הישנות'),
               ],
             ),
             const Spacer(flex: 1),
             Text(
-              'Rewiring Benefits',
+              'יתרונות החיווט מחדש',
               style: AppTypography.headlineSmall.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.semiBold,
@@ -90,7 +97,8 @@ class RecoveryGraphPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
             Text(
-              'QUITTR\'s structured approach helps you break free faster with fewer relapses than going it alone.',
+              'על פי התשובות שלך, QUITTR צופה החלמה של כ-'
+              '${plan.totalDays} ימים — עם הרבה פחות הישנויות מאשר לבד.',
               textAlign: TextAlign.center,
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
@@ -99,7 +107,7 @@ class RecoveryGraphPage extends StatelessWidget {
             ),
             const Spacer(flex: 1),
             AppButton(
-              label: 'Next',
+              label: 'המשך',
               isFullWidth: true,
               variant: AppButtonVariant.primary,
               size: AppButtonSize.large,
@@ -137,75 +145,126 @@ class RecoveryGraphPage extends StatelessWidget {
 }
 
 class _RecoveryGraphPainter extends CustomPainter {
+  const _RecoveryGraphPainter({required this.weeks});
+
+  final List<RecoveryWeekPoint> weeks;
+
   @override
   void paint(Canvas canvas, Size size) {
+    final n = weeks.length;
+    if (n == 0) return;
+
     final w = size.width;
     final h = size.height;
+    const margin = 12.0;
 
-    // Grid lines
+    double xFromIndex(int i) => n == 1 ? w / 2 : (i / (n - 1)) * w;
+    // progress 0..1 → higher progress drawn near top of canvas
+    double yFromProgress(double p) =>
+        h - margin - p * (h - 2 * margin);
+
+    // Grid lines at each week boundary (skip the first).
     final gridPaint = Paint()
       ..color = Colors.white.withValues(alpha: 0.1)
       ..strokeWidth = 0.5;
-    for (int i = 1; i <= 3; i++) {
-      final x = w * i / 3;
+    for (int i = 1; i < n; i++) {
+      final x = xFromIndex(i);
       canvas.drawLine(Offset(x, 0), Offset(x, h), gridPaint);
     }
 
-    // Relapses path (red, oscillating low)
-    final relapsePaint = Paint()
-      ..color = const Color(0xFFEF5350)
-      ..strokeWidth = 2.5
-      ..style = PaintingStyle.stroke;
-    final relapsePath = Path()
-      ..moveTo(0, h * 0.7)
-      ..cubicTo(w * 0.15, h * 0.5, w * 0.2, h * 0.8, w * 0.33, h * 0.6)
-      ..cubicTo(w * 0.45, h * 0.4, w * 0.5, h * 0.9, w * 0.66, h * 0.7)
-      ..cubicTo(w * 0.8, h * 0.5, w * 0.85, h * 0.85, w, h * 0.75);
-    canvas.drawPath(relapsePath, relapsePaint);
+    // Build the three point lists from the week data.
+    final relapsePts = [
+      for (var i = 0; i < n; i++)
+        Offset(xFromIndex(i), yFromProgress(weeks[i].relapses)),
+    ];
+    final conventionalPts = [
+      for (var i = 0; i < n; i++)
+        Offset(xFromIndex(i), yFromProgress(weeks[i].conventional)),
+    ];
+    final quittrPts = [
+      for (var i = 0; i < n; i++)
+        Offset(xFromIndex(i), yFromProgress(weeks[i].quittr)),
+    ];
 
-    // Conventional path (white, flat-ish)
-    final conventionalPaint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.7)
-      ..strokeWidth = 2.5
-      ..style = PaintingStyle.stroke;
-    final conventionalPath = Path()
-      ..moveTo(0, h * 0.7)
-      ..cubicTo(w * 0.2, h * 0.6, w * 0.4, h * 0.55, w * 0.6, h * 0.5)
-      ..cubicTo(w * 0.75, h * 0.45, w * 0.9, h * 0.42, w, h * 0.4);
-    canvas.drawPath(conventionalPath, conventionalPaint);
+    _drawSmooth(
+      canvas,
+      relapsePts,
+      Paint()
+        ..color = const Color(0xFFEF5350)
+        ..strokeWidth = 2.5
+        ..style = PaintingStyle.stroke,
+    );
+    _drawSmooth(
+      canvas,
+      conventionalPts,
+      Paint()
+        ..color = Colors.white.withValues(alpha: 0.7)
+        ..strokeWidth = 2.5
+        ..style = PaintingStyle.stroke,
+    );
+    _drawSmooth(
+      canvas,
+      quittrPts,
+      Paint()
+        ..color = const Color(0xFF4CAF50)
+        ..strokeWidth = 3
+        ..style = PaintingStyle.stroke,
+    );
 
-    // QUITTR path (green, ascending strongly)
-    final quittrPaint = Paint()
-      ..color = const Color(0xFF4CAF50)
-      ..strokeWidth = 3
-      ..style = PaintingStyle.stroke;
-    final quittrPath = Path()
-      ..moveTo(0, h * 0.7)
-      ..cubicTo(w * 0.2, h * 0.5, w * 0.4, h * 0.35, w * 0.6, h * 0.25)
-      ..cubicTo(w * 0.75, h * 0.18, w * 0.9, h * 0.12, w, h * 0.08);
-    canvas.drawPath(quittrPath, quittrPaint);
-
-    // Endpoint dot for QUITTR
+    // Endpoint dot for QUITTR trajectory.
     canvas.drawCircle(
-      Offset(w, h * 0.08),
+      quittrPts.last,
       5,
       Paint()..color = const Color(0xFF4CAF50),
     );
 
-    // Week labels
+    // Week labels: show at most 5 tick labels.
+    final labelIndices = _pickLabelIndices(n);
     final textStyle = TextStyle(
       color: Colors.white.withValues(alpha: 0.4),
       fontSize: 10,
     );
-    for (int i = 1; i <= 3; i++) {
+    for (final i in labelIndices) {
       final tp = TextPainter(
-        text: TextSpan(text: 'Week $i', style: textStyle),
-        textDirection: TextDirection.ltr,
+        text: TextSpan(text: 'שבוע ${i + 1}', style: textStyle),
+        textDirection: TextDirection.rtl,
       )..layout();
-      tp.paint(canvas, Offset(w * i / 3 - tp.width / 2, h - tp.height));
+      tp.paint(
+        canvas,
+        Offset(xFromIndex(i) - tp.width / 2, h - tp.height),
+      );
     }
   }
 
+  void _drawSmooth(Canvas canvas, List<Offset> points, Paint paint) {
+    if (points.isEmpty) return;
+    final path = Path()..moveTo(points.first.dx, points.first.dy);
+    if (points.length == 1) {
+      canvas.drawPath(path, paint);
+      return;
+    }
+    for (int i = 1; i < points.length; i++) {
+      final p0 = points[i - 1];
+      final p1 = points[i];
+      final midX = (p0.dx + p1.dx) / 2;
+      path.cubicTo(midX, p0.dy, midX, p1.dy, p1.dx, p1.dy);
+    }
+    canvas.drawPath(path, paint);
+  }
+
+  Set<int> _pickLabelIndices(int n) {
+    if (n <= 5) return {for (int i = 0; i < n; i++) i};
+    return <int>{
+      0,
+      (n / 4).round(),
+      (n / 2).round(),
+      (3 * n / 4).round(),
+      n - 1,
+    };
+  }
+
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _RecoveryGraphPainter oldDelegate) {
+    return oldDelegate.weeks != weeks;
+  }
 }

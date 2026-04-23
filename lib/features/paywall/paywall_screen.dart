@@ -89,7 +89,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   Widget _buildHeadline() {
     return Text(
-      'Goodbye Porn,\nHello QUITTR.',
+      'להתראות פורנו,\nשלום QUITTR.',
       textAlign: TextAlign.center,
       style: AppTypography.displayLarge.copyWith(
         color: Colors.white,
@@ -101,7 +101,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   Widget _buildSubtitle() {
     return Text(
-      'Get unlimited access to QUITTR including:\nPersonalised Plan · Content Blocker · Community\nStreak Tracking · Daily Pledges + much more!',
+      'קבל גישה בלתי מוגבלת ל-QUITTR כולל:\nתוכנית מותאמת אישית · חסם תוכן · קהילה\nמעקב רצף · התחייבויות יומיות ועוד הרבה!',
       textAlign: TextAlign.center,
       style: AppTypography.bodyMedium.copyWith(
         color: AppColors.darkTextSecondary,
@@ -115,8 +115,8 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
       children: [
         Expanded(
           child: PlanCard(
-            label: 'Monthly',
-            price: '₪32/mo',
+            label: 'חודשי',
+            price: '₪32/חודש',
             isSelected: _selectedPlan == 0,
             onTap: () => setState(() => _selectedPlan = 0),
           ),
@@ -124,9 +124,9 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
         const SizedBox(width: AppSpacing.md),
         Expanded(
           child: PlanCard(
-            label: 'Yearly',
-            price: '₪8.32/mo',
-            badge: 'BEST VALUE',
+            label: 'שנתי',
+            price: '₪8.32/חודש',
+            badge: 'הכי משתלם',
             isSelected: _selectedPlan == 1,
             onTap: () => setState(() => _selectedPlan = 1),
           ),
@@ -137,7 +137,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   Widget _buildCta() {
     return GradientButton(
-      label: 'CONTINUE',
+      label: 'המשך',
       isFullWidth: true,
       size: AppButtonSize.large,
       onPressed: () => context.go(Routes.auth),
@@ -146,7 +146,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   Widget _buildFooterNote() {
     return Text(
-      'Just 99.90₪ per year  ·  Discrete Purchase  ·  Finally Quit Porn',
+      'רק 99.90₪ לשנה · רכישה דיסקרטית · להפסיק לצמיתות',
       textAlign: TextAlign.center,
       style: AppTypography.caption.copyWith(
         color: AppColors.darkTextSecondary,

@@ -16,7 +16,7 @@ class NotificationScheduler {
 
   static const _channelId = 'quittr_notifications';
   static const _channelName = 'Quittr';
-  static const _channelDescription = 'Reminders and milestone celebrations';
+  static const _channelDescription = 'תזכורות וחגיגות אבני דרך';
 
   /// Initialize the notification plugin. Call once at app startup.
   Future<void> init() async {
@@ -44,8 +44,8 @@ class NotificationScheduler {
       id: _pledgeId,
       hour: hour,
       minute: minute,
-      title: 'Time to pledge',
-      body: 'Start your day with a commitment to stay clean.',
+      title: 'הגיע הזמן להתחייב',
+      body: 'התחל את היום עם התחייבות להישאר נקי.',
     );
   }
 
@@ -56,8 +56,8 @@ class NotificationScheduler {
       id: _checkInId,
       hour: hour,
       minute: minute,
-      title: 'Evening check-in',
-      body: 'How was your day? Take a moment to reflect.',
+      title: 'צ׳ק-אין ערב',
+      body: 'איך עבר עליך היום? קח רגע להתבונן.',
     );
   }
 
@@ -68,8 +68,8 @@ class NotificationScheduler {
       id: _motivationId,
       hour: 12,
       minute: 0,
-      title: 'Stay strong',
-      body: 'Every day you choose freedom is a victory.',
+      title: 'תישאר חזק',
+      body: 'כל יום שבו אתה בוחר בחופש הוא ניצחון.',
     );
   }
 
@@ -78,8 +78,8 @@ class NotificationScheduler {
     final details = _notificationDetails();
     await _plugin.show(
       _milestoneBaseId + days,
-      'Milestone reached!',
-      'You hit $days days! Your brain is rewiring.',
+      'אבן דרך הושגה!',
+      'הגעת ל-$days ימים! המוח שלך בתהליך של חיווט מחדש.',
       details,
     );
   }

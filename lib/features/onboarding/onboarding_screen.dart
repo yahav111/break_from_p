@@ -90,7 +90,7 @@ class OnboardingScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Stay on track\nwith reminders',
+          'נשארים במסלול\nעם תזכורות',
           style: AppTypography.headlineLarge.copyWith(
             color: Colors.white,
             fontSize: 34,
@@ -99,7 +99,7 @@ class OnboardingScreen extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.lg),
         Text(
-          'Get gentle reminders and motivation so you never lose sight of your goals.',
+          'קבל תזכורות עדינות ומוטיבציה כדי שלא תאבד את המטרות שלך מהעיניים.',
           style: AppTypography.bodyLarge.copyWith(
             color: AppColors.darkTextSecondary,
             height: 1.6,
@@ -116,24 +116,24 @@ class OnboardingScreen extends StatelessWidget {
           icon: Icons.notifications_rounded,
           bubbleColor: AppColors.iconBubblePurple,
           iconColor: AppColors.primary,
-          title: 'Smart Reminders',
-          subtitle: 'Personalized to your schedule',
+          title: 'תזכורות חכמות',
+          subtitle: 'מותאמות אישית ללוח הזמנים שלך',
         ),
         SizedBox(height: AppSpacing.md),
         FeatureRow(
           icon: Icons.psychology_rounded,
           bubbleColor: AppColors.iconBubbleGreen,
           iconColor: AppColors.secondary,
-          title: 'Motivational Insights',
-          subtitle: 'Science-based encouragement',
+          title: 'תובנות מעוררות מוטיבציה',
+          subtitle: 'עידוד מבוסס מדע',
         ),
         SizedBox(height: AppSpacing.md),
         FeatureRow(
           icon: Icons.local_fire_department_rounded,
           bubbleColor: AppColors.iconBubbleOrange,
           iconColor: AppColors.tertiary,
-          title: 'Streak Tracking',
-          subtitle: 'Watch your progress grow',
+          title: 'מעקב רצף',
+          subtitle: 'צפה בהתקדמות שלך גדלה',
         ),
       ],
     );
@@ -141,7 +141,7 @@ class OnboardingScreen extends StatelessWidget {
 
   Widget _buildPrimaryButton(BuildContext context) {
     return AppButton(
-      label: 'Enable Notifications',
+      label: 'הפעל התראות',
       isFullWidth: true,
       variant: AppButtonVariant.primary,
       size: AppButtonSize.large,
@@ -157,7 +157,7 @@ class OnboardingScreen extends StatelessWidget {
 
   Widget _buildSkipButton(BuildContext context) {
     return AppButton(
-      label: 'Not now',
+      label: 'לא עכשיו',
       isFullWidth: true,
       variant: AppButtonVariant.ghost,
       size: AppButtonSize.medium,

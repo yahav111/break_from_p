@@ -36,13 +36,13 @@ class UrgeChart extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildBar(context, 'Morning', '6am-12pm', buckets['morning'] ?? 0, maxCount),
+        _buildBar(context, 'בוקר', '6:00-12:00', buckets['morning'] ?? 0, maxCount),
         const SizedBox(height: AppSpacing.sm),
-        _buildBar(context, 'Afternoon', '12pm-6pm', buckets['afternoon'] ?? 0, maxCount),
+        _buildBar(context, 'צהריים', '12:00-18:00', buckets['afternoon'] ?? 0, maxCount),
         const SizedBox(height: AppSpacing.sm),
-        _buildBar(context, 'Evening', '6pm-12am', buckets['evening'] ?? 0, maxCount),
+        _buildBar(context, 'ערב', '18:00-24:00', buckets['evening'] ?? 0, maxCount),
         const SizedBox(height: AppSpacing.sm),
-        _buildBar(context, 'Night', '12am-6am', buckets['night'] ?? 0, maxCount),
+        _buildBar(context, 'לילה', '0:00-6:00', buckets['night'] ?? 0, maxCount),
       ],
     );
   }

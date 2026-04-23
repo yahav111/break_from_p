@@ -16,12 +16,12 @@ class MotivationOverlay extends StatefulWidget {
 class _MotivationOverlayState extends State<MotivationOverlay>
     with SingleTickerProviderStateMixin {
   static const _messages = [
-    'IS THIS REALLY WORTH IT?',
-    "YOU'RE BETTER THAN THIS.",
-    'THINK ABOUT WHO YOU WANT TO BE.',
-    'THIS FEELING WILL PASS.',
-    'YOUR FUTURE SELF WILL THANK YOU.',
-    "YOU'VE COME TOO FAR TO QUIT.",
+    'זה באמת שווה את זה?',
+    'אתה שווה יותר מזה.',
+    'חשוב מי אתה רוצה להיות.',
+    'התחושה הזו תעבור.',
+    'עצמך העתידי יודה לך.',
+    'הגעת רחוק מכדי לוותר.',
   ];
 
   int _currentIndex = 0;

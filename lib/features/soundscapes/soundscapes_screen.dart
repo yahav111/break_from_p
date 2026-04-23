@@ -14,25 +14,25 @@ class SoundscapesScreen extends ConsumerWidget {
   // Soundscape definitions.
   static const _soundscapes = [
     _SoundscapeDef(
-      name: 'Campfire',
+      name: 'מדורה',
       icon: Icons.local_fire_department_rounded,
       asset: 'assets/audio/campfire.mp3',
       color: AppColors.tertiary,
     ),
     _SoundscapeDef(
-      name: 'Ocean',
+      name: 'אוקיינוס',
       icon: Icons.waves_rounded,
       asset: 'assets/audio/ocean.mp3',
       color: AppColors.primary,
     ),
     _SoundscapeDef(
-      name: 'Rain',
+      name: 'גשם',
       icon: Icons.water_drop_rounded,
       asset: 'assets/audio/rain.mp3',
       color: AppColors.info,
     ),
     _SoundscapeDef(
-      name: 'Forest',
+      name: 'יער',
       icon: Icons.park_rounded,
       asset: 'assets/audio/forest.mp3',
       color: AppColors.secondary,
@@ -83,7 +83,7 @@ class SoundscapesScreen extends ConsumerWidget {
                     ),
                     const SizedBox(width: AppSpacing.md),
                     Text(
-                      'Soundscapes',
+                      'נופים קוליים',
                       style: AppTypography.titleMedium.copyWith(
                         color: Colors.white,
                       ),
@@ -96,7 +96,7 @@ class SoundscapesScreen extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
                 child: Text(
-                  'Ambient sounds for relaxation',
+                  'צלילי רקע להרפיה',
                   style: AppTypography.bodyMedium.copyWith(
                     color: AppColors.darkTextSecondary,
                   ),

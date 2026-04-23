@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../design_system/design_system.dart';
 
 /// Scaffold shell with 5-tab bottom navigation.
-/// Order: Journal, Tools, Home (center, elevated), Statistics, Settings.
+/// Code order: בית, תוכן, כלים, יומן, הגדרות.
+/// Under app-wide RTL this renders visually as: הגדרות (left) → בית (right).
 class MainShell extends StatelessWidget {
   const MainShell({super.key, required this.navigationShell});
 
@@ -23,30 +24,29 @@ class MainShell extends StatelessWidget {
         ),
         items: const [
           AppBottomNavItem(
-            icon: Icons.edit_note_outlined,
-            activeIcon: Icons.edit_note_rounded,
-            label: 'Journal',
-          ),
-          AppBottomNavItem(
-            icon: Icons.category_outlined,
-            activeIcon: Icons.category_rounded,
-            label: 'Tools',
-          ),
-          AppBottomNavItem(
-            icon: Icons.home_rounded,
+            icon: Icons.home_outlined,
             activeIcon: Icons.home_rounded,
-            label: 'Home',
-            isSpecial: true,
+            label: 'בית',
           ),
           AppBottomNavItem(
             icon: Icons.play_circle_outline_rounded,
             activeIcon: Icons.play_circle_rounded,
-            label: 'Content',
+            label: 'תוכן',
+          ),
+          AppBottomNavItem(
+            icon: Icons.category_outlined,
+            activeIcon: Icons.category_rounded,
+            label: 'כלים',
+          ),
+          AppBottomNavItem(
+            icon: Icons.edit_note_outlined,
+            activeIcon: Icons.edit_note_rounded,
+            label: 'יומן',
           ),
           AppBottomNavItem(
             icon: Icons.settings_outlined,
             activeIcon: Icons.settings_rounded,
-            label: 'Settings',
+            label: 'הגדרות',
           ),
         ],
       ),

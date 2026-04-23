@@ -16,11 +16,11 @@ abstract final class OrbDetailDialog {
     final milestone = StreakEngine.checkMilestone(day);
 
     final parts = <String>[];
-    parts.add('Day $day');
+    parts.add('יום $day');
     if (!isLocked) {
-      parts.add('Achieved!');
+      parts.add('הושג!');
     } else {
-      parts.add('${day - currentDays} days to go');
+      parts.add('${day - currentDays} ימים לסיום');
     }
     if (milestone != null) {
       parts.add('');
@@ -31,7 +31,7 @@ abstract final class OrbDetailDialog {
       context: context,
       title: milestoneTitle ?? label,
       message: parts.join('\n'),
-      primaryButtonLabel: 'OK',
+      primaryButtonLabel: 'אישור',
       onPrimaryPressed: () {},
     );
   }

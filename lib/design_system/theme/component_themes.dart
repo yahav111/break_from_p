@@ -432,8 +432,8 @@ class ComponentThemes {
   }) {
     return BoxDecoration(
       gradient: const LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
+        begin: AlignmentDirectional.centerStart,
+        end: AlignmentDirectional.centerEnd,
         colors: [AppColors.gradientStart, AppColors.gradientEnd],
       ),
       borderRadius: BorderRadius.circular(borderRadius),

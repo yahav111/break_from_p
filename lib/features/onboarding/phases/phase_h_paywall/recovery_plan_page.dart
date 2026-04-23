@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../design_system/design_system.dart';
 import '../../widgets/onboarding_page_template.dart';
+import 'recovery_plan_provider.dart';
 import 'widgets/day_plan_card.dart';
 
-/// 7-day recovery plan page: "It's not about willpower."
-class RecoveryPlanPage extends StatelessWidget {
+/// Recovery plan page: "It's not about willpower."
+/// Renders a personalized day-by-day plan derived from the user's quiz
+/// answers, with day count and key copy scaled to the user's total recovery
+/// duration.
+class RecoveryPlanPage extends ConsumerWidget {
   const RecoveryPlanPage({super.key, required this.onNext});
 
   final VoidCallback onNext;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final plan = ref.watch(recoveryPlanProvider);
+
     return OnboardingPageTemplate(
       child: Column(
         children: [
           const SizedBox(height: AppSpacing.xxl),
           // QUITTR logo
           Text(
-            'QUITTR',
+            'QUITTER PRO',
             style: AppTypography.headlineSmall.copyWith(
               color: Colors.white,
               fontWeight: AppTypography.bold,
@@ -29,7 +36,7 @@ class RecoveryPlanPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
             child: Text(
-              'It\'s not about willpower.',
+              'זה לא עניין של כוח רצון.',
               style: AppTypography.headlineLarge.copyWith(
                 color: Colors.white,
                 fontWeight: AppTypography.bold,
@@ -40,7 +47,7 @@ class RecoveryPlanPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
             child: Text(
-              'It\'s about a system that actually works',
+              'זו מערכת שפשוט עובדת',
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.darkTextSecondary,
               ),
@@ -50,7 +57,10 @@ class RecoveryPlanPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
             child: Text(
-              'QUITTR guides you through a powerful 30 day reset, providing structure and tools that support your growth even beyond the break.\n\nHere\'s what your first 7 days looks like:',
+              'QUITTER PRO מלווה אותך בתהליך התאפסות חזק של '
+              '${plan.totalDays} ימים, עם מבנה וכלים שתומכים בצמיחה שלך '
+              'גם מעבר לתקופת ההתנזרות.\n\n'
+              'הנה איך נראים 7 הימים הראשונים שלך:',
               style: AppTypography.bodySmall.copyWith(
                 color: AppColors.darkTextSecondary,
                 height: 1.5,
@@ -60,57 +70,15 @@ class RecoveryPlanPage extends StatelessWidget {
           const SizedBox(height: AppSpacing.lg),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.xl),
-              children: const [
-                DayPlanCard(
-                  title: 'Day 0 — Set up your space',
-                  description:
-                      'Share your digital and social environment to make change easier.',
-                  icon: Icons.home_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 1 — Outsmart Withdrawal',
-                  description:
-                      'Use quick mental and physical tools to ride out urges and reset focus.',
-                  icon: Icons.psychology_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 2 — Brain Reset Begins',
-                  description:
-                      'Dopamine levels begin to stabilize. Cravings may spike as your brain adjusts.',
-                  icon: Icons.auto_fix_high_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 3 — Strengthen Your Why',
-                  description:
-                      'Turn your reason for quitting into daily motivation and focus.',
-                  icon: Icons.gps_fixed_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 4 — Crush the Symptoms',
-                  description:
-                      'Handle low energy, sleep issues, or irritability with simple resets.',
-                  icon: Icons.build_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 5 — Focus Returns',
-                  description:
-                      'The fog begins to lift, and motivation slowly returns. Stay grounded.',
-                  icon: Icons.visibility_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 6 — You\'re Not Alone',
-                  description:
-                      'Connect with others on the same path. Share wins, get support.',
-                  icon: Icons.groups_rounded,
-                ),
-                DayPlanCard(
-                  title: 'Day 7 — Take Back Your Time',
-                  description:
-                      'Replace old habits with real goals and meaningful action.',
-                  icon: Icons.schedule_rounded,
-                ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+              children: [
+                for (final d in plan.dayPlan)
+                  DayPlanCard(
+                    title: d.dayLabel,
+                    description: d.description,
+                    icon: d.icon,
+                  ),
               ],
             ),
           ),
@@ -125,7 +93,7 @@ class RecoveryPlanPage extends StatelessWidget {
                         color: AppColors.success, size: 16),
                     const SizedBox(width: AppSpacing.xs),
                     Text(
-                      'No commitment, cancel anytime',
+                      'ללא התחייבות, ניתן לבטל בכל עת',
                       style: AppTypography.bodySmall.copyWith(
                         color: AppColors.success,
                       ),
@@ -134,7 +102,7 @@ class RecoveryPlanPage extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.md),
                 GradientButton(
-                  label: 'START MY JOURNEY TODAY',
+                  label: 'התחל את המסע שלי היום',
                   isFullWidth: true,
                   size: AppButtonSize.large,
                   onPressed: onNext,

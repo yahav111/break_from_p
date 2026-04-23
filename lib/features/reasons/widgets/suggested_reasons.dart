@@ -14,16 +14,16 @@ class SuggestedReasons extends StatelessWidget {
   final List<String> alreadyAdded;
 
   static const suggestions = [
-    'Improve relationships',
-    'Better mental health',
-    'More self-discipline',
-    'Increased energy',
-    'Better focus',
-    'Respect my partner',
-    'Be a better person',
-    'Improve intimacy',
-    'Boost confidence',
-    'Reclaim my time',
+    'לשפר יחסים',
+    'בריאות נפשית טובה יותר',
+    'יותר משמעת עצמית',
+    'יותר אנרגיה',
+    'ריכוז טוב יותר',
+    'לכבד את בן/בת הזוג שלי',
+    'להיות אדם טוב יותר',
+    'לשפר אינטימיות',
+    'לחזק ביטחון עצמי',
+    'להחזיר לעצמי את הזמן',
   ];
 
   @override

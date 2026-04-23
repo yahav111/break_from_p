@@ -17,14 +17,14 @@ class TriggerSelector extends StatelessWidget {
   final ValueChanged<String> onTriggerSelected;
 
   static const List<_TriggerOption> _triggers = [
-    _TriggerOption(key: 'boredom', label: 'Boredom', icon: Icons.hourglass_empty_rounded),
-    _TriggerOption(key: 'stress', label: 'Stress', icon: Icons.psychology_rounded),
-    _TriggerOption(key: 'loneliness', label: 'Loneliness', icon: Icons.person_off_rounded),
-    _TriggerOption(key: 'anxiety', label: 'Anxiety', icon: Icons.warning_amber_rounded),
-    _TriggerOption(key: 'habit', label: 'Habit', icon: Icons.repeat_rounded),
-    _TriggerOption(key: 'social_media', label: 'Social Media', icon: Icons.phone_android_rounded),
-    _TriggerOption(key: 'late_night', label: 'Late Night', icon: Icons.nightlight_rounded),
-    _TriggerOption(key: 'other', label: 'Other', icon: Icons.more_horiz_rounded),
+    _TriggerOption(key: 'boredom', label: 'שעמום', icon: Icons.hourglass_empty_rounded),
+    _TriggerOption(key: 'stress', label: 'לחץ', icon: Icons.psychology_rounded),
+    _TriggerOption(key: 'loneliness', label: 'בדידות', icon: Icons.person_off_rounded),
+    _TriggerOption(key: 'anxiety', label: 'חרדה', icon: Icons.warning_amber_rounded),
+    _TriggerOption(key: 'habit', label: 'הרגל', icon: Icons.repeat_rounded),
+    _TriggerOption(key: 'social_media', label: 'רשתות חברתיות', icon: Icons.phone_android_rounded),
+    _TriggerOption(key: 'late_night', label: 'שעות מאוחרות', icon: Icons.nightlight_rounded),
+    _TriggerOption(key: 'other', label: 'אחר', icon: Icons.more_horiz_rounded),
   ];
 
   @override

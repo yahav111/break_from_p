@@ -28,7 +28,7 @@ class QuizNameAgeForm extends StatelessWidget {
       children: [
         _buildField(
           controller: nameController,
-          hint: 'Your name',
+          hint: 'השם שלך',
           onChanged: onNameChanged,
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.next,
@@ -37,7 +37,7 @@ class QuizNameAgeForm extends StatelessWidget {
         const SizedBox(height: AppSpacing.lg),
         _buildField(
           controller: ageController,
-          hint: 'Age',
+          hint: 'גיל',
           onChanged: onAgeChanged,
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.done,
@@ -49,7 +49,7 @@ class QuizNameAgeForm extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.xxl),
         GradientButton(
-          label: 'Complete Quiz',
+          label: 'סיים שאלון',
           isFullWidth: true,
           size: AppButtonSize.large,
           onPressed: canProceed ? onSubmit : null,
